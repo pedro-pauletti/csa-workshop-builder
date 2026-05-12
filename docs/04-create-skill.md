@@ -1,5 +1,15 @@
 # 3. Create the SKILL.md
 
+!!! info "Two-level SKILL files"
+    | File | Owner | Purpose |
+    |---|---|---|
+    | `SKILL.template.md` *(in this tutorial / template repo)* | Template team | Reusable contract that survives across customers. |
+    | `SKILL.md` *(in your customer repo)* | The CSA for this engagement | Customized version with the customer scenario pasted in. |
+
+    You **copy** the template into your customer repo and customize the
+    **Context** and **Non-goals** sections. Stack, folder layout, and
+    agenda-driven rules should rarely change.
+
 ## Goal
 
 Author a `SKILL.md` that instructs **GitHub Copilot** *how* to scaffold the
@@ -54,6 +64,25 @@ A polished `SKILL.md` ready to be referenced by `/plan`.
 - [ ] Architecture is agenda-driven.
 - [ ] Demos can be added without changing the core app.
 - [ ] No real secrets; only `example.env`.
+
+## Good SKILL vs bad SKILL
+
+| Good SKILL | Bad SKILL |
+|---|---|
+| Pins stack and versions (`FastAPI 0.115`, `Jinja2 3.1`). | "Use modern Python." |
+| Mandates `agenda.md` as the single source of truth for nav. | Lists routes manually. |
+| Requires presenter notes + requirement mapping in every section. | Leaves content structure to Copilot's mood. |
+| Forbids real secrets; only `example.env` is tracked. | "Add Azure keys when ready." |
+| Stays under ~150 lines. | 500-line spec that reads like a PRD. |
+
+## Mini visual
+
+```text
+customer-scenario.md ──► SKILL.md ──► /plan ──► Copilot generates the app
+                              ▲
+                              │
+                      SKILL.template.md (reusable contract)
+```
 
 ## Common issues
 

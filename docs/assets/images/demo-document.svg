@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-label="Document analysis demo mock">
+  <rect width="960" height="540" fill="#f7f9fc"/>
+  <text x="40" y="48" font-family="Inter, sans-serif" font-size="20" fill="#0b1530" font-weight="700">Demo · Document Analysis</text>
+  <rect x="40" y="72" width="440" height="420" rx="8" fill="#fff" stroke="#dbe2ee"/>
+  <text x="60" y="100" font-family="Inter, sans-serif" font-size="13" fill="#54607a" font-weight="700">INPUT · contract.pdf</text>
+  <g font-family="JetBrains Mono, monospace" font-size="12" fill="#374151">
+    <text x="60" y="128">MASTER SERVICES AGREEMENT</text>
+    <text x="60" y="148">Between Contoso Telecom and ACME Inc.</text>
+    <text x="60" y="168">Effective: 2026-01-01</text>
+    <text x="60" y="188">Term: 24 months</text>
+    <text x="60" y="208">Auto-renewal: yes (60 days notice)</text>
+    <text x="60" y="228">SLA: 99.9% · credits per appendix B</text>
+    <text x="60" y="248">Payment terms: Net 45</text>
+    <text x="60" y="268">Liability cap: 12 months fees</text>
+    <text x="60" y="288">Data residency: Brazil</text>
+    <text x="60" y="308">Termination for convenience: 90 days</text>
+  </g>
+  <rect x="500" y="72" width="420" height="420" rx="8" fill="#fff" stroke="#dbe2ee"/>
+  <text x="520" y="100" font-family="Inter, sans-serif" font-size="13" fill="#54607a" font-weight="700">EXTRACTION · structured</text>
+  <g font-family="JetBrains Mono, monospace" font-size="12" fill="#0b1530">
+    <text x="520" y="128">parties: [Contoso, ACME]</text>
+    <text x="520" y="148">effective_date: 2026-01-01</text>
+    <text x="520" y="168">term_months: 24</text>
+    <text x="520" y="188">auto_renew: true</text>
+    <text x="520" y="208">notice_days: 60</text>
+    <text x="520" y="228">sla_uptime: 0.999</text>
+    <text x="520" y="248">payment_terms: NET45</text>
+    <text x="520" y="268">liability_cap: 12_months_fees</text>
+    <text x="520" y="288">data_residency: BR</text>
+    <text x="520" y="308">termination_convenience_days: 90</text>
+    <text x="520" y="340" fill="#3949ab">confidence: 0.91</text>
+  </g>
+</svg>

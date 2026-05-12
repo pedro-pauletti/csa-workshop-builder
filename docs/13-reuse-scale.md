@@ -4,6 +4,16 @@
 
 Make this pattern repeatable across CSAs, customers, products, and industries.
 
+## Three-repo promotion flow
+
+![Three-repo flow](assets/images/three-repo-flow.svg){ .screenshot }
+
+| Direction | What flows | Example |
+|---|---|---|
+| Customer repo → Template repo | Stable, customer-agnostic improvements. | A better `agenda_loader` parser. |
+| Template repo → Tutorial repo | Method-level changes. | A new validation step that catches a class of misfires. |
+| Tutorial repo → Customer repo | The method itself (always pulled, never pushed). | Updated prompts, new modules. |
+
 ## Why it matters
 
 A great single workshop is good for one engagement. A reusable pattern raises

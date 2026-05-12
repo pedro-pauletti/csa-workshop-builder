@@ -1,0 +1,82 @@
+/* csa-workshop-builder — extras for Material */
+
+/* Hero band on the home page */
+.hero {
+  background: linear-gradient(135deg, rgba(63, 81, 181, 0.08), rgba(0, 188, 212, 0.08));
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 12px;
+  padding: 2rem 2rem 1.25rem;
+  margin: 0 0 1.5rem;
+}
+.hero h1 {
+  margin-top: 0;
+  font-size: 2rem;
+  line-height: 1.2;
+}
+.hero p {
+  font-size: 1.05rem;
+  max-width: 720px;
+}
+.hero .md-button {
+  margin: 0.25rem 0.4rem 0.25rem 0;
+}
+
+/* Outcome cards grid */
+.outcome-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.85rem;
+  margin: 1rem 0 1.5rem;
+}
+.outcome-cards .card {
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 8px;
+  padding: 0.9rem 1rem;
+  background: var(--md-default-bg-color);
+}
+.outcome-cards .card strong {
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+/* Screenshot strip */
+.screenshot-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.75rem;
+  margin: 1rem 0 1.5rem;
+}
+.screenshot-strip img {
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 6px;
+  background: var(--md-default-bg-color);
+}
+
+/* Framed inline screenshot */
+.screenshot {
+  display: block;
+  margin: 1rem auto;
+  max-width: 100%;
+  height: auto;
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 6px;
+  background: var(--md-default-bg-color);
+}
+
+/* Bigger Mermaid */
+.mermaid {
+  max-width: 100%;
+  min-height: 280px;
+}
+.mermaid svg {
+  width: 100% !important;
+  height: auto !important;
+}
+
+/* Two-trails table emphasis */
+.trails td:first-child {
+  width: 28%;
+  font-weight: 600;
+}

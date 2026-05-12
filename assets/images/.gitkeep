@@ -1,8 +1,12 @@
 # assets/images
 
-Drop screenshots, logos, and other binary images here. Reference them from
-docs pages with relative paths, e.g.:
+> Editable SVG wireframes live under `docs/assets/images/`. The repo-root
+> `assets/images/` folder is reserved for raw binary assets (real
+> screenshots, source files) that are not yet ready to be served by the
+> docs site.
+
+Reference SVGs from docs pages with relative paths, e.g.:
 
 ```markdown
-![Workshop app sidebar](../assets/images/sidebar.png)
+![Workshop app sidebar](assets/images/sidebar.svg)
 ```

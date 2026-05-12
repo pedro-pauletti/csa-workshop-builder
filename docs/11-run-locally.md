@@ -74,4 +74,4 @@ Return: a diff with corrections.
 
 ## Next step
 
-Continue to **[11. Publish with GitHub Pages](12-publish-github-pages.md)**.
+Continue to **[8. Add explanatory sections](08-explanatory-sections.md)**.

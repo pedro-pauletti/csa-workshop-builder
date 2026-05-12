@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-label="Workshop app — home page wireframe">
+  <rect width="960" height="540" fill="#f7f9fc"/>
+  <rect x="0" y="0" width="960" height="56" fill="#1f3a93"/>
+  <text x="24" y="36" font-family="Inter, sans-serif" font-size="18" fill="#fff" font-weight="600">Workshop · Customer Use Case</text>
+  <text x="900" y="36" font-family="Inter, sans-serif" font-size="14" fill="#cfd8ff" text-anchor="end">☀ / ☾</text>
+  <rect x="0" y="56" width="220" height="484" fill="#eef2f8"/>
+  <text x="24" y="92" font-family="Inter, sans-serif" font-size="12" fill="#54607a" font-weight="700">AGENDA</text>
+  <g font-family="Inter, sans-serif" font-size="13" fill="#1f2937">
+    <text x="24" y="120">Introduction</text>
+    <text x="24" y="148">Architecture</text>
+    <text x="24" y="176" font-weight="700" fill="#1f3a93">Demo · Chat</text>
+    <text x="24" y="204">Demo · Search</text>
+    <text x="24" y="232">Demo · Workflow</text>
+    <text x="24" y="260">Demo · Documents</text>
+    <text x="24" y="288">Evaluation</text>
+    <text x="24" y="316">Governance</text>
+    <text x="24" y="344">Wrap-up</text>
+  </g>
+  <rect x="252" y="84" width="680" height="80" rx="6" fill="#fff" stroke="#dbe2ee"/>
+  <text x="272" y="116" font-family="Inter, sans-serif" font-size="20" fill="#0b1530" font-weight="700">Customer · Use case · Outcome</text>
+  <text x="272" y="142" font-family="Inter, sans-serif" font-size="14" fill="#4b5b76">One-sentence executive summary of this workshop.</text>
+  <rect x="252" y="184" width="330" height="160" rx="6" fill="#fff" stroke="#dbe2ee"/>
+  <text x="272" y="214" font-family="Inter, sans-serif" font-size="14" font-weight="700" fill="#0b1530">Learning objectives</text>
+  <g font-family="Inter, sans-serif" font-size="13" fill="#374151">
+    <text x="272" y="240">• Understand the architecture</text>
+    <text x="272" y="262">• See grounded answers with citations</text>
+    <text x="272" y="284">• Map demos to requirements</text>
+    <text x="272" y="306">• Plan a 30/60/90 day adoption</text>
+  </g>
+  <rect x="602" y="184" width="330" height="160" rx="6" fill="#fff" stroke="#dbe2ee"/>
+  <text x="622" y="214" font-family="Inter, sans-serif" font-size="14" font-weight="700" fill="#0b1530">Requirement mapping</text>
+  <g font-family="Inter, sans-serif" font-size="13" fill="#374151">
+    <text x="622" y="240">R1 → Demo · Chat</text>
+    <text x="622" y="262">R2 → Demo · Search</text>
+    <text x="622" y="284">R3 → Demo · Workflow</text>
+    <text x="622" y="306">R4 → Evaluation</text>
+  </g>
+  <rect x="252" y="364" width="680" height="148" rx="6" fill="#fff" stroke="#dbe2ee"/>
+  <text x="272" y="394" font-family="Inter, sans-serif" font-size="14" font-weight="700" fill="#0b1530">Start the workshop</text>
+  <rect x="272" y="412" width="160" height="36" rx="6" fill="#1f3a93"/>
+  <text x="352" y="436" font-family="Inter, sans-serif" font-size="13" fill="#fff" text-anchor="middle">Begin</text>
+  <rect x="446" y="412" width="160" height="36" rx="6" fill="#fff" stroke="#1f3a93"/>
+  <text x="526" y="436" font-family="Inter, sans-serif" font-size="13" fill="#1f3a93" text-anchor="middle">Presenter mode</text>
+</svg>

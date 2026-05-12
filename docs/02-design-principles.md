@@ -1,4 +1,8 @@
-# 1. Workshop design principles
+# 1. Accelerator pattern (workshop design principles)
+
+!!! tip "If you already ran the Fast path"
+    This module explains **why** the generated app is shaped the way it is, so
+    you can customize it without breaking the pattern.
 
 ## Goal
 
@@ -11,6 +15,15 @@ A workshop without principles becomes a feature parade. Customers disengage,
 executives lose context, and architects can't connect what they saw to their
 own roadmap. Principles give you a repeatable bar of quality across every
 customer engagement.
+
+## Weak vs Strong workshop
+
+| Weak workshop | Strong workshop |
+|---|---|
+| "Let me show Azure AI Search." | "Contoso needs trusted answers from internal knowledge; this demo shows retrieval, citations and evaluation against R3." |
+| "Here is a chatbot." | "This chat answers a customer-service scenario, shows sources, and maps to requirement R3 — handling-time reduction." |
+| Live demos with no fallback. | Every live demo has a screenshot + recorded clip fallback. |
+| One narrative aimed at architects. | Dual narrative — 30-second executive framing + technical deep-dive. |
 
 ## Inputs
 

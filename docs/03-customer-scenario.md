@@ -51,6 +51,38 @@ A populated `customer-scenario.md` with:
 - 3–7 numbered requirements.
 - One-sentence executive summary.
 
+## Worked example — Contoso Telecom (Customer Service AI)
+
+```markdown
+# Customer scenario — Contoso Telecom
+
+**Customer:** Contoso Telecom (fictional)
+**Industry:** Telecommunications
+**Audience:** Customer service leaders, support operations, solution architects
+**Microsoft products in scope:** Azure AI Foundry, Azure AI Search, Azure OpenAI
+**Workshop objective:** Show how grounded AI assistants can reduce call
+handling time by 20% while preserving auditability.
+
+## Requirements
+R1. Show grounded answers with citations from internal knowledge base.
+R2. Demonstrate agent-assisted next-best-action for support workflows.
+R3. Demonstrate handling-time reduction with side-by-side comparison.
+R4. Show evaluation: groundedness, relevance, harm scoring.
+R5. Show observability: traces, token usage, cost per resolved ticket.
+
+## Executive summary
+Contoso wants a trusted, observable AI assistant for support agents that
+reduces handling time without compromising compliance.
+```
+
+From raw notes to scenario:
+
+| Raw discovery note | Becomes |
+|---|---|
+| "They're worried about hallucinations." | R1 — grounded answers with citations. |
+| "Reps spend too long searching." | R3 — handling-time reduction demo. |
+| "Risk team needs proof of safety." | R4 — evaluation scorecards. |
+
 ## Validation checklist
 
 - [ ] One sentence explains the workshop to an executive.

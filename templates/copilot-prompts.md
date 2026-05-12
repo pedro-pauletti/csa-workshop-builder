@@ -5,6 +5,71 @@ A curated set of prompts used across the tutorial. Adapt placeholders in
 
 ---
 
+## 0. Fast path — generate the first working workshop app
+
+````text
+/plan
+
+I want to generate the first working version of a generic interactive workshop web app.
+
+Use SKILL.md and agenda.md as the source of truth.
+
+Goal:
+Create a reusable generic workshop app that CSAs can later customize for different Microsoft products, customers and use cases.
+
+The first version must be functional locally and include:
+- FastAPI 0.115 backend.
+- Jinja2 templates.
+- Vanilla JavaScript.
+- CSS-only design system.
+- Light/dark theme persisted in localStorage.
+- Dynamic sidebar generated from agenda.md.
+- One section per agenda item.
+- Home page with workshop overview.
+- Presenter notes.
+- Requirement mapping.
+- Mock interactive demos:
+  - Chat demo.
+  - Search demo.
+  - Workflow execution demo.
+  - Document analysis demo.
+  - Evaluation dashboard demo.
+- README with local run instructions.
+- Dockerfile.
+- docker-compose.yml.
+- example.env only, no real secrets.
+
+Do not implement real Azure service calls yet. Use realistic mock data and clear extension points for future services.
+
+Analyze the files first and produce an implementation plan before writing code.
+````
+
+Then:
+
+````text
+Implement the approved plan. Make sure the app runs locally with `docker compose up --build` and produces the expected screens (home, sections from agenda.md, all five mock demos).
+````
+
+---
+
+## 0.b Push-back prompts (when Copilot misfires)
+
+````text
+The sidebar and section list must be generated at request time by reading agenda.md.
+Refactor to add an `agenda_loader` module that returns a list of {slug, title, description}
+and remove all hard-coded navigation entries.
+````
+
+````text
+Replace the hard-coded sidebar with a Jinja2 partial that iterates over the items returned by `agenda_loader.load()`. The partial must be included by the base template only.
+````
+
+````text
+Remove all real Azure SDK calls. v1 must use mock JSON in data/. Add a comment in each demo handler showing the extension point where the real call will go later.
+````
+
+---
+
 ## 1. Critique a draft outline against design principles
 
 ```text

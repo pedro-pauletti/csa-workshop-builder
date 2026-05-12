@@ -1,44 +1,86 @@
-# Introduction
+# Accelerator for customer workshops
 
-**How CSAs can create engaging workshops tailored to customer use cases**
+<div class="hero" markdown>
 
-A practical guide to creating customer-specific, interactive workshop web apps
-with **GitHub Copilot**.
+# Build a customer-ready interactive workshop app with GitHub Copilot
 
-## Who this is for
+Use this accelerator to **generate a working generic workshop web app**, then
+**customize it for any customer, Microsoft product or use case** — in
+hours, not weeks.
 
-Microsoft **Cloud Solution Architects (CSAs)** and technical specialists who
-need to deliver hands-on, customer-specific workshops that go beyond generic
-demos. The pattern works for any Microsoft product — Azure AI Foundry, Microsoft
-Fabric, Microsoft Security, Microsoft 365 Copilot, Dynamics 365, GitHub Copilot.
+[Start the fast path :material-rocket-launch:](00-fast-path.md){ .md-button .md-button--primary }
+[Learn the method :material-school:](02-design-principles.md){ .md-button }
+[Use the app template :material-source-branch:](https://github.com/pedro-pauletti/customer-workshop-app-template){ .md-button }
 
-## What you will build (by the end of this tutorial)
+</div>
 
-A reusable method — and a working **FastAPI + Jinja2 + Docker** workshop web
-app — that you can adapt per customer in hours instead of weeks. The app is
-**agenda-driven**: a single `agenda.md` file produces the navigation, sections,
-explanatory content placeholders and embedded interactive demo slots.
+!!! success "What you will have after the fast path"
+    A generic interactive workshop web app running locally — dynamic sidebar
+    from `agenda.md`, explanatory sections, mock demos (chat, search,
+    workflow, document analysis, evaluation), presenter notes, and
+    requirement mapping. Ready to be customized for your customer.
 
-## The end-to-end flow
+<div class="outcome-cards" markdown>
+<div class="card" markdown>**Working app, fast**
+A runnable FastAPI/Jinja2/Docker app at the end of module 0.
+</div>
+<div class="card" markdown>**Agenda-driven**
+Editing one markdown file (`agenda.md`) updates the navigation and sections.
+</div>
+<div class="card" markdown>**Reusable across products**
+Same skeleton for Foundry, Fabric, Security, M365 Copilot, Dynamics, GitHub Copilot.
+</div>
+<div class="card" markdown>**Customer-specific in hours**
+Swap scenario + demos; keep architecture stable.
+</div>
+</div>
 
-```mermaid
-flowchart LR
-    A[Customer requirements] --> B[Workshop narrative]
-    B --> C[SKILL.md]
-    B --> D[agenda.md]
-    C --> E["GitHub Copilot /plan"]
-    D --> E
-    E --> F[Workshop web app<br/>FastAPI + Jinja2]
-    F --> G[Explanatory sections]
-    F --> H[Interactive demos]
-    F --> I[Presenter guide]
-    I --> J[Customer workshop delivery]
-```
+## What it looks like
 
-## How to use this tutorial
+<div class="screenshot-strip" markdown>
+![Workshop app home](assets/images/home.svg)
+![Dynamic sidebar from agenda.md](assets/images/sidebar.svg)
+![Explanatory section](assets/images/section.svg)
+![Chat demo](assets/images/demo-chat.svg)
+</div>
 
-Each module follows the **same 9-section pattern** so you always know what to
-expect:
+## The three-repo architecture
+
+This accelerator is intentionally split across three repositories so the
+**method**, the **template**, and each **customer engagement** can evolve
+independently.
+
+![Three-repo accelerator flow](assets/images/three-repo-flow.svg){ .screenshot }
+
+| Repo | Role |
+|---|---|
+| **`csa-workshop-builder`** *(this site)* | The tutorial — method, prompts, templates, samples. Published to GitHub Pages. |
+| **`customer-workshop-app-template`** | The reusable FastAPI/Jinja2 app template. Cloned for each engagement. |
+| **`<customer>-workshop`** | A customer-specific workshop app generated from the template and customized. |
+
+!!! tip "Don't have the template repo yet?"
+    The Fast path includes a Copilot prompt that scaffolds it from scratch
+    using `SKILL.md` + `agenda.md`. You can build the template the first time
+    you run the Fast path.
+
+## Two trails
+
+<table class="trails">
+<tr>
+<td>Fast path — 60–90 min</td>
+<td>Clone the template, run Copilot, get a working generic app locally. Skip the theory until you need it.</td>
+</tr>
+<tr>
+<td>Deep dive — full method</td>
+<td>Understand SKILL.md, agenda.md, design principles, demo patterns, customization recipes, publishing.</td>
+</tr>
+</table>
+
+[Start the fast path](00-fast-path.md){ .md-button .md-button--primary }
+
+## How each module is structured
+
+Each module follows the **same 9-section pattern**:
 
 1. **Goal** — what you will produce.
 2. **Why it matters** — how it improves the workshop.
@@ -50,25 +92,9 @@ expect:
 8. **Common issues** — fast troubleshooting.
 9. **Next step** — link to the next module.
 
-!!! tip "Work through the modules in order"
-    The artifacts build on each other: scenario → SKILL → agenda → plan → app →
-    content → demos → customization → packaging → publishing.
-
 ## Prerequisites
 
 - GitHub account with **GitHub Copilot** access (Copilot Chat with `/plan`).
-- VS Code or GitHub.dev.
-- Docker Desktop (for the local-first workshop app).
-- Python 3.11+ (for running `mkdocs serve` on this tutorial site itself).
-
-## What this repository is — and is not
-
-| This repo **is** | This repo **is not** |
-|---|---|
-| A tutorial / training site published to GitHub Pages. | The generated workshop web app. |
-| A set of templates and prompts you copy/adapt. | A finished customer deliverable. |
-| Vendor-neutral within the Microsoft portfolio. | Tied to one specific customer or product. |
-
-## Next step
-
-Continue to **[1. Workshop design principles](02-design-principles.md)**.
+- VS Code or GitHub.dev / Codespaces.
+- Docker Desktop (the generated workshop app runs locally in containers).
+- Python 3.11+ (only if you want to preview this tutorial site with `mkdocs serve`).

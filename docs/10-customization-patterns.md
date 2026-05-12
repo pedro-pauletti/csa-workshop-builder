@@ -54,6 +54,46 @@ Read the new customer-scenario.md and agenda.md. Then:
 
 A precise change list — minimal edits, maximum reuse.
 
+## Product recipes
+
+### Azure AI Foundry recipe
+
+**Recommended agenda** — context · architecture · agent demo · tool calling
+demo · evaluation demo · observability · roadmap.
+
+**Recommended mock data** — multi-tool agent trace, prompt flow scorecard,
+model routing decisions.
+
+**Real integration points** — Foundry Agent Service, Prompt Flow evaluations,
+Application Insights traces.
+
+**Deliverable** — generic-foundry-workshop folder with 8 sections and the 5
+mock demos pre-wired.
+
+### Microsoft Fabric recipe
+
+**Recommended agenda** — context · lakehouse architecture · pipeline demo ·
+notebook demo · semantic model demo · Power BI · governance · roadmap.
+
+**Recommended mock data** — pipeline run history, notebook cell outputs,
+Direct Lake query timings.
+
+**Real integration points** — Fabric REST API, OneLake, Power BI REST.
+
+**Deliverable** — generic-fabric-workshop folder with 8 sections and demos
+focused on data engineering + BI.
+
+### Microsoft Security recipe
+
+**Recommended agenda** — context · architecture · incident triage demo ·
+Copilot for Security demo · automation demo · evaluation · roadmap.
+
+**Recommended mock data** — sample incident, KQL queries, automation
+playbook trace.
+
+**Real integration points** — Microsoft Sentinel, Defender XDR, Copilot for
+Security skills.
+
 ## Validation checklist
 
 - [ ] Architecture unchanged.
@@ -69,4 +109,4 @@ A precise change list — minimal edits, maximum reuse.
 
 ## Next step
 
-Continue to **[10. Run locally with Docker Compose](11-run-locally.md)**.
+Continue to **[11. Publish with GitHub Pages](12-publish-github-pages.md)**.

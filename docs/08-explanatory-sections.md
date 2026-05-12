@@ -55,6 +55,48 @@ read it from a single config file.
 Every section now has consistent didactic content; only demos remain as
 clearly-marked TODOs.
 
+### Drop-in section template
+
+Copy this into any new section template (`sections/<slug>.html` or markdown):
+
+````markdown
+## Customer context
+One paragraph linking back to customer-scenario.md.
+
+## Learning objective
+One sentence — what the audience leaves knowing.
+
+## Requirement covered
+R1, R3
+
+## Concept
+Plain-language explanation. No marketing.
+
+## Diagram
+```mermaid
+flowchart LR
+  U[User] --> A[API] --> S[Service] --> E[Evidence]
+```
+
+## Demo
+{% include "demos/chat.html" %}
+
+## Evidence
+- Trace ID, token usage, cost.
+- Groundedness score, citations.
+
+## Presenter notes
+- 30-second exec framing.
+- Where to slow down.
+- Likely audience questions + answers.
+
+## Fallback
+If the live demo fails, show the recorded clip at `static/clips/<slug>.mp4`
+and walk through `data/<slug>.json`.
+````
+
+![Explanatory section layout](assets/images/section.svg){ .screenshot }
+
 ## Validation checklist
 
 - [ ] All sections share the same content structure.
@@ -70,4 +112,4 @@ clearly-marked TODOs.
 
 ## Next step
 
-Continue to **[8. Add interactive demos](09-interactive-demos.md)**.
+Continue to **[9. Add interactive demos](09-interactive-demos.md)**.

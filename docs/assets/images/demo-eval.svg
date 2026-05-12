@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-label="Evaluation dashboard mock">
+  <rect width="960" height="540" fill="#f7f9fc"/>
+  <text x="40" y="48" font-family="Inter, sans-serif" font-size="20" fill="#0b1530" font-weight="700">Demo · Evaluation Dashboard</text>
+  <g>
+    <rect x="40" y="72" width="280" height="120" rx="8" fill="#fff" stroke="#dbe2ee"/>
+    <text x="60" y="100" font-family="Inter, sans-serif" font-size="13" fill="#54607a">Groundedness</text>
+    <text x="60" y="148" font-family="Inter, sans-serif" font-size="34" fill="#1f3a93" font-weight="700">0.87</text>
+    <text x="60" y="176" font-family="Inter, sans-serif" font-size="12" fill="#3a8a3a">▲ +0.04 vs last run</text>
+    <rect x="340" y="72" width="280" height="120" rx="8" fill="#fff" stroke="#dbe2ee"/>
+    <text x="360" y="100" font-family="Inter, sans-serif" font-size="13" fill="#54607a">Relevance</text>
+    <text x="360" y="148" font-family="Inter, sans-serif" font-size="34" fill="#1f3a93" font-weight="700">0.91</text>
+    <text x="360" y="176" font-family="Inter, sans-serif" font-size="12" fill="#3a8a3a">▲ +0.02</text>
+    <rect x="640" y="72" width="280" height="120" rx="8" fill="#fff" stroke="#dbe2ee"/>
+    <text x="660" y="100" font-family="Inter, sans-serif" font-size="13" fill="#54607a">Latency p95</text>
+    <text x="660" y="148" font-family="Inter, sans-serif" font-size="34" fill="#1f3a93" font-weight="700">1.4s</text>
+    <text x="660" y="176" font-family="Inter, sans-serif" font-size="12" fill="#c03a2b">▼ slower than target</text>
+  </g>
+  <rect x="40" y="212" width="880" height="300" rx="8" fill="#fff" stroke="#dbe2ee"/>
+  <text x="60" y="240" font-family="Inter, sans-serif" font-size="13" fill="#54607a" font-weight="700">TEST CASES</text>
+  <g font-family="Inter, sans-serif" font-size="13" fill="#1f2937">
+    <text x="60" y="270">TC-01 · Grounded answer with citation</text>
+    <text x="780" y="270" fill="#3a8a3a" text-anchor="end">✓ pass · 0.88</text>
+    <text x="60" y="298">TC-02 · Refuse out-of-scope question</text>
+    <text x="780" y="298" fill="#3a8a3a" text-anchor="end">✓ pass · 0.95</text>
+    <text x="60" y="326">TC-03 · Multi-step reasoning</text>
+    <text x="780" y="326" fill="#c03a2b" text-anchor="end">✗ fail · 0.42</text>
+    <text x="60" y="354">TC-04 · Source attribution</text>
+    <text x="780" y="354" fill="#3a8a3a" text-anchor="end">✓ pass · 0.84</text>
+    <text x="60" y="382">TC-05 · Numeric reasoning</text>
+    <text x="780" y="382" fill="#f1c40f" text-anchor="end">! warn · 0.71</text>
+    <text x="60" y="410">TC-06 · Tone and brand voice</text>
+    <text x="780" y="410" fill="#3a8a3a" text-anchor="end">✓ pass · 0.90</text>
+    <text x="60" y="438">TC-07 · Localized response (pt-BR)</text>
+    <text x="780" y="438" fill="#3a8a3a" text-anchor="end">✓ pass · 0.86</text>
+    <text x="60" y="466">TC-08 · Safety / harmful intent</text>
+    <text x="780" y="466" fill="#3a8a3a" text-anchor="end">✓ pass · 0.99</text>
+  </g>
+</svg>

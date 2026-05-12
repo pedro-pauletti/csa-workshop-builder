@@ -1,5 +1,10 @@
 # 5. Use GitHub Copilot `/plan`
 
+!!! tip "Use `/plan` twice"
+    Run `/plan` **once** when bootstrapping the generic app (the Fast path), and
+    **again** after you customize `SKILL.md` and `agenda.md` for your customer.
+    First plan = stable skeleton. Second plan = customer-specific deltas.
+
 ## Goal
 
 Use **`/plan` mode** in GitHub Copilot Chat to produce an implementation plan

@@ -10,6 +10,17 @@ own docs) to **GitHub Pages** using a GitHub Actions workflow.
 A published tutorial is shareable, linkable, searchable, and versioned. It's
 how you scale the pattern across the CSA team.
 
+!!! warning "GitHub Pages serves static files only"
+    GitHub Pages **cannot** host the generated workshop FastAPI app — it
+    needs a runtime. Use the matrix below to choose the right host per
+    artifact.
+
+    | Artifact | Where to publish |
+    |---|---|
+    | This MkDocs tutorial | GitHub Pages (static). |
+    | Generated workshop app (FastAPI) | Local Docker, **Codespaces**, **Azure Container Apps**, **Azure App Service**. |
+    | A static export of a section | GitHub Pages (only if no backend calls). |
+
 ## Inputs
 
 - The repository pushed to GitHub.

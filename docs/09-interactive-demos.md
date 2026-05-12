@@ -50,6 +50,98 @@ Constraints:
 
 Every demo placeholder now renders a working, mocked interactive component.
 
+## Mock data per demo
+
+### Chat
+
+![Chat demo](assets/images/demo-chat.svg){ .screenshot }
+
+```json
+{
+  "question": "How can I reduce call center handling time?",
+  "answer": "Summarize the customer's call, propose the next best action, and surface the top 3 KB articles.",
+  "sources": [
+    {"title": "Customer service playbook", "url": "kb://playbook/handling-time"},
+    {"title": "Knowledge article KB-1024", "url": "kb://articles/1024"}
+  ],
+  "trace": [
+    "Received user prompt",
+    "Retrieved 3 documents (avg score 0.81)",
+    "Generated grounded answer",
+    "Scored response quality: 0.92"
+  ]
+}
+```
+
+### Search
+
+![Search demo](assets/images/demo-search.svg){ .screenshot }
+
+```json
+{
+  "query": "billing dispute resolution",
+  "results": [
+    {"title": "Billing disputes — agent guide", "score": 0.91, "snippet": "Open the ticket, verify identity..."},
+    {"title": "Refund policy v3", "score": 0.84, "snippet": "Refunds above $X require manager approval..."},
+    {"title": "Escalation matrix", "score": 0.72, "snippet": "Tier-1 unresolved within 24h → Tier-2..."}
+  ]
+}
+```
+
+### Workflow
+
+![Workflow demo](assets/images/demo-workflow.svg){ .screenshot }
+
+```json
+{
+  "workflow": "agent-assist-resolution",
+  "steps": [
+    {"name": "Classify intent", "status": "done", "ms": 120},
+    {"name": "Retrieve KB", "status": "done", "ms": 340},
+    {"name": "Draft response", "status": "done", "ms": 980},
+    {"name": "Safety check", "status": "done", "ms": 110},
+    {"name": "Present to agent", "status": "ready", "ms": 0}
+  ]
+}
+```
+
+### Document analysis
+
+![Document analysis demo](assets/images/demo-document.svg){ .screenshot }
+
+```json
+{
+  "document": "invoice-2024-0042.pdf",
+  "extracted": {
+    "vendor": "Contoso Logistics",
+    "invoice_number": "INV-2024-0042",
+    "total": 12450.75,
+    "currency": "USD",
+    "line_items": 7,
+    "due_date": "2024-11-30"
+  },
+  "confidence": 0.94
+}
+```
+
+### Evaluation
+
+![Evaluation dashboard](assets/images/demo-eval.svg){ .screenshot }
+
+```json
+{
+  "suite": "customer-service-q4",
+  "cases": 42,
+  "scores": {
+    "groundedness": 0.88,
+    "relevance": 0.91,
+    "harm": 0.02,
+    "latency_p95_ms": 1450
+  },
+  "regressions": []
+}
+```
+
 ## Validation checklist
 
 - [ ] All demos render without external network calls.
@@ -65,4 +157,4 @@ Every demo placeholder now renders a working, mocked interactive component.
 
 ## Next step
 
-Continue to **[9. Customize by product and customer](10-customization-patterns.md)**.
+Continue to **[10. Customize by product and customer](10-customization-patterns.md)**.

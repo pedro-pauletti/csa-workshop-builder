@@ -1,5 +1,11 @@
 # SKILL.md (template)
 
+!!! info "Two-level SKILL files"
+    - **`SKILL.template.md`** (this file, lives in the tutorial / template repo) — the
+      reusable contract. Stack, folder layout, agenda-driven rule. Rarely changes.
+    - **`SKILL.md`** (lives in your customer repo) — a copy of this template with the
+      Context and Non-goals sections customized for one engagement.
+
 > Replace bracketed placeholders. Keep the **contracts** strict; leave
 > implementation freedom for Copilot.
 

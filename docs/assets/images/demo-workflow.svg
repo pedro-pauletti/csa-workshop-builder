@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-label="Workflow demo mock">
+  <rect width="960" height="540" fill="#f7f9fc"/>
+  <text x="40" y="48" font-family="Inter, sans-serif" font-size="20" fill="#0b1530" font-weight="700">Demo · Workflow Automation</text>
+  <rect x="40" y="72" width="160" height="36" rx="6" fill="#1f3a93"/>
+  <text x="120" y="96" font-family="Inter, sans-serif" font-size="13" fill="#fff" text-anchor="middle">▶ Run workflow</text>
+  <g font-family="Inter, sans-serif" font-size="13" fill="#1f2937">
+    <rect x="40" y="132" width="880" height="68" rx="8" fill="#e7efff" stroke="#cfd8ff"/>
+    <text x="64" y="160" font-weight="700">1 · Receive request</text>
+    <text x="64" y="184">Status: ✓ Completed · 0.4s</text>
+    <rect x="40" y="216" width="880" height="68" rx="8" fill="#e7efff" stroke="#cfd8ff"/>
+    <text x="64" y="244" font-weight="700">2 · Retrieve customer context</text>
+    <text x="64" y="268">Status: ✓ Completed · 0.7s</text>
+    <rect x="40" y="300" width="880" height="68" rx="8" fill="#fff7e0" stroke="#f1c40f"/>
+    <text x="64" y="328" font-weight="700">3 · Classify intent and route</text>
+    <text x="64" y="352">Status: ⏳ Running</text>
+    <rect x="40" y="384" width="880" height="68" rx="8" fill="#fff" stroke="#dbe2ee"/>
+    <text x="64" y="412" font-weight="700">4 · Generate next-best-action</text>
+    <text x="64" y="436">Status: · Pending</text>
+    <rect x="40" y="468" width="880" height="48" rx="8" fill="#fff" stroke="#dbe2ee"/>
+    <text x="64" y="498" font-weight="700">5 · Emit audit event</text>
+  </g>
+</svg>

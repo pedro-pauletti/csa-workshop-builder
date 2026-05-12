@@ -57,6 +57,80 @@ A runnable app with:
 - Light/dark theme toggle.
 - `docker compose up --build` works on a clean machine.
 
+### Expected folder structure
+
+```text
+.
+├── app.py
+├── agenda.md
+├── SKILL.md
+├── agenda_loader.py
+├── sections/                 # one Jinja2 template per agenda item (auto-discovered)
+│   ├── _base.html
+│   ├── introduction.html
+│   ├── architecture.html
+│   ├── demo-1-chat.html
+│   └── ...
+├── static/
+│   ├── css/design-system.css
+│   ├── js/theme.js
+│   └── img/
+├── data/                     # mock JSON for demos
+│   ├── chat.json
+│   ├── search.json
+│   ├── workflow.json
+│   ├── document.json
+│   └── evaluation.json
+├── requirements.txt
+├── Dockerfile
+├── docker-compose.yml
+├── example.env
+└── README.md
+```
+
+### Expected routes
+
+| Route | Purpose |
+|---|---|
+| `GET /` | Home — workshop overview, audience, requirements. |
+| `GET /sections/{slug}` | One page per `agenda.md` item. |
+| `GET /api/demo/chat` | Returns mock chat response JSON. |
+| `GET /api/demo/search` | Returns mock ranked search results. |
+| `GET /api/demo/workflow` | Returns mock workflow timeline. |
+| `GET /api/demo/document` | Returns mock document extraction. |
+| `GET /api/demo/evaluation` | Returns mock scorecard. |
+| `GET /healthz` | Liveness probe. |
+
+### Expected screens
+
+<div class="screenshot-strip" markdown>
+![Home](assets/images/home.svg)
+![Section](assets/images/section.svg)
+![Sidebar](assets/images/sidebar.svg)
+</div>
+
+## Push-back prompts
+
+When Copilot misfires, send one of these:
+
+!!! danger "If Copilot generates static pages instead of agenda-driven"
+    ````text
+    The sidebar and section list must be generated at request time by reading agenda.md.
+    Refactor to add an `agenda_loader` module that returns a list of {slug, title, description}
+    and remove all hard-coded navigation entries.
+    ````
+
+!!! danger "If Copilot hard-codes the sidebar"
+    ````text
+    Replace the hard-coded sidebar with a Jinja2 partial that iterates over the items returned by `agenda_loader.load()`.
+    The partial must be included by the base template only.
+    ````
+
+!!! danger "If Copilot ships real Azure SDK calls in v1"
+    ````text
+    Remove all real Azure SDK calls. v1 must use mock JSON in data/. Add a comment in each demo handler showing the extension point where the real call will go later.
+    ````
+
 ## Validation checklist
 
 - [ ] App starts with no errors.
@@ -73,4 +147,4 @@ A runnable app with:
 
 ## Next step
 
-Continue to **[7. Add explanatory sections](08-explanatory-sections.md)**.
+Continue to **[7. Run locally with Docker Compose](11-run-locally.md)**.

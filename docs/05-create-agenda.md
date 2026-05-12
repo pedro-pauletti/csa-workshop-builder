@@ -46,6 +46,23 @@ Output a table.
 An `agenda.md` with 8–12 narrative items and a Copilot-generated mapping table
 you can paste back into the agenda or into a presenter guide.
 
+## From agenda line to app
+
+One line in `agenda.md` produces a route, a sidebar entry, and a section page.
+
+| `agenda.md` line | Generated route | Sidebar entry |
+|---|---|---|
+| `- Demo 1 — Conversational AI: Embedded chat with citations.` | `/sections/demo-1-conversational-ai` | **Demo 1 — Conversational AI** |
+| `- Architecture: End-to-end reference architecture.` | `/sections/architecture` | **Architecture** |
+| `- Evaluation: Groundedness, relevance, harm.` | `/sections/evaluation` | **Evaluation** |
+
+```text
+agenda.md  ─────► agenda_loader.py ─────► dynamic sidebar + section routes
+   (edit)             (reads at request)        (no app code changes)
+```
+
+![Dynamic sidebar generated from agenda.md](assets/images/sidebar.svg){ .screenshot }
+
 ## Validation checklist
 
 - [ ] 8–12 items, ordered as a narrative arc.

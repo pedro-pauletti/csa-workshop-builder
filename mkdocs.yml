@@ -1,5 +1,5 @@
-site_name: How CSAs can create engaging workshops tailored to customer use cases
-site_description: A practical guide for creating interactive customer-specific workshop web apps with GitHub Copilot
+site_name: How CSAs create engaging workshops tailored to customer use cases
+site_description: An accelerator for generating customer-specific interactive workshop web apps with GitHub Copilot
 site_url: https://pedro-pauletti.github.io/csa-workshop-builder/
 
 repo_name: pedro-pauletti/csa-workshop-builder
@@ -39,18 +39,22 @@ theme:
   icon:
     repo: fontawesome/brands/github
 
+extra_css:
+  - stylesheets/extra.css
+
 nav:
   - Introduction: index.md
-  - 1. Workshop design principles: 02-design-principles.md
-  - 2. Define the customer scenario: 03-customer-scenario.md
-  - 3. Create the SKILL.md: 04-create-skill.md
-  - 4. Create the agenda.md: 05-create-agenda.md
-  - 5. Use GitHub Copilot /plan: 06-copilot-plan.md
+  - Fast path — generate your first workshop app: 00-fast-path.md
+  - 1. Accelerator pattern: 02-design-principles.md
+  - 2. Customer scenario: 03-customer-scenario.md
+  - 3. SKILL.md: 04-create-skill.md
+  - 4. agenda.md: 05-create-agenda.md
+  - 5. Copilot /plan: 06-copilot-plan.md
   - 6. Generate the web app: 07-generate-web-app.md
-  - 7. Add explanatory sections: 08-explanatory-sections.md
-  - 8. Add interactive demos: 09-interactive-demos.md
-  - 9. Customize by product and customer: 10-customization-patterns.md
-  - 10. Run locally with Docker Compose: 11-run-locally.md
+  - 7. Run locally: 11-run-locally.md
+  - 8. Explanatory sections: 08-explanatory-sections.md
+  - 9. Interactive demos: 09-interactive-demos.md
+  - 10. Customize by product: 10-customization-patterns.md
   - 11. Publish with GitHub Pages: 12-publish-github-pages.md
   - 12. Reuse and scale: 13-reuse-scale.md
 
@@ -63,7 +67,9 @@ markdown_extensions:
       permalink: true
   - pymdownx.details
   - pymdownx.highlight:
-      anchor_linenums: true
+      anchor_linenums: false
+      line_spans: __codeline
+      pygments_lang_class: true
   - pymdownx.inlinehilite
   - pymdownx.snippets
   - pymdownx.superfences:
