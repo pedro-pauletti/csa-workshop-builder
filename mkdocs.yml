@@ -1,9 +1,9 @@
 site_name: How CSAs can create engaging workshops tailored to customer use cases
 site_description: A practical guide for creating interactive customer-specific workshop web apps with GitHub Copilot
-site_url: https://ptonpauletti_microsoft.github.io/csa-workshop-builder/
+site_url: https://pedro-pauletti.github.io/csa-workshop-builder/
 
-repo_name: ptonpauletti_microsoft/csa-workshop-builder
-repo_url: https://github.com/ptonpauletti_microsoft/csa-workshop-builder
+repo_name: pedro-pauletti/csa-workshop-builder
+repo_url: https://github.com/pedro-pauletti/csa-workshop-builder
 edit_uri: edit/main/docs/
 
 docs_dir: docs
@@ -79,4 +79,4 @@ markdown_extensions:
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/ptonpauletti_microsoft/csa-workshop-builder
+      link: https://github.com/pedro-pauletti/csa-workshop-builder

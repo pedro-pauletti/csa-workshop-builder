@@ -23,7 +23,7 @@ how you scale the pattern across the CSA team.
 4. Open repository **Settings → Pages**.
 5. Set **Source** to **Deploy from a branch**, branch **`gh-pages`**,
    folder **`/ (root)`**.
-6. Visit `https://ptonpauletti_microsoft.github.io/csa-workshop-builder/`.
+6. Visit `https://pedro-pauletti.github.io/csa-workshop-builder/`.
 
 ## The workflow (already in this repo)
 

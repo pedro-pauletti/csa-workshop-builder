@@ -61,7 +61,7 @@ every push to `main`. After the first successful run:
 3. The site will be available at:
 
    ```text
-   https://ptonpauletti_microsoft.github.io/csa-workshop-builder/
+   https://pedro-pauletti.github.io/csa-workshop-builder/
    ```
 
 ## License
