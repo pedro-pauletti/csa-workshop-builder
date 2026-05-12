@@ -1,0 +1,8 @@
+# assets/images
+
+Drop screenshots, logos, and other binary images here. Reference them from
+docs pages with relative paths, e.g.:
+
+```markdown
+![Workshop app sidebar](../assets/images/sidebar.png)
+```

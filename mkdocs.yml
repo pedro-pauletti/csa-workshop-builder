@@ -1,0 +1,82 @@
+site_name: How CSAs can create engaging workshops tailored to customer use cases
+site_description: A practical guide for creating interactive customer-specific workshop web apps with GitHub Copilot
+site_url: https://ptonpauletti_microsoft.github.io/csa-workshop-builder/
+
+repo_name: ptonpauletti_microsoft/csa-workshop-builder
+repo_url: https://github.com/ptonpauletti_microsoft/csa-workshop-builder
+edit_uri: edit/main/docs/
+
+docs_dir: docs
+
+theme:
+  name: material
+  language: en
+  features:
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - navigation.tracking
+    - navigation.indexes
+    - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
+    - search.suggest
+    - search.highlight
+    - toc.follow
+  palette:
+    - scheme: default
+      primary: blue
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - scheme: slate
+      primary: blue
+      accent: cyan
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+  icon:
+    repo: fontawesome/brands/github
+
+nav:
+  - Introduction: index.md
+  - 1. Workshop design principles: 02-design-principles.md
+  - 2. Define the customer scenario: 03-customer-scenario.md
+  - 3. Create the SKILL.md: 04-create-skill.md
+  - 4. Create the agenda.md: 05-create-agenda.md
+  - 5. Use GitHub Copilot /plan: 06-copilot-plan.md
+  - 6. Generate the web app: 07-generate-web-app.md
+  - 7. Add explanatory sections: 08-explanatory-sections.md
+  - 8. Add interactive demos: 09-interactive-demos.md
+  - 9. Customize by product and customer: 10-customization-patterns.md
+  - 10. Run locally with Docker Compose: 11-run-locally.md
+  - 11. Publish with GitHub Pages: 12-publish-github-pages.md
+  - 12. Reuse and scale: 13-reuse-scale.md
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/ptonpauletti_microsoft/csa-workshop-builder
