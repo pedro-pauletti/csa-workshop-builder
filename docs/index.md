@@ -44,12 +44,27 @@ No code changes elsewhere.
 
 ## See it running before you read
 
-The completed Northwind MemberAssist app is **published right next to this tutorial**:
+The repo ships a **live demo** that shows the exact app shape this tutorial
+teaches you to build — and uses it to demonstrate a real Microsoft product
+(**Azure AI Search**) for a fictional retail customer, **Contoso Outdoor**.
+It is the *pattern*, applied to a different scenario, so you can see what the
+output of this method looks like in another customer's clothing.
 
 [Open the live demo :material-arrow-right:](demo/){ .md-button .md-button--primary }
 
-It is fully static — no backend, no Azure — so you can poke at it from any browser. Everything
-you see there is built across modules 1 → 12.
+It is fully static — no backend, no Azure — so you can poke at it from any
+browser. Inside the tutorial itself, **modules 1 → 12 build Northwind
+MemberAssist** (the healthcare worked example); module 13 then shows the
+surgical swap from Northwind to any other customer or Microsoft product —
+exactly how the live demo was produced.
+
+!!! info "Two distinct artifacts, same accelerator"
+    - **`/demo/`** — an Azure AI Search workshop for *Contoso Outdoor*. What
+      the pattern looks like in retail / RAG flavor, with **Microsoft Learn
+      citations** in every section.
+    - **The 12 tutorial modules** — build the *Northwind MemberAssist*
+      worked example from scratch (healthcare). Same pattern, different
+      content.
 
 ## The three artifacts everything is built from
 

@@ -1,0 +1,63 @@
+<header class="page-header">
+  <span class="page-eyebrow"><i class="fa-solid fa-database"></i> Concept + demo · Module 2 / 6</span>
+  <h1 class="page-title">Index design & ingestion</h1>
+  <p class="page-subtitle">
+    An index is a typed schema — fields, analyzers, vector configurations — that
+    determines what you can search, filter, and rank on. Get this right and the
+    rest of the system gets easier.
+  </p>
+</header>
+
+<section class="concept">
+  <h2>Anatomy of an index</h2>
+  <p>
+    An index is a collection of documents with a fixed <strong>schema</strong>.
+    Each field has a <em>type</em> (Edm.String, Edm.Collection(Edm.Single) for
+    vectors, …) and a set of <em>attributes</em>: <code>searchable</code>,
+    <code>filterable</code>, <code>facetable</code>, <code>sortable</code>,
+    <code>retrievable</code>, and <code>key</code>.
+  </p>
+  <h3>Common mistakes</h3>
+  <ul>
+    <li><strong>Embedding the wrong field.</strong> Embed text that carries meaning (title, description). Don't embed SKU codes or opaque IDs.</li>
+    <li><strong>Chunking too late.</strong> A 50-page PDF embedded as one vector is useless. Chunk into ~500-token passages before vectorising.</li>
+    <li><strong>Mismatched models.</strong> Embed at ingest and at query with the <em>same</em> model. Mixing breaks similarity.</li>
+    <li><strong>No filter fields.</strong> Without <code>filterable</code> attributes you cannot scope by category, price band, or tenant. Plan filters before ingest.</li>
+    <li><strong>Forgetting facets.</strong> Faceted UIs (left rail, "Brand · Size · Color") need <code>facetable</code> from day one.</li>
+  </ul>
+
+  <div class="refs">
+    <div class="refs__label">Official Microsoft Learn references</div>
+    <ul>
+      <li><i class="fa-solid fa-up-right-from-square"></i> <a href="https://learn.microsoft.com/azure/search/search-what-is-an-index" target="_blank" rel="noopener">What is a search index in Azure AI Search?</a></li>
+      <li><i class="fa-solid fa-up-right-from-square"></i> <a href="https://learn.microsoft.com/azure/search/vector-search-how-to-create-index" target="_blank" rel="noopener">How to add a vector field to an index</a></li>
+      <li><i class="fa-solid fa-up-right-from-square"></i> <a href="https://learn.microsoft.com/azure/search/search-howto-index-cosmosdb" target="_blank" rel="noopener">Indexers — connect to Cosmos DB / Blob / OneLake</a></li>
+      <li><i class="fa-solid fa-up-right-from-square"></i> <a href="https://learn.microsoft.com/azure/search/vector-search-integrated-vectorization" target="_blank" rel="noopener">Integrated vectorization</a></li>
+    </ul>
+  </div>
+</section>
+
+<hr class="section-separator" />
+
+<section class="demo">
+  <h2 class="demo__title"><i class="fa-solid fa-flask"></i> Demo — explore the Contoso index schema</h2>
+  <p class="demo__lede">
+    Pick a field from the Contoso <code>products-v1</code> index and inspect its
+    definition. Compare a keyword-only field, a vector field, a filterable facet,
+    and a hybrid-friendly field — the same shapes you will use in your customer's index.
+  </p>
+
+  <div class="field">
+    <label for="fieldKind">Field</label>
+    <select id="fieldKind">
+      <option value="id">id · key</option>
+      <option value="title">title · searchable text</option>
+      <option value="description">description · searchable text</option>
+      <option value="descriptionVector">descriptionVector · vector</option>
+      <option value="category">category · filterable + facetable</option>
+      <option value="price">price · filterable + sortable</option>
+      <option value="stock">stock · filterable</option>
+    </select>
+  </div>
+  <div id="schemaOut"></div>
+</section>

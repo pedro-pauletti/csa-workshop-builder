@@ -1,0 +1,15 @@
+{
+  "metrics": [
+    { "label": "Groundedness", "value": "0.93", "hint": "Avg LLM-judge score over 50 questions", "percent": 93 },
+    { "label": "Relevance",    "value": "0.89", "hint": "Avg LLM-judge score over 50 questions", "percent": 89 },
+    { "label": "Recall@5",     "value": "0.96", "hint": "Top-5 contained a usable doc in 48/50", "percent": 96 },
+    { "label": "Latency p95",  "value": "1.31 s", "hint": "Retrieve + rerank + 1k-token answer", "percent": 70 }
+  ],
+  "roadmap": [
+    { "title": "Day 0 — Discovery & data review", "desc": "Pull 1 month of search logs; agree on the 50-question gold test set with the merchandising team.", "when": "Day 0" },
+    { "title": "Day 1–15 — Index hardening",      "desc": "Add filter fields (category, price band, size), backfill descriptions, enable integrated vectorization.", "when": "Day 15" },
+    { "title": "Day 16–30 — Hybrid + semantic enabled in prod",     "desc": "Roll out hybrid + semantic ranker to 10% of traffic. Compare CTR and zero-result rate against legacy keyword.", "when": "Day 30" },
+    { "title": "Day 31–60 — RAG chat in soft launch", "desc": "Ship the grounded chat to a beta audience of 5% loyalty members. Capture every turn for the eval set.", "when": "Day 60" },
+    { "title": "Day 61–90 — Pilot to GA",          "desc": "Full rollout behind a feature flag. Wire Application Insights + Foundry evaluations into CI/CD.", "when": "Day 90" }
+  ]
+}

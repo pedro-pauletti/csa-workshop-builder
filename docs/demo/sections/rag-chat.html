@@ -1,0 +1,76 @@
+<header class="page-header">
+  <span class="page-eyebrow"><i class="fa-solid fa-comments"></i> Concept + demo · Module 5 / 6</span>
+  <h1 class="page-title">Grounded chat (RAG)</h1>
+  <p class="page-subtitle">
+    Combine Azure AI Search retrieval with an LLM and you get a chat that answers
+    only from your content, with citations. This is the canonical RAG pattern.
+  </p>
+</header>
+
+<section class="concept">
+  <h2>The RAG loop in one diagram</h2>
+  <p>
+    For every user turn, the application:
+  </p>
+  <ol>
+    <li>Embeds the question with the same model used at index time.</li>
+    <li>Runs a <strong>hybrid + semantic</strong> query against Azure AI Search.</li>
+    <li>Takes the top <em>N</em> documents (typically 3–8) and passes them, with the question, to the LLM as <em>context</em>.</li>
+    <li>Instructs the LLM (in the system prompt) to answer <strong>only</strong> from the provided context and to cite each document by its index identifier.</li>
+    <li>Streams the answer to the user with inline citation links back to the source.</li>
+  </ol>
+
+  <h3>Why the system prompt matters</h3>
+  <p>
+    The single biggest lever on answer quality is the system prompt. It tells the
+    LLM what tone to use, what to refuse, and — crucially — to say "I don't know"
+    when retrieval comes back empty. Without that instruction the model will
+    hallucinate confidently from its pre-training data.
+  </p>
+
+  <div class="callout">
+    <strong>Microsoft's reference implementation.</strong> The
+    <a href="https://github.com/Azure-Samples/azure-search-openai-demo" target="_blank" rel="noopener">azure-search-openai-demo</a>
+    repository is the canonical end-to-end RAG example — Azure AI Search + Azure
+    OpenAI + a chat web app. Read its <code>app.py</code> and <code>approaches/</code>
+    folder before designing your customer's solution.
+  </div>
+
+  <div class="refs">
+    <div class="refs__label">Official Microsoft Learn references</div>
+    <ul>
+      <li><i class="fa-solid fa-up-right-from-square"></i> <a href="https://learn.microsoft.com/azure/search/retrieval-augmented-generation-overview" target="_blank" rel="noopener">RAG with Azure AI Search</a></li>
+      <li><i class="fa-solid fa-up-right-from-square"></i> <a href="https://learn.microsoft.com/azure/ai-foundry/concepts/architecture" target="_blank" rel="noopener">Azure AI Foundry architecture overview</a></li>
+      <li><i class="fa-solid fa-up-right-from-square"></i> <a href="https://learn.microsoft.com/azure/ai-services/openai/concepts/use-your-data" target="_blank" rel="noopener">Azure OpenAI — bring your own data</a></li>
+      <li><i class="fa-solid fa-up-right-from-square"></i> <a href="https://github.com/Azure-Samples/azure-search-openai-demo" target="_blank" rel="noopener">azure-search-openai-demo (GitHub)</a></li>
+    </ul>
+  </div>
+</section>
+
+<hr class="section-separator" />
+
+<section class="demo">
+  <h2 class="demo__title"><i class="fa-solid fa-flask"></i> Demo — chat with the Contoso catalog</h2>
+  <p class="demo__lede">
+    Ask any question about Contoso Outdoor's gear. The assistant grounds every
+    answer on indexed product documents and shows the citations it used. Try one
+    of the quick prompts or type your own.
+  </p>
+
+  <div class="toggle-row">
+    <span class="chip" data-prompt="What sleeping bag do you recommend for sub-zero temperatures?">Sleeping bag for sub-zero</span>
+    <span class="chip" data-prompt="Compare the lightweight tents under 2 kg">Tents under 2 kg</span>
+    <span class="chip" data-prompt="Is there a return policy for boots?">Return policy</span>
+    <span class="chip" data-prompt="Show me women's hiking shoes for wet trails">Wet-trail shoes</span>
+  </div>
+
+  <div id="chatLog" class="chat" style="max-height: 460px; overflow-y: auto;"></div>
+
+  <form id="chatForm" class="field-row" style="margin-top:14px;">
+    <div class="field" style="grid-column: 1 / -1;">
+      <label for="chatInput">Your question</label>
+      <input id="chatInput" type="text" placeholder="Ask anything about Contoso products…" />
+    </div>
+    <button class="btn btn--primary" type="submit"><i class="fa-solid fa-paper-plane"></i> Send</button>
+  </form>
+</section>

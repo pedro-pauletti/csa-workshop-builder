@@ -30,6 +30,76 @@ For each section, add the following content blocks:
 7. **Presenter notes** — talking points and timing.
 8. **Success criteria** — observable outcomes.
 9. **Fallback** — what to do if the live demo fails.
+10. **Microsoft Learn references** — 2–5 authoritative links per section
+    (`learn.microsoft.com` and `github.com/Azure-Samples`).
+
+## Ground every section in official Microsoft documentation
+
+!!! tip "The single biggest lever on workshop credibility"
+    Every explanatory block in every section must cite **at least two official
+    Microsoft sources**. This is non-negotiable. It is also the easiest part
+    of the workshop to get right — Microsoft Learn is comprehensive and free.
+
+A workshop is a teaching artifact. The CSA's job is not to *originate* the
+concepts but to *curate* them and apply them to the customer's situation.
+That means every concept the audience hears should be traceable to
+`learn.microsoft.com`, `github.com/Azure-Samples`, or the official Foundry /
+Fabric / Security documentation.
+
+### Why this matters
+
+- **Trust.** Architects in the room will fact-check you in real time. A link
+  to the Learn page closes the loop in 30 seconds; a hand-wave doesn't.
+- **Reusability.** When the next CSA forks your repo six months later, the
+  underlying SDK has probably moved. The Learn links update with the product;
+  your prose doesn't.
+- **Compliance.** Security and risk teams need an audit trail. "It's in the
+  official Microsoft Learn architecture guide" is the answer they expect.
+- **Time.** Writing original prose about how vector search works wastes a day.
+  Citing the Learn page and contextualizing it for the customer takes 15 min.
+
+### Where to find the right reference
+
+| Concept area | Start here |
+|---|---|
+| Azure AI Search (indexing, vector, hybrid, semantic ranker, RAG) | `learn.microsoft.com/azure/search/` |
+| Azure AI Foundry (agents, evaluations, projects, hub) | `learn.microsoft.com/azure/ai-foundry/` |
+| Azure OpenAI (deployments, "use your data", function calling) | `learn.microsoft.com/azure/ai-services/openai/` |
+| Reference RAG implementation | `github.com/Azure-Samples/azure-search-openai-demo` |
+| Microsoft Fabric (lakehouse, OneLake, Direct Lake) | `learn.microsoft.com/fabric/` |
+| Responsible AI (groundedness, safety, content filters) | `learn.microsoft.com/azure/ai-foundry/responsible-ai/` |
+| Microsoft Security (Sentinel, Defender, Copilot for Security) | `learn.microsoft.com/security/` |
+
+### Citation block template
+
+Every section template ships with a `refs` block. Always fill it.
+
+```html
+<div class="refs">
+  <div class="refs__label">Official Microsoft Learn references</div>
+  <ul>
+    <li><a href="https://learn.microsoft.com/azure/search/search-what-is-azure-search">What is Azure AI Search?</a></li>
+    <li><a href="https://learn.microsoft.com/azure/search/vector-search-overview">Vector search overview</a></li>
+    <li><a href="https://learn.microsoft.com/azure/search/hybrid-search-overview">Hybrid search overview</a></li>
+  </ul>
+</div>
+```
+
+The [live demo](../demo/) shows this pattern in every section — open any of
+the six sections and scroll to the bottom of the explanatory block.
+
+### Copilot prompt — generate the citation block
+
+```text
+For each section under sections/, read the concept paragraphs and propose
+2–5 official Microsoft references. Constraints:
+
+- Only learn.microsoft.com, github.com/Azure-Samples, or microsoft.com URLs.
+- Each link must back a specific claim made in the section's concept block.
+- No marketing pages, no blog posts, no third-party tutorials.
+- Output as the <div class="refs"> block ready to paste at the end of the
+  section's explanatory content.
+```
 
 ## Copilot prompt
 

@@ -1,0 +1,46 @@
+{
+  "turns": [
+    {
+      "match": "rain jacket",
+      "text": "For a 3-day hike in cold, wet weather I'd recommend the <strong>Stormridge 3L Insulated Rain Jacket</strong>. It's a waterproof 3-layer shell with synthetic insulation rated from 5°C down to -10°C, with sealed seams and pit zips for venting on the climb. It's $189 and we have 42 in stock.",
+      "citations": [
+        { "title": "Stormridge 3L Insulated Rain Jacket — product page", "url": "#" },
+        { "title": "Contoso Outdoor — Cold &amp; wet weather buying guide", "url": "#" }
+      ]
+    },
+    {
+      "match": "sleeping bag",
+      "text": "For sub-zero temperatures the <strong>Polaris -15 Sleeping Bag</strong> is the right choice. It's rated to -15°C comfort / -22°C limit, with 850-fill-power hydrophobic down so it keeps performing if it gets damp. $419, currently 8 left in stock.",
+      "citations": [
+        { "title": "Polaris -15 Sleeping Bag — product page", "url": "#" },
+        { "title": "Sleeping bag temperature ratings explained", "url": "#" }
+      ]
+    },
+    {
+      "match": "tent",
+      "text": "Two strong options under 2 kg: the <strong>Skylight 2 Ultralight Tent</strong> (1.78 kg packed, $369) is the lightest and has two doors and two vestibules. The <strong>Basecamp 2 Trekking Tent</strong> (2.4 kg, $279) is heavier but roomier and cheaper. If grams matter, Skylight 2; if headroom matters, Basecamp 2.",
+      "citations": [
+        { "title": "Skylight 2 Ultralight Tent — product page", "url": "#" },
+        { "title": "Basecamp 2 Trekking Tent — product page", "url": "#" }
+      ]
+    },
+    {
+      "match": "return",
+      "text": "Contoso Outdoor accepts returns within <strong>60 days</strong> of purchase for any unused item with original tags. Boots that have been worn outdoors are not returnable, but unworn boots tried on indoors are fine. Start a return from the order page or in the chat at any time.",
+      "citations": [
+        { "title": "Contoso Outdoor — Returns &amp; refunds policy", "url": "#" }
+      ]
+    },
+    {
+      "match": "wet",
+      "text": "For wet trails I'd point you at the <strong>Riverstone Waterproof Hiking Shoe (Women's)</strong>. It's a low-cut shoe with a Gore-Tex membrane and a Vibram sole that grips well on slick rock. $159, with 31 pairs in stock.",
+      "citations": [
+        { "title": "Riverstone Waterproof Hiking Shoe — product page", "url": "#" }
+      ]
+    }
+  ],
+  "fallback": {
+    "text": "I don't have a confident answer for that in the Contoso catalog. Could you share more about the activity, temperature range, or budget? I can also hand you off to a human associate if you'd prefer.",
+    "citations": []
+  }
+}

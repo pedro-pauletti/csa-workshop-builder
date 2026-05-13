@@ -1,0 +1,70 @@
+<header class="page-header">
+  <span class="page-eyebrow"><i class="fa-solid fa-wand-magic-sparkles"></i> Concept + demo · Module 4 / 6</span>
+  <h1 class="page-title">Semantic ranker</h1>
+  <p class="page-subtitle">
+    A second-stage re-ranker that uses a deep-learning model to reorder the top
+    results by meaning, and produces <em>captions</em> and an <em>extractive
+    answer</em> — the building blocks of high-quality RAG.
+  </p>
+</header>
+
+<section class="concept">
+  <h2>What the semantic ranker does</h2>
+  <p>
+    Azure AI Search executes your hybrid query, takes the top 50 results, and
+    feeds them — together with the original question — to a multilingual deep
+    model. The model re-scores each document on a 0–4 semantic scale and produces:
+  </p>
+  <ul>
+    <li><strong>Semantic captions</strong> — the snippet most relevant to the question, highlighted.</li>
+    <li><strong>Semantic answers</strong> — when the model is confident, an extractive answer pulled verbatim from a document.</li>
+    <li><strong>Reordered <code>@search.rerankerScore</code></strong> — replaces the original blended score for the top results.</li>
+  </ul>
+
+  <div class="callout">
+    <strong>Cost note.</strong> Semantic ranker is a billable feature at the
+    service tier. Use it on user-facing queries, not on bulk pipelines, and turn
+    it off in load tests until you have a real evaluation harness.
+  </div>
+
+  <h3>When it changes ranking</h3>
+  <p>
+    The biggest gains come from queries where the keyword and the answer are
+    paraphrases of each other, or where the most relevant document is one the
+    BM25 + vector blend buried at rank 8–15. The example below is exactly that
+    case.
+  </p>
+
+  <div class="refs">
+    <div class="refs__label">Official Microsoft Learn references</div>
+    <ul>
+      <li><i class="fa-solid fa-up-right-from-square"></i> <a href="https://learn.microsoft.com/azure/search/semantic-search-overview" target="_blank" rel="noopener">Semantic ranking overview</a></li>
+      <li><i class="fa-solid fa-up-right-from-square"></i> <a href="https://learn.microsoft.com/azure/search/semantic-how-to-query-request" target="_blank" rel="noopener">How to configure a semantic query</a></li>
+      <li><i class="fa-solid fa-up-right-from-square"></i> <a href="https://learn.microsoft.com/azure/search/semantic-answers" target="_blank" rel="noopener">Semantic answers and captions</a></li>
+    </ul>
+  </div>
+</section>
+
+<hr class="section-separator" />
+
+<section class="demo">
+  <h2 class="demo__title"><i class="fa-solid fa-flask"></i> Demo — side by side</h2>
+  <p class="demo__lede">
+    Query: <em>"What's the best 3-season tent for two people that packs under 2 kg?"</em>
+    Below is the same top-5 list before the semantic ranker (keyword + vector blend)
+    and after (semantic L2 re-ranked) — plus the caption and extractive answer.
+  </p>
+
+  <div class="field-row">
+    <div>
+      <h3 style="margin:0 0 8px;">Before semantic ranker</h3>
+      <div id="beforeRanker" class="results"></div>
+    </div>
+    <div>
+      <h3 style="margin:0 0 8px;">After semantic ranker</h3>
+      <div id="afterRanker" class="results"></div>
+    </div>
+  </div>
+
+  <div id="semCaption" class="callout" style="margin-top:20px;"></div>
+</section>

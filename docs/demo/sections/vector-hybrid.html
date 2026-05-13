@@ -1,0 +1,75 @@
+<header class="page-header">
+  <span class="page-eyebrow"><i class="fa-solid fa-vector-square"></i> Concept + demo · Module 3 / 6</span>
+  <h1 class="page-title">Vector & hybrid search</h1>
+  <p class="page-subtitle">
+    Keyword search is precise but brittle. Vector search is fuzzy but recall-heavy.
+    Hybrid runs both in parallel and fuses results — usually the right default
+    for grounded-AI applications.
+  </p>
+</header>
+
+<section class="concept">
+  <h2>What "vector search" actually means</h2>
+  <p>
+    Each searchable text is passed through an <strong>embedding model</strong>
+    (e.g. <code>text-embedding-3-large</code>) which produces a fixed-length
+    numeric vector. Texts with similar meaning land near each other in vector
+    space. At query time the user's question is embedded with the same model and
+    the index returns the nearest vectors by cosine similarity, using a graph
+    structure (HNSW) for sub-millisecond ANN lookup.
+  </p>
+
+  <h3>Vector vs keyword (BM25)</h3>
+  <ul>
+    <li><strong>Keyword (BM25)</strong> rewards exact term matches and is unbeatable for product IDs, model numbers, and acronyms.</li>
+    <li><strong>Vector</strong> rewards semantic similarity, so "warm jacket" matches "insulated parka" even if the term <em>warm</em> is nowhere in the document.</li>
+    <li><strong>Hybrid</strong> runs both queries against the same index and fuses the result lists with <em>Reciprocal Rank Fusion</em> (RRF). It is the recommended default.</li>
+  </ul>
+
+  <div class="callout">
+    <strong>When to pick vector-only.</strong> Almost never for production. Almost
+    always for a hackathon demo where the data is small and the queries are
+    paraphrases. In real customer engagements, default to hybrid + semantic ranker.
+  </div>
+
+  <div class="refs">
+    <div class="refs__label">Official Microsoft Learn references</div>
+    <ul>
+      <li><i class="fa-solid fa-up-right-from-square"></i> <a href="https://learn.microsoft.com/azure/search/vector-search-overview" target="_blank" rel="noopener">Vector search overview</a></li>
+      <li><i class="fa-solid fa-up-right-from-square"></i> <a href="https://learn.microsoft.com/azure/search/hybrid-search-overview" target="_blank" rel="noopener">Hybrid search overview</a></li>
+      <li><i class="fa-solid fa-up-right-from-square"></i> <a href="https://learn.microsoft.com/azure/search/hybrid-search-ranking" target="_blank" rel="noopener">Hybrid ranking with RRF</a></li>
+      <li><i class="fa-solid fa-up-right-from-square"></i> <a href="https://learn.microsoft.com/azure/search/vector-search-ranking" target="_blank" rel="noopener">ANN parameters: HNSW &amp; exhaustive KNN</a></li>
+    </ul>
+  </div>
+</section>
+
+<hr class="section-separator" />
+
+<section class="demo">
+  <h2 class="demo__title"><i class="fa-solid fa-flask"></i> Demo — query the Contoso catalog</h2>
+  <p class="demo__lede">
+    Type a natural-language question and switch retrieval mode. Watch how the
+    top results — and their per-document scores — change. The catalog has only
+    eight items so you can keep all of them in your head.
+  </p>
+
+  <div class="field">
+    <label for="queryInput">Member question</label>
+    <input id="queryInput" type="search" value="warm rain jacket for hiking in November" />
+  </div>
+  <div class="toggle-row" role="tablist" aria-label="Retrieval mode">
+    <span class="chip" data-mode="hybrid">Hybrid (recommended)</span>
+    <span class="chip" data-mode="vector">Vector only</span>
+    <span class="chip" data-mode="keyword">Keyword (BM25) only</span>
+  </div>
+  <button id="runQuery" class="btn btn--primary"><i class="fa-solid fa-play"></i> Run query</button>
+
+  <div id="resultsOut" class="results"></div>
+</section>
+
+<script>
+  // Default-active chip on first paint (hybrid)
+  document.querySelectorAll('[data-mode]').forEach(c => {
+    if (c.dataset.mode === 'hybrid') c.classList.add('active');
+  });
+</script>

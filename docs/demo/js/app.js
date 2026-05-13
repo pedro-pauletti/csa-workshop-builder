@@ -1,271 +1,263 @@
-/* Northwind MemberAssist — static workshop demo.
- * Single-file vanilla JS app. Hash-based routing.
- * No external calls; everything is mocked from /data/*.json. */
+// Azure AI Search Workshop — Contoso Outdoor (live demo)
+// Static SPA: hash-routed sections, mock JSON data, no backend.
 
 const AGENDA = [
-  { slug: "home",                   title: "Welcome",                  icon: "fa-solid fa-house",            file: "sections/home.html" },
-  { slug: "coverage-lookup",        title: "Coverage Lookup",          icon: "fa-solid fa-comments",         file: "sections/coverage-lookup.html" },
-  { slug: "claim-status",           title: "Claim Status",             icon: "fa-solid fa-receipt",          file: "sections/claim-status.html" },
-  { slug: "provider-search",        title: "Provider Search",          icon: "fa-solid fa-user-doctor",      file: "sections/provider-search.html" },
-  { slug: "eob-extract",            title: "EOB Document Extraction",  icon: "fa-solid fa-file-invoice",     file: "sections/eob-extract.html" },
-  { slug: "eval-scorecard",         title: "Evaluation Scorecard",     icon: "fa-solid fa-chart-line",       file: "sections/eval-scorecard.html" },
-  { slug: "roadmap",                title: "Roadmap & Next Steps",     icon: "fa-solid fa-route",            file: "sections/roadmap.html" },
+  { slug: 'home',                      title: 'Welcome',                icon: 'fa-solid fa-house',           label: 'Overview' },
+  { slug: 'what-is-ai-search',         title: 'What is Azure AI Search', icon: 'fa-solid fa-magnifying-glass', label: '1 / 6' },
+  { slug: 'index-design',              title: 'Index design & ingestion', icon: 'fa-solid fa-database',     label: '2 / 6' },
+  { slug: 'vector-hybrid',             title: 'Vector & hybrid search',  icon: 'fa-solid fa-vector-square', label: '3 / 6' },
+  { slug: 'semantic-ranker',           title: 'Semantic ranker',         icon: 'fa-solid fa-wand-magic-sparkles', label: '4 / 6' },
+  { slug: 'rag-chat',                  title: 'Grounded chat (RAG)',     icon: 'fa-solid fa-comments',      label: '5 / 6' },
+  { slug: 'evaluation-next',           title: 'Evaluation & next steps', icon: 'fa-solid fa-chart-line',    label: '6 / 6' },
 ];
 
-const menuEl = document.getElementById("menu");
-const mainEl = document.getElementById("main");
+const SECTION_ROOT = document.getElementById('sectionRoot');
+const SIDEBAR_NAV  = document.getElementById('sidebarNav');
+const CRUMB        = document.getElementById('crumbSection');
+const THEME_BTN    = document.getElementById('themeToggle');
 
-// ---------- Sidebar ----------
-function renderMenu(activeSlug) {
-  menuEl.innerHTML = AGENDA.map(item => `
-    <a class="menu-item ${item.slug === activeSlug ? "active" : ""}" href="#${item.slug}">
+// ---------- Theme ---------- //
+
+function applyTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  try { localStorage.setItem('csa-demo-theme', theme); } catch (e) {}
+  const icon = THEME_BTN.querySelector('i');
+  icon.className = theme === 'dark' ? 'fa-solid fa-moon' : 'fa-solid fa-sun';
+}
+THEME_BTN.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme') || 'light';
+  applyTheme(current === 'dark' ? 'light' : 'dark');
+});
+applyTheme(document.documentElement.getAttribute('data-theme') || 'light');
+
+// ---------- Sidebar ---------- //
+
+function renderSidebar() {
+  SIDEBAR_NAV.innerHTML = AGENDA.map(item => `
+    <a href="#${item.slug}" data-slug="${item.slug}">
       <i class="${item.icon}"></i>
       <span>${item.title}</span>
+      <span class="step-num">${item.label}</span>
     </a>
-  `).join("");
+  `).join('');
 }
 
-// ---------- Router ----------
-async function route() {
-  const slug = (location.hash || "#home").replace(/^#/, "");
-  const item = AGENDA.find(a => a.slug === slug) || AGENDA[0];
-  renderMenu(item.slug);
+function highlightActive(slug) {
+  SIDEBAR_NAV.querySelectorAll('a').forEach(a => {
+    a.classList.toggle('active', a.dataset.slug === slug);
+  });
+  const item = AGENDA.find(x => x.slug === slug);
+  if (item) CRUMB.textContent = item.title;
+}
+
+// ---------- Routing ---------- //
+
+async function navigate() {
+  const slug = (location.hash || '#home').slice(1);
+  const item = AGENDA.find(x => x.slug === slug) || AGENDA[0];
+  highlightActive(item.slug);
+  SECTION_ROOT.innerHTML = '<div class="loading"><i class="fa-solid fa-spinner"></i> Loading section…</div>';
   try {
-    const res = await fetch(item.file, { cache: "no-cache" });
-    if (!res.ok) throw new Error(res.statusText);
-    mainEl.innerHTML = await res.text();
+    const res = await fetch(`sections/${item.slug}.html`, { cache: 'no-store' });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    SECTION_ROOT.innerHTML = await res.text();
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    const init = SECTION_INITS[item.slug];
+    if (init) await init();
   } catch (err) {
-    mainEl.innerHTML = `
-      <div class="card"><h3>Could not load section</h3>
-      <p class="muted">${err}</p></div>`;
-    return;
+    SECTION_ROOT.innerHTML = `<div class="concept"><h2>Section failed to load</h2><p>${err}</p></div>`;
   }
-  // Run per-section initializer if any
-  const init = sectionInits[item.slug];
-  if (init) init(mainEl);
-  // Scroll to top
-  window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-window.addEventListener("hashchange", route);
-window.addEventListener("DOMContentLoaded", route);
+window.addEventListener('hashchange', navigate);
 
-// ---------- Mock helpers ----------
-function loadJSON(path) {
-  return fetch(path, { cache: "no-cache" }).then(r => r.json());
+// ---------- Helpers ---------- //
+
+const delay = (ms) => new Promise(r => setTimeout(r, ms));
+async function loadJSON(name) {
+  const res = await fetch(`data/${name}.json`, { cache: 'no-store' });
+  return res.json();
 }
-function delay(ms) { return new Promise(res => setTimeout(res, ms)); }
+function fmtScore(s) { return (Math.round(s * 1000) / 1000).toFixed(3); }
 
-function addBubble(chatEl, role, text) {
-  const b = document.createElement("div");
-  b.className = `bubble ${role}`;
-  b.textContent = text;
-  chatEl.appendChild(b);
-  chatEl.scrollTop = chatEl.scrollHeight;
-  return b;
-}
+// ---------- Section initializers ---------- //
 
-// ---------- Section initializers ----------
-const sectionInits = {
-  "coverage-lookup": initCoverage,
-  "claim-status":    initClaimStatus,
-  "provider-search": initProviderSearch,
-  "eob-extract":     initEobExtract,
-  "eval-scorecard":  initEvalScorecard,
+const SECTION_INITS = {
+  'home': async () => {
+    document.querySelectorAll('[data-go]').forEach(btn => {
+      btn.addEventListener('click', () => { location.hash = '#' + btn.dataset.go; });
+    });
+  },
+
+  'index-design': async () => {
+    const out = document.getElementById('schemaOut');
+    const select = document.getElementById('fieldKind');
+    if (!select) return;
+    const data = await loadJSON('schema');
+    function render() {
+      const kind = select.value;
+      const field = data.fields.find(f => f.name === kind);
+      out.innerHTML = `
+        <pre>${JSON.stringify(field, null, 2)}</pre>
+        <p class="metric__hint">${field.explanation}</p>
+      `;
+    }
+    select.addEventListener('change', render);
+    render();
+  },
+
+  'vector-hybrid': async () => {
+    const data = await loadJSON('products');
+    const input = document.getElementById('queryInput');
+    const btn = document.getElementById('runQuery');
+    const out = document.getElementById('resultsOut');
+    const modeToggles = document.querySelectorAll('[data-mode]');
+    let mode = 'hybrid';
+    modeToggles.forEach(t => t.addEventListener('click', () => {
+      mode = t.dataset.mode;
+      modeToggles.forEach(x => x.classList.toggle('active', x === t));
+    }));
+
+    async function runQuery() {
+      const q = (input.value || '').trim().toLowerCase();
+      out.innerHTML = '<div class="loading"><i class="fa-solid fa-spinner"></i> Querying mock Contoso index…</div>';
+      await delay(450);
+      const ranked = data.products.map(p => {
+        const titleHit = q ? (p.title + ' ' + p.description + ' ' + (p.tags || []).join(' ')).toLowerCase().includes(q) : false;
+        const vector  = p.scores.vector  + (titleHit ? 0.05 : 0);
+        const keyword = titleHit ? Math.min(0.99, p.scores.keyword + 0.15) : p.scores.keyword * 0.6;
+        const blend = mode === 'vector' ? vector : mode === 'keyword' ? keyword : (vector * 0.6 + keyword * 0.4);
+        return { ...p, _blend: blend, _vector: vector, _keyword: keyword };
+      }).sort((a, b) => b._blend - a._blend).slice(0, 5);
+
+      out.innerHTML = ranked.map(p => `
+        <div class="result">
+          <div class="result__thumb"><i class="${p.icon}"></i></div>
+          <div>
+            <h3 class="result__title">${p.title}</h3>
+            <div class="result__meta">
+              <span><i class="fa-solid fa-tag"></i> ${p.category}</span>
+              <span><i class="fa-solid fa-coins"></i> $${p.price.toFixed(2)}</span>
+              <span><i class="fa-solid fa-warehouse"></i> ${p.stock} in stock</span>
+            </div>
+            <p class="result__snippet">${p.description}</p>
+            <div class="result__scores">
+              <span class="score score--vector">vector ${fmtScore(p._vector)}</span>
+              <span class="score score--keyword">bm25 ${fmtScore(p._keyword)}</span>
+              <span class="score">blend ${fmtScore(p._blend)}</span>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+    btn.addEventListener('click', runQuery);
+    input.addEventListener('keydown', e => { if (e.key === 'Enter') runQuery(); });
+    runQuery();
+  },
+
+  'semantic-ranker': async () => {
+    const data = await loadJSON('semantic');
+    const before = document.getElementById('beforeRanker');
+    const after  = document.getElementById('afterRanker');
+    const caption = document.getElementById('semCaption');
+    function render(list, el) {
+      el.innerHTML = list.map((r, i) => `
+        <div class="result">
+          <div class="result__thumb"><i class="${r.icon}"></i></div>
+          <div>
+            <h3 class="result__title">${i + 1}. ${r.title}</h3>
+            <p class="result__snippet">${r.snippet}</p>
+            <div class="result__scores">
+              <span class="score score--keyword">bm25 ${fmtScore(r.bm25)}</span>
+              ${r.semantic ? `<span class="score score--semantic">semantic ${fmtScore(r.semantic)}</span>` : ''}
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+    render(data.before, before);
+    render(data.after, after);
+    caption.innerHTML = `<strong>Semantic caption:</strong> ${data.caption}<br><strong>Semantic answer:</strong> ${data.answer}`;
+  },
+
+  'rag-chat': async () => {
+    const data = await loadJSON('rag');
+    const chat = document.getElementById('chatLog');
+    const form = document.getElementById('chatForm');
+    const inp  = document.getElementById('chatInput');
+    const quick = document.querySelectorAll('[data-prompt]');
+
+    function appendUser(text) {
+      const div = document.createElement('div');
+      div.className = 'chat__turn chat__turn--user';
+      div.textContent = text;
+      chat.appendChild(div);
+    }
+    function appendAssistant(turn) {
+      const div = document.createElement('div');
+      div.className = 'chat__turn chat__turn--assistant';
+      div.innerHTML = `
+        <div>${turn.text}</div>
+        <div class="chat__citations">
+          <strong>Sources:</strong>
+          ${turn.citations.map((c, i) => `<a href="${c.url}" target="_blank" rel="noopener">[${i + 1}] ${c.title}</a>`).join('')}
+        </div>
+      `;
+      chat.appendChild(div);
+      chat.scrollTop = chat.scrollHeight;
+    }
+
+    async function ask(q) {
+      appendUser(q);
+      const loading = document.createElement('div');
+      loading.className = 'chat__turn chat__turn--assistant';
+      loading.innerHTML = '<div class="loading"><i class="fa-solid fa-spinner"></i> Retrieving from index + generating grounded answer…</div>';
+      chat.appendChild(loading);
+      await delay(700);
+      loading.remove();
+      const match = data.turns.find(t => q.toLowerCase().includes(t.match)) || data.fallback;
+      appendAssistant(match);
+    }
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const v = inp.value.trim();
+      if (!v) return;
+      inp.value = '';
+      ask(v);
+    });
+    quick.forEach(b => b.addEventListener('click', () => ask(b.dataset.prompt)));
+
+    // Seed the chat
+    ask('What rain jacket do you recommend for a 3-day hike in cold weather?');
+  },
+
+  'evaluation-next': async () => {
+    const data = await loadJSON('evaluation');
+    const metrics = document.getElementById('metricsBox');
+    metrics.innerHTML = data.metrics.map(m => `
+      <div class="metric">
+        <div class="metric__label">${m.label}</div>
+        <div class="metric__value">${m.value}</div>
+        <div class="metric__hint">${m.hint}</div>
+        ${typeof m.percent === 'number' ? `<div class="metric__bar"><span style="width:${m.percent}%"></span></div>` : ''}
+      </div>
+    `).join('');
+
+    const timeline = document.getElementById('roadmapTimeline');
+    timeline.innerHTML = data.roadmap.map((step, i) => `
+      <li>
+        <span class="timeline__dot">${i + 1}</span>
+        <div>
+          <p class="timeline__title">${step.title}</p>
+          <p class="timeline__desc">${step.desc}</p>
+        </div>
+        <span class="timeline__when">${step.when}</span>
+      </li>
+    `).join('');
+  },
 };
 
-// 1) Coverage Lookup — chat with mocked intent classifier + benefits answer.
-async function initCoverage(root) {
-  const coverage = await loadJSON("data/coverage.json");
-  const chat = root.querySelector("#chat");
-  const input = root.querySelector("#chat-input");
-  const send  = root.querySelector("#chat-send");
+// ---------- Boot ---------- //
 
-  const seed = [
-    { role: "system",    text: "Demo · grounded on synthetic Northwind benefits data." },
-    { role: "assistant", text: "Hi! I'm MemberAssist. Ask me about your plan benefits — for example, 'is physical therapy covered?'" },
-  ];
-  seed.forEach(m => addBubble(chat, m.role, m.text));
-
-  async function ask(q) {
-    addBubble(chat, "user", q);
-    const thinking = addBubble(chat, "assistant", "…");
-    await delay(600);
-    const key = Object.keys(coverage).find(k => q.toLowerCase().includes(k));
-    const benefit = coverage[key];
-    if (!benefit) {
-      thinking.textContent = "I couldn't find that benefit in the plan. Try 'physical therapy', 'mental health', 'maternity', 'preventive', or 'vision'.";
-      return;
-    }
-    thinking.textContent =
-`✅ ${benefit.name} is covered under your plan.
-
-• In-network: ${benefit.in_network}
-• Out-of-network: ${benefit.out_of_network}
-• Prior authorization: ${benefit.prior_auth ? "required" : "not required"}
-• Annual limit: ${benefit.annual_limit}
-
-Source: Northwind Plan Document §${benefit.section} (synthetic).`;
-  }
-
-  send.addEventListener("click", () => {
-    const q = input.value.trim();
-    if (!q) return;
-    input.value = "";
-    ask(q);
-  });
-  input.addEventListener("keydown", e => { if (e.key === "Enter") send.click(); });
-
-  root.querySelectorAll(".quick-action").forEach(btn => {
-    btn.addEventListener("click", () => ask(btn.dataset.q));
-  });
-}
-
-// 2) Claim Status — lookup by member id + claim id
-async function initClaimStatus(root) {
-  const claims = await loadJSON("data/claims.json");
-  const form = root.querySelector("#claim-form");
-  const out  = root.querySelector("#claim-result");
-
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    out.innerHTML = `<p class="muted">Looking up claim…</p>`;
-    await delay(500);
-    const member = form.member.value.trim().toUpperCase();
-    const claim  = form.claim.value.trim().toUpperCase();
-    const hit = claims.find(c => c.member_id === member && c.claim_id === claim)
-             || claims.find(c => c.member_id === member)
-             || claims[0];
-    out.innerHTML = `
-      <div class="grid-2">
-        <div>
-          <h3>Claim ${hit.claim_id}</h3>
-          <p><span class="pill ${hit.status === 'Paid' ? '' : hit.status === 'Denied' ? 'warn' : 'violet'}">${hit.status}</span>
-             <span class="pill">${hit.service}</span></p>
-          <p class="muted">Member ${hit.member_id} · Date of service ${hit.dos}</p>
-        </div>
-        <div>
-          <table class="simple">
-            <tr><th>Billed</th><td>$${hit.billed.toFixed(2)}</td></tr>
-            <tr><th>Allowed</th><td>$${hit.allowed.toFixed(2)}</td></tr>
-            <tr><th>Plan paid</th><td>$${hit.plan_paid.toFixed(2)}</td></tr>
-            <tr><th>Member responsibility</th><td>$${hit.member_resp.toFixed(2)}</td></tr>
-          </table>
-        </div>
-      </div>
-      <p class="muted">Source-of-truth: synthetic Northwind adjudication store.
-      ${hit.notes ? "Notes: " + hit.notes : ""}</p>
-    `;
-  });
-}
-
-// 3) Provider Search — filter + render
-async function initProviderSearch(root) {
-  const providers = await loadJSON("data/providers.json");
-  const form = root.querySelector("#prov-form");
-  const out  = root.querySelector("#prov-result");
-
-  function render(list) {
-    if (!list.length) {
-      out.innerHTML = `<p class="muted">No providers match those filters in the synthetic directory.</p>`;
-      return;
-    }
-    out.innerHTML = `<ul class="result-list">${list.slice(0, 8).map(p => `
-      <li>
-        <span class="title">${p.name}, ${p.degree}</span>
-        <span>${p.specialty} · ${p.city}, ${p.state} · ${p.distance_mi} mi</span>
-        <span class="meta">Accepting new patients: ${p.accepting ? "yes" : "no"} · Languages: ${p.languages.join(", ")} · NPI ${p.npi}</span>
-      </li>`).join("")}</ul>`;
-  }
-  render(providers);
-
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    out.innerHTML = `<p class="muted">Searching…</p>`;
-    await delay(400);
-    const spec   = form.specialty.value;
-    const zip    = form.zip.value.trim();
-    const accept = form.accepting.checked;
-    let list = providers.slice();
-    if (spec) list = list.filter(p => p.specialty === spec);
-    if (zip)  list = list.filter(p => p.zip.startsWith(zip.slice(0, 3)));
-    if (accept) list = list.filter(p => p.accepting);
-    render(list);
-  });
-}
-
-// 4) EOB Extraction — paste text, "extract" with regex/heuristics
-async function initEobExtract(root) {
-  const ta  = root.querySelector("#eob-text");
-  const btn = root.querySelector("#eob-extract");
-  const out = root.querySelector("#eob-result");
-
-  const sample = `EXPLANATION OF BENEFITS
-Member: Maria Santos    Member ID: NW-4471
-Provider: Riverdale Clinic
-Claim #: CLM-9981   Date of service: 2026-03-12
-Procedure: Office visit, established patient (CPT 99213)
-Billed amount: $245.00
-Allowed amount: $148.00
-Plan paid: $118.40
-Member responsibility: $29.60 (coinsurance 20%)`;
-  ta.value = sample;
-
-  btn.addEventListener("click", async () => {
-    out.innerHTML = `<p class="muted">Extracting fields…</p>`;
-    await delay(700);
-    const t = ta.value;
-    const grab = (re) => { const m = t.match(re); return m ? m[1].trim() : "—"; };
-    const fields = {
-      "Member name":      grab(/Member:\s*([^\n]+?)\s{2,}/i),
-      "Member ID":        grab(/Member ID:\s*([^\n]+)/i),
-      "Provider":         grab(/Provider:\s*([^\n]+)/i),
-      "Claim #":          grab(/Claim #:\s*([^\s]+)/i),
-      "Date of service":  grab(/Date of service:\s*([^\n]+)/i),
-      "Procedure":        grab(/Procedure:\s*([^\n]+)/i),
-      "Billed amount":    grab(/Billed amount:\s*\$([\d.,]+)/i),
-      "Allowed amount":   grab(/Allowed amount:\s*\$([\d.,]+)/i),
-      "Plan paid":        grab(/Plan paid:\s*\$([\d.,]+)/i),
-      "Member responsibility": grab(/Member responsibility:\s*\$([\d.,]+)[^\n]*/i),
-    };
-    out.innerHTML = `
-      <table class="simple">
-        ${Object.entries(fields).map(([k, v]) =>
-          `<tr><th>${k}</th><td>${v}</td></tr>`).join("")}
-      </table>
-      <p class="muted">Mock extractor uses regex heuristics. In production, swap for
-      Azure AI Document Intelligence (prebuilt or custom EOB model).</p>`;
-  });
-}
-
-// 5) Evaluation Scorecard
-async function initEvalScorecard(root) {
-  const data = await loadJSON("data/eval.json");
-  const kpis = root.querySelector("#kpis");
-  const tbl  = root.querySelector("#eval-table");
-
-  kpis.innerHTML = data.kpis.map(k => `
-    <div class="kpi">
-      <div class="label">${k.label}</div>
-      <div class="value">${k.value}</div>
-      <div class="delta ${k.delta_dir}">${k.delta}</div>
-    </div>`).join("");
-
-  tbl.innerHTML = `
-    <table class="simple">
-      <thead><tr>
-        <th>Test query</th><th>Intent</th><th>Groundedness</th><th>Relevance</th><th>Latency</th><th>Verdict</th>
-      </tr></thead>
-      <tbody>
-        ${data.rows.map(r => `
-          <tr>
-            <td>${r.query}</td>
-            <td><span class="pill">${r.intent}</span></td>
-            <td>${r.groundedness.toFixed(2)}</td>
-            <td>${r.relevance.toFixed(2)}</td>
-            <td>${r.latency_ms} ms</td>
-            <td><span class="pill ${r.verdict === 'pass' ? '' : 'warn'}">${r.verdict}</span></td>
-          </tr>`).join("")}
-      </tbody>
-    </table>`;
-}
+renderSidebar();
+navigate();

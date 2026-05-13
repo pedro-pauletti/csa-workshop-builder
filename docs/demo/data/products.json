@@ -1,0 +1,92 @@
+{
+  "products": [
+    {
+      "id": "CO-JKT-104",
+      "title": "Stormridge 3L Insulated Rain Jacket",
+      "description": "A waterproof 3-layer shell with synthetic insulation. Rated for cold, wet hikes from 5°C down to -10°C. PFC-free DWR finish; sealed seams; pit zips.",
+      "category": "Jackets",
+      "price": 189.0,
+      "stock": 42,
+      "icon": "fa-solid fa-cloud-showers-heavy",
+      "tags": ["rain", "warm", "hiking", "winter", "insulated", "waterproof"],
+      "scores": { "vector": 0.91, "keyword": 0.74 }
+    },
+    {
+      "id": "CO-JKT-220",
+      "title": "Featherline Ultralight Down Jacket 800FP",
+      "description": "Packable down jacket with 800 fill power for cold, dry conditions. 280 g. Not waterproof; pair with a shell for rain.",
+      "category": "Jackets",
+      "price": 245.0,
+      "stock": 17,
+      "icon": "fa-solid fa-feather",
+      "tags": ["warm", "ultralight", "down", "winter", "cold"],
+      "scores": { "vector": 0.83, "keyword": 0.39 }
+    },
+    {
+      "id": "CO-JKT-301",
+      "title": "Trailrunner Windbreaker",
+      "description": "Lightweight wind shell for cool, dry trail runs. Not waterproof, not insulated. Stows into its own pocket.",
+      "category": "Jackets",
+      "price": 79.0,
+      "stock": 88,
+      "icon": "fa-solid fa-wind",
+      "tags": ["lightweight", "wind", "running"],
+      "scores": { "vector": 0.62, "keyword": 0.21 }
+    },
+    {
+      "id": "CO-TNT-110",
+      "title": "Skylight 2 Ultralight Tent",
+      "description": "Two-person, 3-season tent weighing 1.78 kg packed. Single-pole design. 30D ripstop nylon. Two doors, two vestibules.",
+      "category": "Tents",
+      "price": 369.0,
+      "stock": 11,
+      "icon": "fa-solid fa-campground",
+      "tags": ["tent", "ultralight", "2 person", "3 season", "backpacking"],
+      "scores": { "vector": 0.55, "keyword": 0.18 }
+    },
+    {
+      "id": "CO-TNT-150",
+      "title": "Basecamp 2 Trekking Tent",
+      "description": "Roomy 2-person 3-season tent with 70D floor. 2.4 kg packed. Better headroom; not as light as the Skylight 2.",
+      "category": "Tents",
+      "price": 279.0,
+      "stock": 24,
+      "icon": "fa-solid fa-campground",
+      "tags": ["tent", "2 person", "3 season"],
+      "scores": { "vector": 0.49, "keyword": 0.14 }
+    },
+    {
+      "id": "CO-BAG-090",
+      "title": "Polaris -15 Sleeping Bag",
+      "description": "Mummy bag rated to -15°C comfort, -22°C limit. 850FP hydrophobic down. Designed for winter expeditions and sub-zero alpine camps.",
+      "category": "Sleeping bags",
+      "price": 419.0,
+      "stock": 8,
+      "icon": "fa-solid fa-moon",
+      "tags": ["sleeping bag", "sub zero", "winter", "down", "cold"],
+      "scores": { "vector": 0.71, "keyword": 0.32 }
+    },
+    {
+      "id": "CO-SHO-410",
+      "title": "Riverstone Waterproof Hiking Shoe (Women's)",
+      "description": "Low-cut women's hiking shoe with Gore-Tex membrane and Vibram sole. Excellent on wet trails and stream crossings.",
+      "category": "Footwear",
+      "price": 159.0,
+      "stock": 31,
+      "icon": "fa-solid fa-shoe-prints",
+      "tags": ["women", "hiking", "shoes", "waterproof", "wet"],
+      "scores": { "vector": 0.66, "keyword": 0.41 }
+    },
+    {
+      "id": "CO-PAK-202",
+      "title": "Summit 45 Backpack",
+      "description": "45-litre hiking backpack with adjustable torso and ventilated back panel. Rain cover included.",
+      "category": "Packs",
+      "price": 199.0,
+      "stock": 19,
+      "icon": "fa-solid fa-bag-shopping",
+      "tags": ["backpack", "hiking", "45L"],
+      "scores": { "vector": 0.44, "keyword": 0.11 }
+    }
+  ]
+}

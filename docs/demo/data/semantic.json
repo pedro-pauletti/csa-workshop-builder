@@ -1,0 +1,18 @@
+{
+  "before": [
+    { "title": "Basecamp 2 Trekking Tent", "icon": "fa-solid fa-campground", "snippet": "Roomy 2-person 3-season tent with 70D floor. 2.4 kg packed.", "bm25": 8.42 },
+    { "title": "Skylight 2 Ultralight Tent", "icon": "fa-solid fa-campground", "snippet": "Two-person, 3-season tent weighing 1.78 kg packed. Single-pole design.", "bm25": 7.91 },
+    { "title": "Summit 45 Backpack", "icon": "fa-solid fa-bag-shopping", "snippet": "45-litre hiking backpack with adjustable torso.", "bm25": 5.05 },
+    { "title": "Trailrunner Windbreaker", "icon": "fa-solid fa-wind", "snippet": "Lightweight wind shell that stows into its own pocket.", "bm25": 3.82 },
+    { "title": "Polaris -15 Sleeping Bag", "icon": "fa-solid fa-moon", "snippet": "Mummy bag with 850FP down for winter.", "bm25": 2.61 }
+  ],
+  "after": [
+    { "title": "Skylight 2 Ultralight Tent", "icon": "fa-solid fa-campground", "snippet": "Two-person, 3-season tent weighing <em>1.78 kg packed</em>. Single-pole design.", "bm25": 7.91, "semantic": 3.71 },
+    { "title": "Basecamp 2 Trekking Tent", "icon": "fa-solid fa-campground", "snippet": "Roomy 2-person 3-season tent with 70D floor. 2.4 kg packed.", "bm25": 8.42, "semantic": 2.18 },
+    { "title": "Summit 45 Backpack", "icon": "fa-solid fa-bag-shopping", "snippet": "45-litre hiking backpack with adjustable torso.", "bm25": 5.05, "semantic": 0.94 },
+    { "title": "Polaris -15 Sleeping Bag", "icon": "fa-solid fa-moon", "snippet": "Mummy bag with 850FP down for winter.", "bm25": 2.61, "semantic": 0.41 },
+    { "title": "Trailrunner Windbreaker", "icon": "fa-solid fa-wind", "snippet": "Lightweight wind shell that stows into its own pocket.", "bm25": 3.82, "semantic": 0.22 }
+  ],
+  "caption": "Two-person, 3-season tent weighing <em>1.78 kg</em> packed.",
+  "answer": "The Skylight 2 Ultralight Tent — a two-person 3-season tent at 1.78 kg packed."
+}

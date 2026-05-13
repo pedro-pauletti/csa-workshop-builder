@@ -1,0 +1,54 @@
+<header class="page-header">
+  <span class="page-eyebrow"><i class="fa-solid fa-chart-line"></i> Concept + roadmap · Module 6 / 6</span>
+  <h1 class="page-title">Evaluation & next steps</h1>
+  <p class="page-subtitle">
+    A RAG system you cannot measure is a RAG system you cannot improve. Define
+    metrics, a test set, and a delivery roadmap before you ship.
+  </p>
+</header>
+
+<section class="concept">
+  <h2>The four metrics every grounded-AI system needs</h2>
+  <ul>
+    <li><strong>Groundedness</strong> — does the answer use only information present in the retrieved documents? Measured with an LLM-as-judge or with token-overlap heuristics.</li>
+    <li><strong>Relevance</strong> — is the answer responsive to the question?</li>
+    <li><strong>Retrieval recall@k</strong> — does the top-k from Azure AI Search contain at least one document that can answer the question? This is the lever you tune when groundedness is low.</li>
+    <li><strong>Latency p95</strong> — end-to-end milliseconds for the full retrieve → rerank → generate loop. Owns user perception.</li>
+  </ul>
+
+  <div class="callout">
+    <strong>Microsoft's evaluation tooling.</strong> Use the
+    <em>Azure AI Foundry evaluation SDK</em> to run all four metrics against a
+    fixed test set and graph the trend across runs. It plugs directly into
+    Azure AI Search retrieval.
+  </div>
+
+  <div class="refs">
+    <div class="refs__label">Official Microsoft Learn references</div>
+    <ul>
+      <li><i class="fa-solid fa-up-right-from-square"></i> <a href="https://learn.microsoft.com/azure/ai-foundry/concepts/evaluation-approach-gen-ai" target="_blank" rel="noopener">Evaluation of generative AI applications</a></li>
+      <li><i class="fa-solid fa-up-right-from-square"></i> <a href="https://learn.microsoft.com/azure/ai-foundry/how-to/develop/evaluate-sdk" target="_blank" rel="noopener">Azure AI Evaluation SDK</a></li>
+      <li><i class="fa-solid fa-up-right-from-square"></i> <a href="https://learn.microsoft.com/azure/search/search-monitor-queries" target="_blank" rel="noopener">Monitor query performance — Azure AI Search</a></li>
+    </ul>
+  </div>
+</section>
+
+<hr class="section-separator" />
+
+<section class="demo">
+  <h2 class="demo__title"><i class="fa-solid fa-gauge"></i> Demo — Contoso evaluation scorecard</h2>
+  <p class="demo__lede">
+    Results from running 50 fixed test questions against the Contoso index +
+    chat configuration shown earlier. Mocked, but the shape and the numbers are
+    representative of a healthy first-pass RAG system.
+  </p>
+  <div id="metricsBox" class="metrics"></div>
+</section>
+
+<hr class="section-separator" />
+
+<section class="concept">
+  <h2>30 / 60 / 90 day roadmap</h2>
+  <p>The concrete next steps for taking Contoso Outdoor from demo to pilot to production.</p>
+  <ul id="roadmapTimeline" class="timeline"></ul>
+</section>

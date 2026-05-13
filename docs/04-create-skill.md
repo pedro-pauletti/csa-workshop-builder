@@ -57,6 +57,32 @@ metadata:
 Bump `metadata.version` minor for new sections/demos and major for any
 change to the architectural rules.
 
+### Document the workshop's documentation sources
+
+A SKILL.md that doesn't enumerate the official Microsoft documentation it
+draws from is incomplete. Add a `documentation_sources` block to the
+frontmatter — it is the contract that says *this workshop is grounded in
+Microsoft Learn, not vibes*.
+
+```yaml
+documentation_sources:
+  - https://learn.microsoft.com/azure/ai-foundry/
+  - https://learn.microsoft.com/azure/search/
+  - https://learn.microsoft.com/azure/ai-services/openai/
+  - https://github.com/Azure-Samples/azure-search-openai-demo
+```
+
+Then in the **Rules** body of SKILL.md add:
+
+> **Rule — Documentation references.** Every section's explanatory block
+> must end with a `<div class="refs">` listing 2–5 official Microsoft
+> references (Microsoft Learn, Azure-Samples, or microsoft.com). No
+> third-party blogs, no marketing pages, no hand-waving.
+
+The [live demo](../demo/) implements exactly this rule — open any section
+and scroll to *Official Microsoft Learn references*. This is covered in
+detail in [Module 7 — Explanatory sections](08-explanatory-sections.md).
+
 ## Inputs
 
 - The customer scenario from [Module 2](03-customer-scenario.md).
