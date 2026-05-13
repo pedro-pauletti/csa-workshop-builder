@@ -1,0 +1,70 @@
+<section class="section-header">
+  <div class="section-eyebrow"><span class="dot"></span> Northwind MemberAssist · workshop demo</div>
+  <h1 class="section-title">A member copilot the call-centre, claims ops and compliance can all sign off on</h1>
+  <p class="section-subtitle">
+    This is the live worked example produced by the
+    <em>How CSAs create engaging workshops</em> tutorial. The same sidebar you see on the left
+    came from a single <code>agenda.md</code> file; each section below maps 1:1 to a workshop
+    module. Everything is mocked client-side — no Azure, no PII.
+  </p>
+</section>
+
+<div class="card">
+  <h3>What you can do here</h3>
+  <div class="quick-actions">
+    <a class="quick-action" href="#coverage-lookup">
+      <span class="qa-icon"><i class="fa-solid fa-comments"></i></span>
+      <span><strong>Coverage Lookup</strong><br><small>Conversational benefits Q&amp;A grounded on the plan document.</small></span>
+    </a>
+    <a class="quick-action" href="#claim-status">
+      <span class="qa-icon"><i class="fa-solid fa-receipt"></i></span>
+      <span><strong>Claim Status</strong><br><small>Look up a claim by member ID + claim ID.</small></span>
+    </a>
+    <a class="quick-action" href="#provider-search">
+      <span class="qa-icon"><i class="fa-solid fa-user-doctor"></i></span>
+      <span><strong>Provider Search</strong><br><small>Filter the in-network directory by specialty &amp; ZIP.</small></span>
+    </a>
+    <a class="quick-action" href="#eob-extract">
+      <span class="qa-icon"><i class="fa-solid fa-file-invoice"></i></span>
+      <span><strong>EOB Extraction</strong><br><small>Pull structured fields out of an Explanation of Benefits.</small></span>
+    </a>
+    <a class="quick-action" href="#eval-scorecard">
+      <span class="qa-icon"><i class="fa-solid fa-chart-line"></i></span>
+      <span><strong>Evaluation Scorecard</strong><br><small>Groundedness / relevance / latency on a fixed query set.</small></span>
+    </a>
+    <a class="quick-action" href="#roadmap">
+      <span class="qa-icon"><i class="fa-solid fa-route"></i></span>
+      <span><strong>Roadmap</strong><br><small>What we ship in pilot vs. phase 2.</small></span>
+    </a>
+  </div>
+</div>
+
+<div class="card">
+  <h3>Audience</h3>
+  <div class="grid-2">
+    <p><strong>Rosa Aoyama</strong> — VP Member Services <span class="pill">handle time</span> <span class="pill">FCR</span></p>
+    <p><strong>Marcus Boateng</strong> — Director, Claims Ops <span class="pill">accuracy</span> <span class="pill">source of truth</span></p>
+    <p><strong>Hana Whitlock</strong> — Principal Plan Architect <span class="pill violet">portability</span></p>
+    <p><strong>Daniel Erskine</strong> — Compliance <span class="pill warn">PHI</span> <span class="pill warn">auditability</span></p>
+  </div>
+</div>
+
+<div class="card">
+  <h3>High-level architecture</h3>
+<div class="diagram">┌────────────┐    ┌────────────────┐    ┌──────────────────────┐
+│  Member    │───▶│  MemberAssist  │───▶│  Plan documents (RAG) │
+│  (or CSR)  │    │  copilot (LLM) │    │  Claims store         │
+└────────────┘    │  + tools       │    │  Provider directory   │
+                  └──────┬─────────┘    │  Doc Intelligence     │
+                         │              └──────────────────────┘
+                         ▼
+                  ┌────────────────┐
+                  │  Eval harness  │  (groundedness, relevance, latency)
+                  └────────────────┘</div>
+  <p class="muted">Every section page in this demo represents one decision point in that diagram.</p>
+</div>
+
+<div class="module-step-note card">
+  <p><strong>Reading order →</strong> Click each item in the sidebar from top to bottom. The order
+  mirrors the workshop agenda the CSA delivers in front of the customer.</p>
+</div>

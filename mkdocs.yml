@@ -25,39 +25,44 @@ theme:
     - toc.follow
   palette:
     - scheme: default
-      primary: blue
-      accent: indigo
+      primary: deep purple
+      accent: pink
       toggle:
         icon: material/weather-night
         name: Switch to dark mode
     - scheme: slate
-      primary: blue
-      accent: cyan
+      primary: deep purple
+      accent: pink
       toggle:
         icon: material/weather-sunny
         name: Switch to light mode
   icon:
     repo: fontawesome/brands/github
+  font:
+    text: Inter
+    code: JetBrains Mono
 
 extra_css:
   - stylesheets/extra.css
 
 nav:
   - Introduction: index.md
+  - Live demo ↗: https://pedro-pauletti.github.io/csa-workshop-builder/demo/
   - Fast path — generate your first workshop app: 00-fast-path.md
-  - 1. Accelerator pattern: 02-design-principles.md
-  - 2. Customer scenario: 03-customer-scenario.md
-  - 3. SKILL.md: 04-create-skill.md
-  - 4. agenda.md: 05-create-agenda.md
-  - 5. Copilot /plan: 06-copilot-plan.md
-  - 6. Generate the web app: 07-generate-web-app.md
-  - 7. Run locally: 11-run-locally.md
-  - 8. Explanatory sections: 08-explanatory-sections.md
-  - 9. Interactive demos: 09-interactive-demos.md
-  - 10. Customize by product: 10-customization-patterns.md
-  - 11. Publish with GitHub Pages: 12-publish-github-pages.md
-  - 12. Reuse and scale: 13-reuse-scale.md
-  - "Worked example: Northwind MemberAssist": 14-worked-example.md
+  - Build Northwind MemberAssist end-to-end:
+    - 1. Accelerator pattern: 02-design-principles.md
+    - 2. Customer scenario (Northwind): 03-customer-scenario.md
+    - 3. SKILL.md for Northwind: 04-create-skill.md
+    - 4. agenda.md for Northwind: 05-create-agenda.md
+    - 5. Plan with Copilot: 06-copilot-plan.md
+    - 6. Generate the web app: 07-generate-web-app.md
+    - 7. Run locally: 11-run-locally.md
+    - 8. Explanatory sections: 08-explanatory-sections.md
+    - 9. Interactive demos (mocked): 09-interactive-demos.md
+    - 10. Visual identity & theme: 10-customization-patterns.md
+    - 11. Publish with GitHub Pages: 12-publish-github-pages.md
+    - 12. Validation & polish: 12-validation-polish.md
+  - 13. Customize for your customer or product: 13-customize.md
 
 markdown_extensions:
   - admonition

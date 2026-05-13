@@ -1,0 +1,49 @@
+<section class="section-header">
+  <div class="section-eyebrow"><span class="dot"></span> Section 1 of 6</div>
+  <h1 class="section-title">Coverage Lookup</h1>
+  <p class="section-subtitle">
+    A grounded Q&amp;A over the Northwind plan document. The model only answers from passages
+    retrieved from the plan; out-of-scope questions are politely refused.
+  </p>
+</section>
+
+<div class="card">
+  <h3>Try it</h3>
+  <p class="muted">Ask about <em>physical therapy</em>, <em>mental health</em>, <em>maternity</em>, <em>preventive</em>, or <em>vision</em>. Or click a quick action.</p>
+
+  <div class="quick-actions">
+    <button class="quick-action" data-q="Is physical therapy covered?">
+      <span class="qa-icon"><i class="fa-solid fa-person-walking"></i></span>
+      <span><strong>Physical therapy</strong><br><small>visit limits + prior auth</small></span>
+    </button>
+    <button class="quick-action" data-q="Is mental health therapy covered?">
+      <span class="qa-icon"><i class="fa-solid fa-brain"></i></span>
+      <span><strong>Mental health</strong><br><small>outpatient counseling</small></span>
+    </button>
+    <button class="quick-action" data-q="What does maternity cover?">
+      <span class="qa-icon"><i class="fa-solid fa-baby"></i></span>
+      <span><strong>Maternity</strong><br><small>prenatal &amp; newborn</small></span>
+    </button>
+    <button class="quick-action" data-q="What preventive services are free?">
+      <span class="qa-icon"><i class="fa-solid fa-shield-heart"></i></span>
+      <span><strong>Preventive care</strong><br><small>annual physical, screenings</small></span>
+    </button>
+  </div>
+
+  <div class="chat" id="chat" aria-live="polite"></div>
+  <div class="chat-input">
+    <div class="field" style="flex:1;margin:0;">
+      <input id="chat-input" type="text" placeholder="Ask MemberAssist about a benefit…" autocomplete="off">
+    </div>
+    <button class="btn" id="chat-send"><i class="fa-solid fa-paper-plane"></i> Send</button>
+  </div>
+</div>
+
+<div class="card">
+  <h3>Workshop talking points</h3>
+  <ul>
+    <li><strong>Grounded answers only.</strong> The model is forced to cite a plan-document section; if no passage scores above threshold, it refuses.</li>
+    <li><strong>Out-of-scope handling.</strong> Anything outside the plan (e.g., medical advice) is deflected to a human agent.</li>
+    <li><strong>Evaluation hook.</strong> Every answer here flows into the <a href="#eval-scorecard">evaluation scorecard</a> with groundedness + relevance scores.</li>
+  </ul>
+</div>

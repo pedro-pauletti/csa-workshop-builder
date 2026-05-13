@@ -1,9 +1,10 @@
-# 7. Add explanatory sections
+# 8. Explanatory sections — Northwind
 
 ## Goal
 
-Enrich each section of the generated app with the **didactic content** that
-makes a workshop teach, not just demo.
+Enrich each of the six Northwind sections (Coverage Lookup, Claim Status,
+Provider Search, EOB Extraction, Evaluation Scorecard, Roadmap) with the
+**didactic content** that makes a workshop teach, not just demo.
 
 ## Why it matters
 
@@ -55,75 +56,69 @@ read it from a single config file.
 Every section now has consistent didactic content; only demos remain as
 clearly-marked TODOs.
 
-## Worked example — Northwind "Demo 3 — Claim status" (gold sample)
+## Worked example — Northwind "Claim Status" (gold sample)
 
-The Northwind sample ships one section fully written end-to-end. Use it
-as the copy-paste starting point for the other eight.
+This is the gold-sample section. Copy its structure into the other five
+Northwind sections.
 
-??? example "Show the gold-sample section verbatim"
+```markdown
+# Claim Status
 
-    ```markdown
-    # Demo 3 — Claim status
+> **Mapped requirement(s):** R3, R6
+> **Time on stage:** ~18 minutes (8 explain, 7 demo, 3 Q&A)
+> **Demo file:** data/claims.json
+> **Section folder:** sections/claim_status/
 
-    > **Mapped requirement(s):** R3, R6
-    > **Time on stage:** ~18 minutes (8 explain, 7 demo, 3 Q&A)
-    > **Demo file:** data/workflow.json
-    > **Section folder:** sections/demo_3_claim_status/
+## Customer context
 
-    ## Customer context
+Marcus (Director, Claims Ops) opens 28% of his weekly tickets because
+a member called the call centre and the agent could not explain
+*where* a claim was in flight. The agent had to alt-tab between
+three systems and read codes the member did not understand. This
+demo shows the same question answered in one screen, in plain
+English, with a timestamp the member can trust.
 
-    Marcus (Director, Claims Ops) opens 28% of his weekly tickets because
-    a member called the call centre and the agent could not explain
-    *where* a claim was in flight. The agent had to alt-tab between
-    three systems and read codes the member did not understand. This
-    demo shows the same question answered in one screen, in plain
-    English, with a timestamp the member can trust.
+## Concept
 
-    ## Concept
+A claim moves through five canonical states: received → validated →
+adjudicated → paid → notified. Each state is owned by a different
+back-end system and emits an event. MemberAssist subscribes to
+those events, normalises them to the canonical timeline, and renders
+them with the source system and last-updated timestamp. Nothing is
+computed; we show the truth that already exists.
 
-    A claim moves through five canonical states: received → validated →
-    adjudicated → paid → notified. Each state is owned by a different
-    back-end system and emits an event. MemberAssist subscribes to
-    those events, normalises them to the canonical timeline, and renders
-    them with the source system and last-updated timestamp. Nothing is
-    computed; we show the truth that already exists.
+## Demo
 
-    ## Diagram
+Open /sections/claim_status and run the happy-path claim
+NW-CLM-2025-0418-77321, then switch to the failure-path claim
+NW-CLM-2025-0301-44102 (pended for COB) and walk the human-handoff
+modal.
 
-    [Mermaid timeline showing 5 states with handoff branch]
+## Evidence
 
-    ## Demo
+The right-panel payload, source-system badges, and trace passed to
+the handoff modal — all three pulled from data/claims.json so the
+audience can see "what the model saw".
 
-    Open /sections/demo_3_claim_status and run the happy-path claim
-    NW-CLM-2025-0418-77321, then switch to the failure-path claim
-    NW-CLM-2025-0301-44102 (pended for COB) and walk the human-handoff
-    modal.
+## Presenter notes
 
-    ## Evidence
+- Open with Marcus's number: "28% of your weekly escalations are
+  variants of where is my claim. We're going to remove that ticket."
+- For the pended claim, *do not* skip the handoff modal. Compliance
+  watches for it.
 
-    The right-panel payload, source-system badges, and trace passed to
-    the handoff modal — all three pulled from data/workflow.json so the
-    audience can see "what the model saw".
+## Common pitfalls
 
-    ## Presenter notes
+- Demoing only the happy path. The failure path is what makes the
+  evaluation demo credible later.
 
-    - Open with Marcus's number: "28% of your weekly escalations are
-      variants of where is my claim. We're going to remove that ticket."
-    - For the pended claim, *do not* skip the handoff modal. Compliance
-      watches for it.
+## Next
 
-    ## Common pitfalls
+EOB Document Extraction. Same claim ID, now we open the EOB.
+```
 
-    - Demoing only the happy path. The failure path is what makes the
-      evaluation demo (Demo 5) credible later.
-
-    ## Next
-
-    Demo 4 — EOB document analysis. Same claim ID, now we open the EOB.
-    ```
-
-    Full source:
-    [`samples/northwind-memberassist-workshop/sections/demo-3-claim-status.md`](https://github.com/pedro-pauletti/csa-workshop-builder/tree/main/samples/northwind-memberassist-workshop/sections/demo-3-claim-status.md)
+Full source:
+[`samples/northwind-memberassist-workshop/sections/`](https://github.com/pedro-pauletti/csa-workshop-builder/tree/main/samples/northwind-memberassist-workshop/sections)
 
 <div class="tips" markdown>
 **Section writing tips**
@@ -198,3 +193,5 @@ and walk through `data/<slug>.json`.
 ## Next step
 
 Continue to **[9. Add interactive demos](09-interactive-demos.md)**.
+
+<div class="module-step"><span class="pill">Module 8 of 12</span> Sections are educational. Next: wire up the mocked interactivity.</div>

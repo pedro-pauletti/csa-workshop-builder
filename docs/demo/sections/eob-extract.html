@@ -1,0 +1,27 @@
+<section class="section-header">
+  <div class="section-eyebrow"><span class="dot"></span> Section 4 of 6</div>
+  <h1 class="section-title">EOB Document Extraction</h1>
+  <p class="section-subtitle">
+    Paste an Explanation of Benefits and pull out the structured fields. In production this is a
+    call to Azure AI Document Intelligence; here we use regex heuristics so the demo runs offline.
+  </p>
+</section>
+
+<div class="card">
+  <h3>Paste an EOB</h3>
+  <div class="field">
+    <label for="eob-text">EOB text (synthetic — never paste real PHI)</label>
+    <textarea id="eob-text" rows="10"></textarea>
+  </div>
+  <button class="btn" id="eob-extract"><i class="fa-solid fa-wand-magic-sparkles"></i> Extract fields</button>
+  <div id="eob-result" style="margin-top:14px;"></div>
+</div>
+
+<div class="card">
+  <h3>Why this matters</h3>
+  <ul>
+    <li><strong>Reduces handle time.</strong> Members call about EOBs they can't read; the copilot pre-extracts the key fields before the agent picks up.</li>
+    <li><strong>Confidence-scored fields.</strong> In production, every extracted field carries a confidence score; below threshold → human review queue.</li>
+    <li><strong>Schema-stable.</strong> The extractor returns the same JSON shape regardless of EOB layout, so downstream logic is simple.</li>
+  </ul>
+</div>

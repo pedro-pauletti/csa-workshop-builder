@@ -1,14 +1,14 @@
-# 3. Create the SKILL.md
+# 3. SKILL.md for Northwind
 
 !!! info "Two-level SKILL files"
     | File | Owner | Purpose |
     |---|---|---|
-    | `SKILL.template.md` *(in this tutorial / template repo)* | Template team | Reusable contract that survives across customers. |
-    | `SKILL.md` *(in your customer repo)* | The CSA for this engagement | Customized version with the customer scenario pasted in. |
+    | `SKILL.template.md` *(in this tutorial / template repo)* | Template team | Reusable contract that survives across customers — including the **Foundry Violet** design system and the agenda-driven menu rule. |
+    | `SKILL.md` *(in your customer repo)* | The CSA for this engagement | Customized version with the Northwind scenario pasted in. |
 
-    You **copy** the template into your customer repo and customize the
-    **Context** and **Non-goals** sections. Stack, folder layout, and
-    agenda-driven rules should rarely change.
+    You **copy** the template into your Northwind repo and customize the
+    **Context**, **Personas**, **Non-goals** and **Theme** sections. Stack,
+    folder layout, and agenda-driven rules should rarely change.
 
 ## Goal
 
@@ -122,52 +122,47 @@ customer-scenario.md ──► SKILL.md ──► /plan ──► Copilot genera
 
 ## Worked example — Northwind SKILL.md
 
-??? example "Show the Northwind SKILL.md (frontmatter + key sections)"
+Paste these into the Northwind `SKILL.md` after copying the template. The
+template already contains all the **architectural rules**, the **Foundry
+Violet / Northwind Teal** design system, and the **agenda-driven menu** rule
+— so you only customize the customer-specific blocks below.
 
-    ```yaml
-    ---
-    name: workshop-creation
-    description: |
-      Generate and maintain the Northwind MemberAssist workshop web app from
-      agenda.md and the scenario. Produces a FastAPI + Jinja2 single-page
-      workshop with five mock demos.
-    license: MIT
-    metadata:
-      author: Northwind CSA team (fictional)
-      version: 1.0.0
-      basedOn: csa-workshop-builder / customer-workshop-app-template
-    ---
-    ```
+```yaml
+---
+name: workshop-creation
+description: |
+  Generate and maintain the Northwind MemberAssist workshop web app from
+  agenda.md and the scenario. Produces a FastAPI + Jinja2 single-page
+  workshop with 6 mock demos (coverage, claim status, provider search,
+  EOB extraction, evaluation, roadmap).
+license: MIT
+metadata:
+  customer: Northwind Health
+  product_focus: Azure AI Foundry + Azure AI Search + Document Intelligence
+  theme: northwind-teal
+  basedOn: csa-workshop-builder/templates/SKILL.template.md
+  version: 1.0.0
+---
+```
 
-    ### Mandatory architectural rules
+### Compliance rules (Northwind-specific)
 
-    1. **Section = package.** One folder per agenda item under `sections/<slug>/`.
-    2. **Auto-discovery.** New sections appear in the sidebar by being created.
-    3. **Agenda is the source of truth.** Renaming or reordering updates the sidebar without code changes.
-    4. **Fuzzy title→folder match.** Loader handles `Demo 3 - X` → `demo_3_x` slug.
-    5. **No hard-coded sidebar.** Menu injected at request time.
-    6. **Light/dark theme persisted in `localStorage`.**
-    7. **Mock-only by default.** Real-Azure code lives behind feature flags and under `infra/scripts/*.ipynb`.
-    8. **Health endpoint.** `/healthz` returns `{status, agenda_items, sections_loaded}`.
+- **No real PHI.** All members, claims, providers, EOBs are synthetic.
+- **PHI-leak evaluation gauge** mandatory in the evaluation demo.
+- **Human-handoff path** visible in every conversational demo.
+- **Auditability.** Every mock response includes a `trace[]` array.
+- **Citations.** Every benefits answer cites the plan document and section.
 
-    ### Compliance rules (Northwind-specific)
+### Push-backs Copilot must refuse
 
-    - **No real PHI.** All members, claims, providers, EOBs are synthetic.
-    - **PHI-leak evaluation gauge** mandatory in the evaluation demo.
-    - **Human-handoff path** visible in every conversational demo.
-    - **Auditability.** Every mock response includes a `trace[]` array.
-    - **Citations.** Every benefits answer cites the plan document and section.
+- "Just use Flask" → no, FastAPI 0.115 per stack pins.
+- "Hard-code the sidebar for now" → no, auto-discovery is mandatory.
+- "Add a real Azure call" → no, mocks only in v1.
+- "Skip the evaluation demo, it's boring" → no, R5 requires it.
+- "Use real claim numbers from the test environment" → no, synthetic only.
 
-    ### Push-backs Copilot must refuse
-
-    - "Just use Flask" → no, FastAPI 0.115 per stack pins.
-    - "Hard-code the sidebar for now" → no, auto-discovery is mandatory.
-    - "Add a real Azure call" → no, mocks only in v1.
-    - "Skip the evaluation demo, it's boring" → no, R5 requires it.
-    - "Use real claim numbers from the test environment" → no, synthetic only.
-
-    Full source:
-    [`samples/northwind-memberassist-workshop/.github/skills/workshop-creation/SKILL.md`](https://github.com/pedro-pauletti/csa-workshop-builder/tree/main/samples/northwind-memberassist-workshop/.github/skills/workshop-creation/SKILL.md)
+Full source:
+[`samples/northwind-memberassist-workshop/.github/skills/workshop-creation/SKILL.md`](https://github.com/pedro-pauletti/csa-workshop-builder/tree/main/samples/northwind-memberassist-workshop/.github/skills/workshop-creation/SKILL.md)
 
 <div class="tips" markdown>
 **SKILL.md tips**
@@ -183,16 +178,18 @@ customer-scenario.md ──► SKILL.md ──► /plan ──► Copilot genera
 - Keep push-backs explicit and short. They are the single most reused
   part of the file across CSAs.
 - Bump `metadata.version` whenever you change architectural rules. Diff
-  by version is what enables the [Reuse and scale](13-reuse-scale.md) flow.
+  by version is what enables the [customize-for-another-customer](13-customize.md) flow.
 </div>
 
 ## Common issues
 
 !!! tip "Don't over-specify"
     A SKILL.md that prescribes every line of code becomes brittle. Pin the
-    *contracts* (folder layout, file naming, agenda parsing rule); leave
-    implementation freedom.
+    *contracts* (folder layout, file naming, agenda parsing rule, design
+    system tokens); leave implementation freedom.
 
 ## Next step
 
-Continue to **[4. Create the agenda.md](05-create-agenda.md)**.
+Continue to **[4. agenda.md for Northwind](05-create-agenda.md)**.
+
+<div class="module-step"><span class="pill">Module 3 of 12</span> SKILL contract authored. Next: the agenda that drives the menu.</div>

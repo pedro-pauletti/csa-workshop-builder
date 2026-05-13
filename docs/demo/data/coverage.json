@@ -1,0 +1,42 @@
+{
+  "physical therapy": {
+    "name": "Outpatient Physical Therapy",
+    "in_network": "$25 copay per visit, up to 30 visits/year",
+    "out_of_network": "30% coinsurance after deductible",
+    "prior_auth": true,
+    "annual_limit": "30 visits",
+    "section": "4.3.2"
+  },
+  "mental health": {
+    "name": "Outpatient Mental Health (therapy / counseling)",
+    "in_network": "$20 copay per visit, no annual visit cap",
+    "out_of_network": "30% coinsurance after deductible",
+    "prior_auth": false,
+    "annual_limit": "Unlimited (medically necessary)",
+    "section": "5.1.1"
+  },
+  "maternity": {
+    "name": "Maternity & Newborn Care",
+    "in_network": "Covered in full after deductible",
+    "out_of_network": "40% coinsurance after deductible",
+    "prior_auth": false,
+    "annual_limit": "Per pregnancy episode",
+    "section": "6.2"
+  },
+  "preventive": {
+    "name": "Preventive Care (annual physical, screenings, immunizations)",
+    "in_network": "Covered at 100%, no cost share",
+    "out_of_network": "Not covered for routine preventive",
+    "prior_auth": false,
+    "annual_limit": "Per USPSTF schedule",
+    "section": "3.1"
+  },
+  "vision": {
+    "name": "Routine Vision Exam (adult)",
+    "in_network": "$10 copay, 1 exam per 12 months",
+    "out_of_network": "$45 allowance, member pays balance",
+    "prior_auth": false,
+    "annual_limit": "1 exam / 12 months",
+    "section": "9.4"
+  }
+}

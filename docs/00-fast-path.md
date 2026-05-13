@@ -1,21 +1,22 @@
 # Fast path — generate your first workshop app
 
-> **Outcome:** a generic interactive workshop web app running locally with a
-> dynamic sidebar, explanatory sections, mock demos, presenter notes and
-> requirement mapping. Then you customize it for your customer.
+> **Outcome:** the **Northwind MemberAssist** workshop web app running locally
+> in under 90 minutes, with a dynamic sidebar from `agenda.md`, 6 mocked
+> interactive demos (coverage Q&A, claim status, provider search, EOB
+> extraction, evaluation scorecard, roadmap), and the Foundry-Violet / Northwind-Teal
+> design system already applied.
 
 ## What you will build
 
-![Workshop app — home page wireframe](assets/images/home.svg){ .screenshot }
-
 A FastAPI + Jinja2 + Docker app whose **navigation and content are driven by
-`agenda.md`**. It ships with five mocked interactive demos (chat, search,
-workflow, document analysis, evaluation). No real Azure credentials required.
+`agenda.md`**. It ships with **6 mocked interactive demos**. No real Azure
+credentials required.
 
-!!! tip "Just want to read a finished one?"
-    Skip ahead to **[Module 14 — Worked example: Northwind MemberAssist](14-worked-example.md)**
-    to see a complete, named, customer-flavoured workshop end-to-end. Then
-    come back here and run the Fast path for your own engagement.
+!!! tip "Already curious what the finished result looks like?"
+    The [**live demo**](../demo/) is published right next to this tutorial.
+    Open it, click around, then come back here and run the Fast path to
+    generate it yourself — or jump to [module 1](02-design-principles.md) to
+    build it step by step.
 
 ## Prerequisites
 
@@ -71,12 +72,15 @@ want a plan first.
 ````text
 /plan
 
-I want to generate the first working version of a generic interactive workshop web app.
+I want to generate the first working version of the Northwind MemberAssist workshop app.
 
-Use SKILL.md and agenda.md as the source of truth.
+Use SKILL.md and agenda.md as the source of truth. Northwind is a fictional
+US regional health plan; MemberAssist is a member-services copilot. The app
+must work fully offline with mock data — no Azure resources required.
 
 Goal:
-Create a reusable generic workshop app that CSAs can later customize for different Microsoft products, customers and use cases.
+Scaffold the agenda-driven Northwind MemberAssist workshop app following SKILL.md.
+The same scaffolding will later be re-used for other customers (see module 13).
 
 The first version must be functional locally and include:
 - FastAPI 0.115 backend.
@@ -89,12 +93,13 @@ The first version must be functional locally and include:
 - Home page with workshop overview.
 - Presenter notes.
 - Requirement mapping.
-- Mock interactive demos:
-  - Chat demo.
-  - Search demo.
-  - Workflow execution demo.
-  - Document analysis demo.
-  - Evaluation dashboard demo.
+- Mock interactive demos (one per agenda item):
+  - Coverage Lookup (chat, grounded benefits Q&A).
+  - Claim Status (form-driven adjudication lookup).
+  - Provider Search (filterable in-network directory).
+  - EOB Document Extraction (paste-text → structured fields).
+  - Evaluation Scorecard (groundedness / relevance / latency).
+  - Roadmap & Next Steps (pilot scope + 30/60/90).
 - README with local run instructions.
 - Dockerfile.
 - docker-compose.yml.
@@ -143,15 +148,11 @@ Walk through this checklist before moving on:
 
 ## What you have now
 
-A generic, runnable workshop web app — ready to be customized for any
-customer or Microsoft product without touching the architecture.
+A runnable **Northwind MemberAssist** workshop web app on `localhost:8080`.
+You can already deliver this in front of a customer — and module 13 shows the
+surgical swap to re-target it to a different customer or product.
 
-<div class="screenshot-strip" markdown>
-![Sidebar from agenda.md](assets/images/sidebar.svg)
-![Explanatory section structure](assets/images/section.svg)
-![Chat demo](assets/images/demo-chat.svg)
-![Evaluation dashboard](assets/images/demo-eval.svg)
-</div>
+[Open the live demo for comparison :material-arrow-right:](../demo/){ .md-button }
 
 ## Common issues
 
@@ -171,10 +172,9 @@ customer or Microsoft product without touching the architecture.
 
 ## Next step
 
-Customize the app for a real customer:
+Either keep this Northwind app and re-target it to your customer later
+(module 13), or read the 12 modules to understand every decision the Fast
+path made for you:
 
-[2. Define the customer scenario :material-arrow-right:](03-customer-scenario.md){ .md-button .md-button--primary }
-
-Or learn the method behind the accelerator:
-
-[1. Accelerator pattern :material-arrow-right:](02-design-principles.md){ .md-button }
+[1. Accelerator pattern :material-arrow-right:](02-design-principles.md){ .md-button .md-button--primary }
+[13. Customize for your customer :material-source-branch:](13-customize.md){ .md-button }

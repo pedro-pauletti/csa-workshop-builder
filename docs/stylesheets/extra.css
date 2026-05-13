@@ -1,27 +1,72 @@
-/* csa-workshop-builder — extras for Material */
+/* ==========================================================================
+   csa-workshop-builder — Foundry Violet accents on Material
+   ==========================================================================
+   We keep the Material theme as the base and overlay a violet/magenta accent
+   set so the tutorial matches the design system we teach (see SKILL template
+   → "Foundry Violet" palette).
+   ========================================================================== */
 
-/* Hero band on the home page */
+:root {
+  --wb-violet:  #a855f7;
+  --wb-violet-2: #8b5cf6;
+  --wb-magenta: #ec4899;
+  --wb-violet-soft: rgba(168, 85, 247, 0.14);
+  --wb-magenta-soft: rgba(236, 72, 153, 0.10);
+  --wb-gradient: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+}
+
+/* Override Material's primary/accent only on chrome that uses them directly */
+.md-header,
+.md-tabs {
+  background: linear-gradient(120deg, #1a1030 0%, #2b1659 60%, #3b1a6a 100%) !important;
+}
+.md-header__title { font-weight: 600; letter-spacing: 0.01em; }
+[data-md-color-scheme="default"] .md-typeset a { color: #6d28d9; }
+[data-md-color-scheme="slate"]   .md-typeset a { color: #c084fc; }
+
+/* Primary button — gradient + glow */
+.md-typeset .md-button--primary {
+  background: var(--wb-gradient);
+  color: #fff !important;
+  border: none;
+  box-shadow: 0 4px 14px rgba(168, 85, 247, 0.30);
+}
+.md-typeset .md-button--primary:hover {
+  filter: brightness(1.08);
+  box-shadow: 0 6px 22px rgba(168, 85, 247, 0.45);
+}
+
+/* Hero band — violet glow */
 .hero {
-  background: linear-gradient(135deg, rgba(63, 81, 181, 0.08), rgba(0, 188, 212, 0.08));
-  border: 1px solid var(--md-default-fg-color--lightest);
-  border-radius: 12px;
-  padding: 2rem 2rem 1.25rem;
+  background:
+    radial-gradient(900px 360px at 10% 10%, rgba(168, 85, 247, 0.18), transparent 60%),
+    radial-gradient(700px 320px at 90% 30%, rgba(236, 72, 153, 0.14), transparent 60%),
+    linear-gradient(135deg, rgba(168, 85, 247, 0.10), rgba(236, 72, 153, 0.08));
+  border: 1px solid rgba(168, 85, 247, 0.25);
+  border-radius: 16px;
+  padding: 2.2rem 2rem 1.4rem;
   margin: 0 0 1.5rem;
+  box-shadow: 0 18px 60px rgba(168, 85, 247, 0.10);
 }
 .hero h1 {
   margin-top: 0;
-  font-size: 2rem;
+  font-size: 2.1rem;
   line-height: 1.2;
+  background: linear-gradient(135deg, #2d1b69, #a855f7 55%, #ec4899);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
-.hero p {
-  font-size: 1.05rem;
-  max-width: 720px;
+[data-md-color-scheme="slate"] .hero h1 {
+  background: linear-gradient(135deg, #f5f3ff, #c084fc 55%, #f9a8d4);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
-.hero .md-button {
-  margin: 0.25rem 0.4rem 0.25rem 0;
-}
+.hero p { font-size: 1.05rem; max-width: 760px; }
+.hero .md-button { margin: 0.25rem 0.4rem 0.25rem 0; }
 
-/* Outcome cards grid */
+/* Outcome cards */
 .outcome-cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -29,15 +74,19 @@
   margin: 1rem 0 1.5rem;
 }
 .outcome-cards .card {
-  border: 1px solid var(--md-default-fg-color--lightest);
-  border-radius: 8px;
-  padding: 0.9rem 1rem;
+  border: 1px solid rgba(168, 85, 247, 0.20);
+  border-radius: 12px;
+  padding: 0.95rem 1.05rem;
   background: var(--md-default-bg-color);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
-.outcome-cards .card strong {
-  display: block;
-  margin-bottom: 0.25rem;
+.outcome-cards .card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(168, 85, 247, 0.45);
+  box-shadow: 0 10px 30px rgba(168, 85, 247, 0.18);
 }
+.outcome-cards .card strong { display: block; margin-bottom: 0.25rem; color: #6d28d9; }
+[data-md-color-scheme="slate"] .outcome-cards .card strong { color: #c084fc; }
 
 /* Screenshot strip */
 .screenshot-strip {
@@ -49,76 +98,56 @@
 .screenshot-strip img {
   width: 100%;
   height: auto;
-  border: 1px solid var(--md-default-fg-color--lightest);
-  border-radius: 6px;
+  border: 1px solid rgba(168, 85, 247, 0.20);
+  border-radius: 8px;
   background: var(--md-default-bg-color);
 }
-
-/* Framed inline screenshot */
 .screenshot {
   display: block;
   margin: 1rem auto;
   max-width: 100%;
   height: auto;
-  border: 1px solid var(--md-default-fg-color--lightest);
-  border-radius: 6px;
+  border: 1px solid rgba(168, 85, 247, 0.20);
+  border-radius: 8px;
   background: var(--md-default-bg-color);
 }
 
-/* Bigger Mermaid */
-.mermaid {
-  max-width: 100%;
-  min-height: 280px;
-}
-.mermaid svg {
-  width: 100% !important;
-  height: auto !important;
-}
+/* Mermaid */
+.mermaid { max-width: 100%; min-height: 280px; }
+.mermaid svg { width: 100% !important; height: auto !important; }
 
-/* Two-trails table emphasis */
-.trails td:first-child {
-  width: 28%;
-  font-weight: 600;
-}
+/* Trails table */
+.trails td:first-child { width: 28%; font-weight: 600; }
 
-/* "Tips from real engagements" panel — lighter than admonition */
+/* Tips panel */
 .tips {
-  border-left: 4px solid #F4B400;
-  background: rgba(244, 180, 0, 0.06);
-  border-radius: 6px;
-  padding: 0.85rem 1rem 0.6rem 1rem;
+  border-left: 4px solid var(--wb-magenta);
+  background: var(--wb-magenta-soft);
+  border-radius: 8px;
+  padding: 0.9rem 1.05rem 0.7rem 1.05rem;
   margin: 1rem 0 1.25rem;
 }
 .tips > p:first-child {
   margin-top: 0;
   font-weight: 700;
-  color: var(--md-default-fg-color);
-  letter-spacing: 0.02em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   font-size: 0.78rem;
+  color: var(--wb-magenta);
 }
-.tips ul {
-  margin: 0.25rem 0 0.25rem 1rem;
-  padding: 0;
-}
-.tips li {
-  margin: 0.2rem 0;
-}
+.tips ul { margin: 0.25rem 0 0.25rem 1rem; padding: 0; }
+.tips li { margin: 0.2rem 0; }
 
-/* Diff / "what changed" tables — zebra rows, monospaced second column */
-.diff-table table {
-  width: 100%;
-}
-.diff-table tr:nth-child(even) td {
-  background: var(--md-default-fg-color--lightest);
-}
+/* Diff table */
+.diff-table table { width: 100%; }
+.diff-table tr:nth-child(even) td { background: var(--wb-violet-soft); }
 .diff-table td:nth-child(2),
 .diff-table td:nth-child(3) {
-  font-family: ui-monospace, SFMono-Regular, "Menlo", "Consolas", monospace;
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, "Menlo", "Consolas", monospace;
   font-size: 0.85rem;
 }
 
-/* Persona / audience matrix grid */
+/* Persona grid */
 .persona-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -126,20 +155,43 @@
   margin: 1rem 0 1.25rem;
 }
 .persona-grid .persona {
-  border: 1px solid var(--md-default-fg-color--lightest);
-  border-radius: 8px;
-  padding: 0.85rem 1rem;
+  border: 1px solid rgba(168, 85, 247, 0.20);
+  border-radius: 10px;
+  padding: 0.9rem 1.05rem;
   background: var(--md-default-bg-color);
 }
 .persona-grid .persona strong {
   display: block;
   font-size: 0.95rem;
   margin-bottom: 0.15rem;
+  color: #6d28d9;
 }
+[data-md-color-scheme="slate"] .persona-grid .persona strong { color: #c084fc; }
 .persona-grid .persona em {
   display: block;
   color: var(--md-default-fg-color--light);
   font-style: normal;
   font-size: 0.8rem;
   margin-bottom: 0.4rem;
+}
+
+/* Module-step strip (1..12 footer) */
+.module-step {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 0.9rem;
+  margin: 1.5rem 0 0.5rem;
+  border-radius: 999px;
+  background: var(--wb-violet-soft);
+  border: 1px solid rgba(168, 85, 247, 0.30);
+  font-size: 0.85rem;
+}
+.module-step .pill {
+  background: var(--wb-gradient);
+  color: #fff;
+  border-radius: 999px;
+  padding: 0.1rem 0.65rem;
+  font-weight: 700;
+  font-size: 0.78rem;
 }

@@ -4,105 +4,97 @@
 
 # Build a customer-ready interactive workshop app with GitHub Copilot
 
-Use this accelerator to **generate a working generic workshop web app**, then
-**customize it for any customer, Microsoft product or use case** — in
-hours, not weeks.
+This tutorial walks you through **building one complete, named, customer-flavoured
+workshop end-to-end** — **Northwind MemberAssist**, a fictional health-plan member-services
+copilot — across **12 modules**. By the end of module 12 you have a working, branded,
+publishable app. Module 13 then shows you how to **swap Northwind for *your* customer or
+Microsoft product** without touching the scaffolding.
 
-[Start the fast path :material-rocket-launch:](00-fast-path.md){ .md-button .md-button--primary }
-[Learn the method :material-school:](02-design-principles.md){ .md-button }
-[Use the app template :material-source-branch:](https://github.com/pedro-pauletti/customer-workshop-app-template){ .md-button }
-[See the worked example :material-eye:](14-worked-example.md){ .md-button }
+[Try the live demo :material-rocket-launch:](demo/){ .md-button .md-button--primary }
+[Start the fast path :material-flash:](00-fast-path.md){ .md-button }
+[Skip to module 1 :material-school:](02-design-principles.md){ .md-button }
+[Reuse for your customer :material-source-branch:](13-customize.md){ .md-button }
 
 </div>
 
-!!! success "What you will have after the fast path"
-    A generic interactive workshop web app running locally — dynamic sidebar
-    from `agenda.md`, explanatory sections, mock demos (chat, search,
-    workflow, document analysis, evaluation), presenter notes, and
-    requirement mapping. Ready to be customized for your customer.
+!!! success "What you have when you finish module 12"
+    A FastAPI + Jinja2 + Docker workshop app for **Northwind MemberAssist** running locally,
+    published on GitHub Pages, with **6 interactive mocked demos** (coverage Q&A, claim status,
+    provider search, EOB extraction, evaluation scorecard, roadmap). The dynamic sidebar comes
+    from a single `agenda.md`. Visual identity follows a named design system (Foundry Violet /
+    Northwind Teal). No real PII. No Azure subscription required to run the demo.
 
 <div class="outcome-cards" markdown>
-<div class="card" markdown>**Working app, fast**
-A runnable FastAPI/Jinja2/Docker app at the end of module 0.
+<div class="card" markdown>**One worked example, end-to-end**
+Every module produces an artifact that the next module consumes. By module 12 they form a
+running app.
 </div>
 <div class="card" markdown>**Agenda-driven**
-Editing one markdown file (`agenda.md`) updates the navigation and sections.
+Editing one markdown file (`agenda.md`) updates the navigation, the sections, and the demos.
 </div>
-<div class="card" markdown>**Reusable across products**
-Same skeleton for Foundry, Fabric, Security, M365 Copilot, Dynamics, GitHub Copilot.
+<div class="card" markdown>**Design-system first**
+A named palette ("Foundry Violet" by default) keeps every customer workshop visually coherent
+without bespoke design work.
 </div>
 <div class="card" markdown>**Customer-specific in hours**
-Swap scenario + demos; keep architecture stable.
+Module 13 shows the surgical swap — `customer-scenario.md` + `agenda.md` + palette + logo.
+No code changes elsewhere.
 </div>
 </div>
 
-## What it looks like
+## See it running before you read
 
-The generic skeleton:
+The completed Northwind MemberAssist app is **published right next to this tutorial**:
 
-<div class="screenshot-strip" markdown>
-![Workshop app home](assets/images/home.svg)
-![Dynamic sidebar from agenda.md](assets/images/sidebar.svg)
-![Explanatory section](assets/images/section.svg)
-![Chat demo](assets/images/demo-chat.svg)
-</div>
+[Open the live demo :material-arrow-right:](demo/){ .md-button .md-button--primary }
 
-A customized engagement (Northwind MemberAssist — see [module 14](14-worked-example.md)):
+It is fully static — no backend, no Azure — so you can poke at it from any browser. Everything
+you see there is built across modules 1 → 12.
 
-<div class="screenshot-strip" markdown>
-![Northwind home](assets/images/northwind-home.svg)
-![Northwind claim workflow](assets/images/northwind-claim-workflow.svg)
-![Northwind EOB extraction](assets/images/northwind-eob-extract.svg)
-![Northwind evaluation dashboard](assets/images/northwind-eval-scorecard.svg)
-</div>
+## The three artifacts everything is built from
 
-## The three-repo architecture
+This accelerator is intentionally driven by **three small markdown files** so the
+**method**, the **app template**, and each **customer engagement** evolve independently.
 
-This accelerator is intentionally split across three repositories so the
-**method**, the **template**, and each **customer engagement** can evolve
-independently.
-
-![Three-repo accelerator flow](assets/images/three-repo-flow.svg){ .screenshot }
-
-| Repo | Role | Example |
+| Artifact | Lives in | What it controls |
 |---|---|---|
-| **`csa-workshop-builder`** *(this site)* | The tutorial — method, prompts, templates, samples. Published to GitHub Pages. | You're reading it. |
-| **`customer-workshop-app-template`** | The reusable FastAPI/Jinja2 app template. Cloned for each engagement. | Generated by the Fast path. |
-| **`<customer>-workshop`** | A customer-specific workshop app generated from the template and customized. | `samples/northwind-memberassist-workshop/` is the worked content; the running app is generated from it. |
+| `customer-scenario.md` | Customer repo | Who the workshop is for, what their requirements are. |
+| `SKILL.md` | Customer repo (copied from `templates/SKILL.template.md` in this repo) | The contract Copilot follows when scaffolding code. Stack, folder layout, design system, agenda-driven menu rule. |
+| `agenda.md` | Customer repo | The ordered list of sections. **Source of truth** for the sidebar and the section sub-apps. |
 
-!!! tip "Don't have the template repo yet?"
-    The Fast path includes a Copilot prompt that scaffolds it from scratch
-    using `SKILL.md` + `agenda.md`. You can build the template the first time
-    you run the Fast path.
+!!! tip "All three files are written for you for Northwind"
+    The tutorial ships filled-in Northwind versions of all three under
+    [`samples/northwind-memberassist-workshop/`](https://github.com/pedro-pauletti/csa-workshop-builder/tree/main/samples/northwind-memberassist-workshop)
+    — and the `templates/` folder contains the blank versions you copy for your next customer.
+
+## How each module is structured
+
+Each module follows the **same 9-section pattern**:
+
+1. **Goal** — what you produce.
+2. **Why it matters** — how it improves the workshop.
+3. **Inputs** — what you need before you start.
+4. **Step-by-step** — concrete actions, applied to Northwind.
+5. **Copilot prompt** — copy/paste ready.
+6. **Expected output** — what success looks like.
+7. **Validation checklist** — confirm before moving on.
+8. **Common issues** — fast troubleshooting.
+9. **Next step** — link to the next module.
 
 ## Two trails
 
 <table class="trails">
 <tr>
 <td>Fast path — 60–90 min</td>
-<td>Clone the template, run Copilot, get a working generic app locally. Skip the theory until you need it.</td>
+<td>Clone the template, run Copilot, get a working Northwind app locally. Skip the theory until you need it.</td>
 </tr>
 <tr>
-<td>Deep dive — full method</td>
-<td>Understand SKILL.md, agenda.md, design principles, demo patterns, customization recipes, publishing.</td>
+<td>Deep dive — 12 modules</td>
+<td>Build Northwind from the customer scenario all the way to a published app. Then customize for your customer in module 13.</td>
 </tr>
 </table>
 
 [Start the fast path](00-fast-path.md){ .md-button .md-button--primary }
-
-## How each module is structured
-
-Each module follows the **same 9-section pattern**:
-
-1. **Goal** — what you will produce.
-2. **Why it matters** — how it improves the workshop.
-3. **Inputs** — what you need before you start.
-4. **Step-by-step** — concrete actions.
-5. **Copilot prompt** — copy/paste ready.
-6. **Expected output** — what success looks like.
-7. **Validation checklist** — confirm before moving on.
-8. **Common issues** — fast troubleshooting.
-9. **Next step** — link to the next module.
 
 ## Prerequisites
 

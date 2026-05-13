@@ -1,9 +1,10 @@
-# 6. Generate the workshop web app
+# 6. Generate the Northwind web app
 
 ## Goal
 
-Turn the approved `/plan` into a working FastAPI/Jinja2/Docker workshop app
-skeleton.
+Turn the approved `/plan` into a working FastAPI/Jinja2/Docker **Northwind
+MemberAssist** app skeleton — the same shape rendered by the
+[live demo](../demo/).
 
 ## Why it matters
 
@@ -74,18 +75,17 @@ src/app/webApp/app/
 │   └── theme.js
 └── sections/
     ├── __init__.py                     # auto-discovery via pkgutil.iter_modules
-    ├── welcome_and_engagement_framing/
+    ├── coverage_lookup/
     │   ├── __init__.py                 # exposes router, MENU_TITLE, MENU_ICON
     │   ├── router.py                   # APIRouter(prefix="/sections/<slug>")
     │   ├── templates/
     │   │   └── index.html
     │   └── static/                     # optional, per-section assets
-    ├── demo_1_benefits_chat/
-    │   ├── __init__.py
-    │   ├── router.py
-    │   └── templates/index.html
-    ├── demo_2_provider_search/
-    └── demo_3_claim_status/
+    ├── claim_status/
+    ├── provider_search/
+    ├── eob_document_extraction/
+    ├── evaluation_scorecard/
+    └── roadmap_next_steps/
 ```
 
 ![Per-section folder tree (Northwind)](assets/images/northwind-folder-tree.svg){ .screenshot }
@@ -149,9 +149,9 @@ def discover() -> Iterator[ModuleType]:
 ```python
 from .router import router
 
-MENU_TITLE = "Demo 1 — Benefits chat"
-MENU_ICON = "bi-chat-quote"
-SECTION = "demo_1_benefits_chat"
+MENU_TITLE = "Coverage Lookup"
+MENU_ICON = "fa-solid fa-comments"
+SECTION = "coverage_lookup"
 ```
 
 ### Reference `app.py` skeleton
@@ -329,3 +329,5 @@ first mock with a real call.
 ## Next step
 
 Continue to **[7. Run locally with Docker Compose](11-run-locally.md)**.
+
+<div class="module-step"><span class="pill">Module 6 of 12</span> Northwind skeleton generated. Next: run it locally.</div>

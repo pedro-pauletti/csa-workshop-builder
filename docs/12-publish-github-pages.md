@@ -2,8 +2,10 @@
 
 ## Goal
 
-Publish **this tutorial site** (and, optionally, the generated workshop app's
-own docs) to **GitHub Pages** using a GitHub Actions workflow.
+Publish **this tutorial site and the Northwind live demo** (which lives at
+`docs/demo/`) to **GitHub Pages** in a single workflow run. After this module,
+the CSA reading the tutorial can click *Live demo ↗* in the top nav and see
+the finished Northwind app rendered on the same GitHub Pages site.
 
 ## Why it matters
 
@@ -148,6 +150,31 @@ runs.
   Deploy to the one with Pages enabled.
 </div>
 
+## How the static Northwind demo gets published
+
+MkDocs copies **every non-`.md` file under `docs/`** into the built site
+verbatim. That's how `docs/demo/index.html` plus its `css/`, `js/`,
+`sections/`, and `data/` folders end up at
+`https://pedro-pauletti.github.io/csa-workshop-builder/demo/` with no
+extra config.
+
+```text
+docs/
+├── index.md                  → /
+├── 00-fast-path.md           → /00-fast-path/
+├── demo/
+│   ├── index.html            → /demo/                  (the Northwind app)
+│   ├── css/styles.css        → /demo/css/styles.css
+│   ├── js/app.js             → /demo/js/app.js
+│   ├── data/*.json           → /demo/data/*.json
+│   └── sections/*.html       → /demo/sections/*.html
+```
+
+The nav entry **Live demo ↗** in `mkdocs.yml` points at that path so the
+reader can open it from any page.
+
 ## Next step
 
-Continue to **[12. Reuse and scale](13-reuse-scale.md)**.
+Continue to **[12. Validation & polish](12-validation-polish.md)**.
+
+<div class="module-step"><span class="pill">Module 11 of 12</span> Northwind tutorial + demo are live. Next: final polish.</div>

@@ -1,19 +1,14 @@
 # How CSAs can create engaging workshops tailored to customer use cases
 
-A practical guide for Microsoft CSAs (Cloud Solution Architects) to create
-customer-specific, interactive **workshop web apps** with **GitHub Copilot**,
+A practical guide for Microsoft CSAs (Cloud Solution Architects) to build a
+customer-specific, interactive **workshop web app** with **GitHub Copilot**,
 driven by a `SKILL.md` + `agenda.md` pattern.
 
-This repository **is the tutorial**. It is published as a static documentation
-site using **MkDocs Material** and **GitHub Pages**. It does not contain the
-generated workshop app itself — it teaches you how to create one.
-
-> **Worked example included.** The tutorial ships with a complete, named,
-> customer-flavoured example — **Northwind MemberAssist**, a fictional
-> health-plan member-services copilot — under
-> [`samples/northwind-memberassist-workshop/`](samples/northwind-memberassist-workshop/).
-> It is the gold reference for what a finished, customized workshop looks
-> like. See module 14 ("Worked example") on the tutorial site.
+This repository **is the tutorial** and **also publishes a running worked
+example**. The tutorial site is built with **MkDocs Material**; the worked
+example — **Northwind MemberAssist**, a fictional health-plan member-services
+copilot — ships as a fully static demo under `docs/demo/` and is reachable at
+the same site under `/demo/`.
 
 ## What you will learn
 
@@ -24,20 +19,39 @@ generated workshop app itself — it teaches you how to create one.
   app.
 - How to use **GitHub Copilot `/plan`** to plan before implementing.
 - How to add explanatory sections and embedded interactive demos.
-- How to customize the workshop for different Microsoft products and customer
-  use cases (Azure AI Foundry, Microsoft Fabric, and more).
-- How to run locally with Docker Compose and publish the tutorial to GitHub
-  Pages.
+- How to apply a named design system (Foundry Violet / Northwind Teal /
+  Fabric Indigo) so customer workshops look coherent without bespoke design.
+- How to run locally with Docker Compose and publish the tutorial + live demo
+  to GitHub Pages.
+- How to customize the same app for a different customer or Microsoft product
+  (Azure AI Foundry, Microsoft Fabric, M365 Copilot, Security, GitHub Copilot).
+
+## The shape of the tutorial
+
+- **Modules 1 → 12** build Northwind MemberAssist end-to-end. Each module
+  produces an artifact the next module consumes; by module 12 you have a
+  working, branded, publishable app.
+- **Module 13** is the only module about *swapping Northwind out*. It shows
+  the surgical changes — `customer-scenario.md` + `agenda.md` + palette +
+  logo — that turn the same scaffolding into a different customer or product
+  workshop.
 
 ## Repository layout
 
 ```text
 .
 ├── docs/                         # MkDocs source — the tutorial pages
+│   ├── demo/                     # Static Northwind MemberAssist demo — published at /demo/
+│   └── …
 ├── templates/                    # Reusable SKILL / agenda / scenario templates
+│   ├── SKILL.template.md         # Rich Copilot contract (frontmatter + Rules + Design System)
+│   ├── agenda.template.md
+│   ├── customer-scenario.template.md
+│   ├── requirement-mapping.template.md
+│   └── copilot-prompts.md
 ├── samples/
 │   ├── generic-ai-workshop/                   # Canonical generic sample
-│   ├── northwind-memberassist-workshop/       # Worked end-to-end example
+│   ├── northwind-memberassist-workshop/       # Worked end-to-end example artifacts
 │   ├── ai-foundry/                            # Stub
 │   └── fabric/                                # Stub
 ├── assets/                       # Images and Mermaid diagram sources
@@ -59,7 +73,8 @@ pip install -r requirements-docs.txt
 mkdocs serve
 ```
 
-Open <http://127.0.0.1:8000>.
+Open <http://127.0.0.1:8000>. The live Northwind MemberAssist demo is at
+<http://127.0.0.1:8000/demo/>.
 
 ## Publish to GitHub Pages
 
@@ -73,6 +88,12 @@ every push to `main`. After the first successful run:
 
    ```text
    https://pedro-pauletti.github.io/csa-workshop-builder/
+   ```
+
+   And the live worked example at:
+
+   ```text
+   https://pedro-pauletti.github.io/csa-workshop-builder/demo/
    ```
 
 ## License

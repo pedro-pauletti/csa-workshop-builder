@@ -1,0 +1,11 @@
+[
+  { "name": "Dr. Amelia Carver",   "degree": "MD", "specialty": "Primary care",  "city": "Bellevue",  "state": "WA", "zip": "98004", "distance_mi": 1.2, "accepting": true,  "languages": ["English", "Spanish"], "npi": "1234567890" },
+  { "name": "Dr. Rohan Vasquez",   "degree": "MD", "specialty": "Cardiology",    "city": "Seattle",   "state": "WA", "zip": "98101", "distance_mi": 4.5, "accepting": true,  "languages": ["English"],            "npi": "1234567891" },
+  { "name": "Dr. Priya Ramaswamy", "degree": "MD", "specialty": "Endocrinology", "city": "Redmond",   "state": "WA", "zip": "98052", "distance_mi": 6.0, "accepting": false, "languages": ["English", "Tamil"],   "npi": "1234567892" },
+  { "name": "Dr. Niko Tanaka",     "degree": "DO", "specialty": "Primary care",  "city": "Kirkland",  "state": "WA", "zip": "98033", "distance_mi": 2.7, "accepting": true,  "languages": ["English", "Japanese"],"npi": "1234567893" },
+  { "name": "Dr. Yara Nascimento", "degree": "MD", "specialty": "OB-GYN",        "city": "Bellevue",  "state": "WA", "zip": "98004", "distance_mi": 1.8, "accepting": true,  "languages": ["English", "Portuguese"], "npi": "1234567894" },
+  { "name": "Dr. Linus Hellberg",  "degree": "MD", "specialty": "Dermatology",   "city": "Seattle",   "state": "WA", "zip": "98109", "distance_mi": 5.3, "accepting": true,  "languages": ["English", "Swedish"], "npi": "1234567895" },
+  { "name": "Dr. Maya Okoro",      "degree": "MD", "specialty": "Cardiology",    "city": "Bellevue",  "state": "WA", "zip": "98007", "distance_mi": 3.1, "accepting": true,  "languages": ["English", "Yoruba"],  "npi": "1234567896" },
+  { "name": "Dr. Henrik Solberg",  "degree": "MD", "specialty": "Orthopedics",   "city": "Issaquah",  "state": "WA", "zip": "98027", "distance_mi": 8.4, "accepting": true,  "languages": ["English"],            "npi": "1234567897" },
+  { "name": "Dr. Sofia Marek",     "degree": "MD", "specialty": "Primary care",  "city": "Redmond",   "state": "WA", "zip": "98052", "distance_mi": 5.9, "accepting": true,  "languages": ["English", "Czech"],   "npi": "1234567898" }
+]

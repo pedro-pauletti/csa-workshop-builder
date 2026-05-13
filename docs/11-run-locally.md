@@ -1,8 +1,10 @@
-# 10. Run locally with Docker Compose
+# 7. Run Northwind locally
 
 ## Goal
 
-Run the generated workshop app on a CSA's laptop in a single command.
+Run the Northwind MemberAssist app generated in module 6 on the CSA's laptop in
+a single command. After this module, `http://localhost:8080` shows the same six
+sections rendered in the [live demo](../demo/).
 
 ## Why it matters
 
@@ -73,12 +75,10 @@ A healthy first run looks like this:
 Attaching to webapp
 webapp  | INFO:     Started server process [1]
 webapp  | INFO:     Waiting for application startup.
-webapp  | INFO:     Loaded agenda.md (9 items)
-webapp  | INFO:     Discovered 9 sections: ['welcome_and_engagement_framing',
-webapp  |           'member_journeys_today', 'the_memberassist_concept',
-webapp  |           'demo_1_benefits_chat', 'demo_2_provider_search',
-webapp  |           'demo_3_claim_status', 'demo_4_eob_document_analysis',
-webapp  |           'demo_5_evaluation_dashboard', 'roadmap_and_next_steps']
+webapp  | INFO:     Loaded agenda.md (6 items)
+webapp  | INFO:     Discovered 6 sections: ['coverage_lookup', 'claim_status',
+webapp  |           'provider_search', 'eob_document_extraction',
+webapp  |           'evaluation_scorecard', 'roadmap_next_steps']
 webapp  | INFO:     Application startup complete.
 webapp  | INFO:     Uvicorn running on http://0.0.0.0:8080
 ```
@@ -96,7 +96,7 @@ curl -s http://localhost:8080/healthz
 Expected response:
 
 ```json
-{"status": "ok", "agenda_items": 9, "sections_loaded": 9}
+{"status": "ok", "agenda_items": 6, "sections_loaded": 6}
 ```
 
 If `sections_loaded < agenda_items`, the loader normalized two agenda
@@ -156,3 +156,5 @@ set → real**. No feature flags, no code paths to maintain.
 ## Next step
 
 Continue to **[8. Add explanatory sections](08-explanatory-sections.md)**.
+
+<div class="module-step"><span class="pill">Module 7 of 12</span> Northwind app runs locally. Next: enrich the six sections with content.</div>

@@ -1,15 +1,16 @@
-# 4. Create the agenda.md
+# 4. agenda.md for Northwind
 
 ## Goal
 
-Write an `agenda.md` that becomes the **single source of truth** for the
-workshop app's navigation, sections, and content placeholders.
+Write the **`agenda.md`** for Northwind MemberAssist. This single file becomes
+the source of truth for the workshop app's sidebar, sections, and routing.
+Adding a section to the live demo is editing one line here.
 
 ## Why it matters
 
 The agenda *is* the application contract. Adding a section is editing one
 markdown file — not editing routes, templates, and navigation in three places.
-This is what makes the pattern reusable.
+This is what makes the pattern reusable across customers (see module 13).
 
 ## Inputs
 
@@ -82,47 +83,50 @@ agenda.md  ─────► agenda_loader.py ─────► dynamic sideba
 
 ![Dynamic sidebar generated from agenda.md](assets/images/sidebar.svg){ .screenshot }
 
-## Worked example — Northwind agenda (9 items)
+## Northwind agenda (6 items, matches the live demo)
+
+The published [live demo](../demo/) sidebar comes from exactly this file:
 
 ```text
 ### Data to be used by SKILL.md to create the Workshop App
 
-- Welcome and engagement framing: Set the business context for Northwind, the call-centre numbers, and the goal of the day.
-- Member journeys today: Walk through three real (anonymized) call types and where the friction lives.
-- The MemberAssist concept: Introduce the copilot pattern — grounding, citations, human-in-the-loop, PHI promise.
-- Demo 1 - Benefits chat: Embedded chat that answers benefits-coverage questions grounded in plan documents with inline citations.
-- Demo 2 - Provider search: Provider-directory search with location, specialty, in-network filter; results show ranking signals.
-- Demo 3 - Claim status: Claim-status resolution with a visual timeline (received → adjudicated → paid → notified).
-- Demo 4 - EOB document analysis: Drag-and-drop an EOB PDF; the app extracts member, provider, charges, and explains each line.
-- Demo 5 - Evaluation dashboard: Scorecards for groundedness, harm, and a PHI-leak gauge.
-- Roadmap and next steps: Co-edit the 30/60/90 plan with the room. Capture commitments and named owners.
+- Coverage Lookup: Conversational benefits Q&A grounded on the plan document; cites the plan section.
+- Claim Status: Claim-status lookup by member ID + claim ID, sourced from the adjudication store (read-only).
+- Provider Search: Filterable in-network directory by specialty, ZIP, and accepting-new-patients.
+- EOB Document Extraction: Paste an Explanation of Benefits; extract structured fields and explain each line.
+- Evaluation Scorecard: Groundedness, relevance, latency, and PHI-leak gauge on a fixed test set.
+- Roadmap & Next Steps: Pilot scope, out-of-scope items, 30/60/90 plan, and asks of Northwind.
 ```
 
-Generated route table (full 9 items):
+Generated route table:
 
 | Agenda title | Slug | URL | Suggested icon |
 |---|---|---|---|
-| Welcome and engagement framing | `welcome_and_engagement_framing` | `/sections/welcome_and_engagement_framing` | `bi-megaphone` |
-| Member journeys today | `member_journeys_today` | `/sections/member_journeys_today` | `bi-signpost` |
-| The MemberAssist concept | `the_memberassist_concept` | `/sections/the_memberassist_concept` | `bi-lightbulb` |
-| Demo 1 - Benefits chat | `demo_1_benefits_chat` | `/sections/demo_1_benefits_chat` | `bi-chat-quote` |
-| Demo 2 - Provider search | `demo_2_provider_search` | `/sections/demo_2_provider_search` | `bi-search` |
-| Demo 3 - Claim status | `demo_3_claim_status` | `/sections/demo_3_claim_status` | `bi-list-check` |
-| Demo 4 - EOB document analysis | `demo_4_eob_document_analysis` | `/sections/demo_4_eob_document_analysis` | `bi-file-earmark-text` |
-| Demo 5 - Evaluation dashboard | `demo_5_evaluation_dashboard` | `/sections/demo_5_evaluation_dashboard` | `bi-clipboard-data` |
-| Roadmap and next steps | `roadmap_and_next_steps` | `/sections/roadmap_and_next_steps` | `bi-flag` |
+| Coverage Lookup | `coverage_lookup` | `/sections/coverage_lookup` | `fa-solid fa-comments` |
+| Claim Status | `claim_status` | `/sections/claim_status` | `fa-solid fa-receipt` |
+| Provider Search | `provider_search` | `/sections/provider_search` | `fa-solid fa-user-doctor` |
+| EOB Document Extraction | `eob_document_extraction` | `/sections/eob_document_extraction` | `fa-solid fa-file-invoice` |
+| Evaluation Scorecard | `evaluation_scorecard` | `/sections/evaluation_scorecard` | `fa-solid fa-chart-line` |
+| Roadmap & Next Steps | `roadmap_next_steps` | `/sections/roadmap_next_steps` | `fa-solid fa-route` |
+
+!!! tip "Want a longer agenda?"
+    The Northwind kickoff agenda above is **demo-dense** on purpose — the live
+    static demo only renders demos. For a real half-day workshop you typically
+    open with 2–3 context items before the demos and close with 1–2 wrap-up
+    items. The longer version lives in
+    [`samples/northwind-memberassist-workshop/agenda.md`](https://github.com/pedro-pauletti/csa-workshop-builder/tree/main/samples/northwind-memberassist-workshop/agenda.md).
 
 <div class="tips" markdown>
 **Agenda tips**
 
-- 9 items = half-day. 7 = 90 min. 12 only for full-day. Don't pack more.
+- 6 items = the rendered demo. 8–9 = half-day workshop. Don't pack more.
 - Wrap-up *and* roadmap are two different items. Wrap-up summarizes;
   roadmap commits.
 - Re-order by editing one line in `agenda.md`. Do not re-run Copilot for
   re-ordering — auto-discovery handles it.
 - Keep titles short (sidebar truncates around 28 chars).
-- The first agenda item should never be a demo. Audiences need framing
-  first.
+- The first agenda item in a *real* workshop should never be a demo —
+  audiences need framing first.
 </div>
 
 ## Validation checklist
@@ -139,4 +143,8 @@ Generated route table (full 9 items):
 
 ## Next step
 
-Continue to **[5. Use GitHub Copilot /plan](06-copilot-plan.md)**.
+Continue to **[5. Plan with Copilot](06-copilot-plan.md)** — where you ask
+Copilot Chat `/plan` to read the SKILL + agenda you just wrote, before any
+code is generated.
+
+<div class="module-step"><span class="pill">Module 4 of 12</span> Agenda authored. Next: Copilot /plan.</div>

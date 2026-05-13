@@ -1,9 +1,9 @@
-# 5. Use GitHub Copilot `/plan`
+# 5. Plan with Copilot — Northwind
 
 !!! tip "Use `/plan` twice"
     Run `/plan` **once** when bootstrapping the generic app (the Fast path), and
-    **again** after you customize `SKILL.md` and `agenda.md` for your customer.
-    First plan = stable skeleton. Second plan = customer-specific deltas.
+    **again** after you customize `SKILL.md` and `agenda.md` for Northwind.
+    First plan = stable skeleton. Second plan = Northwind-specific deltas.
 
 ## Goal
 
@@ -80,63 +80,62 @@ and an ordered task list.
 
 ## Worked example — Northwind `/plan` response
 
-??? example "Show what a good /plan response looks like (Northwind)"
+A good `/plan` output for Northwind looks like this:
 
-    ```text
-    Plan: Northwind MemberAssist workshop web app — v1
+```text
+Plan: Northwind MemberAssist workshop web app — v1
 
-    Assumptions
-    -----------
-    - SKILL.md and agenda.md committed at HEAD.
-    - 9 agenda items. Slugs derived via normalize_for_match.
-    - Single-service deployment for v1 (multi-microservice deferred).
-    - Mock data only. No azure-* imports.
+Assumptions
+-----------
+- SKILL.md (Northwind, theme: northwind-teal) and agenda.md committed at HEAD.
+- 6 agenda items (Coverage Lookup, Claim Status, Provider Search,
+  EOB Document Extraction, Evaluation Scorecard, Roadmap & Next Steps).
+- Slugs derived via normalize_for_match.
+- Single-service deployment for v1 (multi-microservice deferred).
+- Mock data only. No azure-* imports.
 
-    Files I will create (with rough LOC)
-    ------------------------------------
-    src/app/webApp/app/
-      app.py                                                ~ 110 LOC
-      agenda_loader.py                                      ~  60 LOC
-      sections/__init__.py            (auto-discovery)     ~  40 LOC
-      sections/welcome_and_engagement_framing/{__init__,router}.py
-      sections/member_journeys_today/{__init__,router}.py
-      sections/the_memberassist_concept/{__init__,router}.py
-      sections/demo_1_benefits_chat/{__init__,router}.py    ~  90 LOC
-      sections/demo_2_provider_search/{__init__,router}.py  ~  80 LOC
-      sections/demo_3_claim_status/{__init__,router}.py     ~ 110 LOC
-      sections/demo_4_eob_document_analysis/{__init__,router}.py ~ 90 LOC
-      sections/demo_5_evaluation_dashboard/{__init__,router}.py  ~ 80 LOC
-      sections/roadmap_and_next_steps/{__init__,router}.py
-      templates/_layout.html                                ~ 120 LOC
-      static/theme.{css,js}                                 ~ 200 LOC
-    src/app/webApp/{Dockerfile,docker-compose.yml,requirements.txt,example.env}
+Files I will create (with rough LOC)
+------------------------------------
+src/app/webApp/app/
+  app.py                                                ~ 110 LOC
+  agenda_loader.py                                      ~  60 LOC
+  sections/__init__.py            (auto-discovery)     ~  40 LOC
+  sections/coverage_lookup/{__init__,router}.py         ~  90 LOC
+  sections/claim_status/{__init__,router}.py            ~ 110 LOC
+  sections/provider_search/{__init__,router}.py         ~  80 LOC
+  sections/eob_document_extraction/{__init__,router}.py ~  90 LOC
+  sections/evaluation_scorecard/{__init__,router}.py    ~  80 LOC
+  sections/roadmap_next_steps/{__init__,router}.py      ~  50 LOC
+  templates/_layout.html                                ~ 120 LOC
+  static/theme.{css,js}                                 ~ 200 LOC
+src/app/webApp/{Dockerfile,docker-compose.yml,requirements.txt,example.env}
 
-    data/{chat,search,workflow,document,evaluation}.json    (already filled by CSA)
+data/{coverage,claims,providers,eob,eval}.json   (synthetic mocks)
 
-    Top 3 risks
-    -----------
-    R1. Copilot may hard-code the sidebar in _layout.html.
-        Mitigation: review the diff for any <ul> with literal section names;
-        replace with Jinja loop over request.state.menu (see push-back #6).
-    R2. Slug collision if two agenda items normalize to the same string.
-        Mitigation: agenda_loader logs a hard error on duplicate slugs.
-    R3. Theme persistence breaks on first paint (FOUC).
-        Mitigation: theme.js writes <html data-theme> from localStorage
-        synchronously in <head> before stylesheet evaluation.
+Top 3 risks
+-----------
+R1. Copilot may hard-code the sidebar in _layout.html.
+    Mitigation: review the diff for any <ul> with literal section names;
+    replace with Jinja loop over request.state.menu (see push-back #6).
+R2. Slug collision if two agenda items normalize to the same string.
+    Mitigation: agenda_loader logs a hard error on duplicate slugs.
+R3. Theme persistence breaks on first paint (FOUC).
+    Mitigation: theme.js writes <html data-theme> from localStorage
+    synchronously in <head> before stylesheet evaluation.
 
-    Implementation order
-    --------------------
-    1. agenda_loader.py + tests against data/agenda.md
-    2. sections/__init__.py auto-discovery
-    3. app.py + menu-injection middleware + /healthz
-    4. One section sub-app (Demo 1 - Benefits chat) end-to-end
-    5. Validation: docker compose up, /healthz returns sections_loaded=1
-    6. STOP. Hand back for approval before fanning out remaining 8 sections.
-    ```
+Implementation order
+--------------------
+1. agenda_loader.py + tests against agenda.md
+2. sections/__init__.py auto-discovery
+3. app.py + menu-injection middleware + /healthz
+4. One section sub-app (Coverage Lookup) end-to-end
+5. Validation: docker compose up, /healthz returns sections_loaded=1
+6. STOP. Hand back for approval before fanning out the remaining 5 sections.
+```
 
-    A "bad" plan would skip the risks, list 30 files without sizes, or
-    propose to write all 9 sections in one turn. Reject and iterate the
-    plan, not the code.
+A "bad" plan would skip the risks, list 30 files without sizes, or
+propose to write all 6 sections in one turn. Reject and iterate the
+plan, not the code.
 
 <div class="tips" markdown>
 **`/plan` tips**
@@ -162,3 +161,5 @@ and an ordered task list.
 ## Next step
 
 Continue to **[6. Generate the web app](07-generate-web-app.md)**.
+
+<div class="module-step"><span class="pill">Module 5 of 12</span> Plan approved. Next: generate the Northwind skeleton.</div>

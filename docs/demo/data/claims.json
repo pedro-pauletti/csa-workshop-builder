@@ -1,0 +1,7 @@
+[
+  { "claim_id": "CLM-9981", "member_id": "NW-4471", "service": "Office visit",     "dos": "2026-03-12", "billed": 245.00, "allowed": 148.00, "plan_paid": 118.40, "member_resp": 29.60, "status": "Paid",       "notes": "Coinsurance 20% after deductible." },
+  { "claim_id": "CLM-9920", "member_id": "NW-4471", "service": "Lab — CBC panel",  "dos": "2026-02-18", "billed":  68.50, "allowed":  42.00, "plan_paid":  42.00, "member_resp":  0.00, "status": "Paid",       "notes": "Preventive — no cost share." },
+  { "claim_id": "CLM-9803", "member_id": "NW-4471", "service": "MRI knee",         "dos": "2026-01-22", "billed":1280.00, "allowed": 720.00, "plan_paid":   0.00, "member_resp":  0.00, "status": "Denied",     "notes": "Missing prior auth on file. Appeal window: 180 days." },
+  { "claim_id": "CLM-9650", "member_id": "NW-7782", "service": "Physical therapy", "dos": "2026-03-02", "billed": 165.00, "allowed":  98.00, "plan_paid":  73.00, "member_resp": 25.00, "status": "Paid",       "notes": "Visit 4 of 30 annual." },
+  { "claim_id": "CLM-9610", "member_id": "NW-7782", "service": "Specialist visit", "dos": "2026-02-09", "billed": 310.00, "allowed": 188.00, "plan_paid":   0.00, "member_resp":  0.00, "status": "In review",  "notes": "Awaiting coding clarification from provider." }
+]

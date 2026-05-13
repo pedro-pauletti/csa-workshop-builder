@@ -1,9 +1,10 @@
-# 8. Add interactive demos
+# 9. Interactive demos — Northwind mocks
 
 ## Goal
 
-Replace each section's demo placeholder with an **embedded, working interactive
-component** — chat, search, workflow, document analysis, evaluation.
+Replace each Northwind section's demo placeholder with an **embedded, working
+interactive component** powered by local JSON — the same mocks you can see in
+action under [`docs/demo/`](../demo/).
 
 ## Why it matters
 
@@ -270,4 +271,6 @@ the same code runs offline (mock) and online (real) without flags.
 
 ## Next step
 
-Continue to **[10. Customize by product and customer](10-customization-patterns.md)**.
+Continue to **[10. Visual identity & theme](10-customization-patterns.md)**.
+
+<div class="module-step"><span class="pill">Module 9 of 12</span> Demos work. Next: lock the visual identity.</div>
