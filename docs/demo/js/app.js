@@ -15,6 +15,28 @@ const SECTION_ROOT = document.getElementById('sectionRoot');
 const SIDEBAR_NAV  = document.getElementById('sidebarNav');
 const CRUMB        = document.getElementById('crumbSection');
 const THEME_BTN    = document.getElementById('themeToggle');
+const SIDEBAR_BTN  = document.getElementById('sidebarToggle');
+
+// ---------- Sidebar collapse ---------- //
+
+function applySidebar(state) {
+  const root = document.documentElement;
+  if (state === 'collapsed') {
+    root.setAttribute('data-sidebar', 'collapsed');
+    SIDEBAR_BTN.setAttribute('aria-expanded', 'false');
+    SIDEBAR_BTN.setAttribute('title', 'Expand sidebar');
+  } else {
+    root.removeAttribute('data-sidebar');
+    SIDEBAR_BTN.setAttribute('aria-expanded', 'true');
+    SIDEBAR_BTN.setAttribute('title', 'Collapse sidebar');
+  }
+  try { localStorage.setItem('csa-demo-sidebar', state); } catch (e) {}
+}
+SIDEBAR_BTN.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-sidebar') === 'collapsed' ? 'collapsed' : 'expanded';
+  applySidebar(current === 'collapsed' ? 'expanded' : 'collapsed');
+});
+applySidebar(document.documentElement.getAttribute('data-sidebar') === 'collapsed' ? 'collapsed' : 'expanded');
 
 // ---------- Theme ---------- //
 
@@ -34,7 +56,7 @@ applyTheme(document.documentElement.getAttribute('data-theme') || 'light');
 
 function renderSidebar() {
   SIDEBAR_NAV.innerHTML = AGENDA.map(item => `
-    <a href="#${item.slug}" data-slug="${item.slug}">
+    <a href="#${item.slug}" data-slug="${item.slug}" data-tooltip="${item.title}">
       <i class="${item.icon}"></i>
       <span>${item.title}</span>
       <span class="step-num">${item.label}</span>

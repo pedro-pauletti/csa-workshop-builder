@@ -706,6 +706,7 @@ Trustworthy deep teal with a warm coral accent. Good for health plans and patien
 ### Component conventions (apply across all front-ends)
 
 - **Layout** = left **sidebar** (logo, menu, status footer) + **main area** (section header → body).
+- **Sidebar is collapsible**: a chevron toggle in the sidebar header switches the root `<html>` element between expanded (default) and `data-sidebar="collapsed"`. The body grid animates `grid-template-columns` from `280px 1fr` to `~64px 1fr` over ~280ms (`cubic-bezier(.4,0,.2,1)`); label spans fade via `opacity` + `max-width` so icons stay centered; the chevron rotates `180deg`. State is persisted in `localStorage` (`sidebar`) and applied pre-paint by a short inline script in `<head>` to avoid FOUC. Below 900px the toggle is hidden and the sidebar becomes a full-width banner.
 - **Header titles** use gradient text: `background: linear-gradient(135deg, var(--text-primary), var(--primary-color))` + `-webkit-background-clip: text`.
 - **Welcome screen** = hero icon, headline, sub-copy, then 3–4 **quick-action buttons** (2×2 grid) that trigger demo flows.
 - **Messages / cards** = `var(--glass-bg)` + `backdrop-filter: blur(var(--glass-blur))` + `border: 1px solid var(--glass-border)` + `box-shadow: var(--glass-shadow)` + `border-radius: var(--radius-xl)`.

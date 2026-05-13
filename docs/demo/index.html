@@ -12,12 +12,16 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <link rel="stylesheet" href="css/styles.css" />
   <script>
-    // Avoid FOUC: read persisted theme before stylesheet evaluates
+    // Avoid FOUC: read persisted theme + sidebar state before stylesheet evaluates
     (function () {
       try {
         var t = localStorage.getItem('csa-demo-theme');
         if (t === 'dark' || t === 'light') {
           document.documentElement.setAttribute('data-theme', t);
+        }
+        var s = localStorage.getItem('csa-demo-sidebar');
+        if (s === 'collapsed') {
+          document.documentElement.setAttribute('data-sidebar', 'collapsed');
         }
       } catch (e) {}
     })();
@@ -29,10 +33,14 @@
   <aside class="sidebar" aria-label="Workshop navigation">
     <div class="sidebar__brand">
       <span class="sidebar__brand-mark"><i class="fa-solid fa-magnifying-glass"></i></span>
-      <div>
+      <div class="sidebar__brand-text">
         <div class="sidebar__brand-title">Azure AI Search</div>
         <div class="sidebar__brand-sub">Workshop · Contoso Outdoor</div>
       </div>
+      <button type="button" id="sidebarToggle" class="sidebar__toggle"
+              aria-label="Toggle sidebar" aria-expanded="true" title="Collapse sidebar">
+        <i class="fa-solid fa-angles-left"></i>
+      </button>
     </div>
 
     <nav class="sidebar__nav" id="sidebarNav" aria-label="Sections"></nav>

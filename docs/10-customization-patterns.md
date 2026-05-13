@@ -73,6 +73,30 @@ the highlight color — this matches the [live demo](../demo/).
 | **Azure Blue** | `#0078d4` | `#50e6ff` | Classic Azure / Infra customer. |
 | **Citrus Orange** | `#f97316` | `#22c55e` | Retail, FSI, anything that wants warmth. |
 
+## Collapsible sidebar
+
+The shipped sidebar **collapses to an icon rail** with a smooth animation —
+this is the same pattern used in the [live demo](../demo/). The contract is:
+
+- State lives on `<html data-sidebar="collapsed">` (no attribute = expanded).
+- Persisted in `localStorage` under key `csa-demo-sidebar` so the user's
+  preference survives reloads and section navigation.
+- A pre-paint `<script>` in `<head>` reads the key and sets the attribute
+  **before** the stylesheet evaluates — no flash on first paint.
+- The grid transitions: `body { transition: grid-template-columns 280ms cubic-bezier(.4,0,.2,1); }`,
+  expanded width `280px`, collapsed width `72px`.
+- Text spans inside menu items, brand, theme toggle, and back link fade via
+  `opacity` + `max-width` so the icons remain perfectly centered.
+- The toggle button's chevron rotates `180deg` on collapse.
+- On hover when collapsed, each menu item shows a tooltip (`::after` reading
+  `data-tooltip` set from the agenda title) so the rail stays usable.
+- Below `900px` the sidebar drops to a full-width banner and the toggle is
+  hidden — the collapsed state is ignored on mobile.
+
+The same three files own this contract: `index.html` (toggle button + FOUC
+script), `css/styles.css` (transitions and `[data-sidebar="collapsed"]`
+rules), `js/app.js` (`applySidebar()` mirroring `applyTheme()`).
+
 ## Step-by-step
 
 1. Open the `## Design System & Color Schemes` block in your SKILL.md.
