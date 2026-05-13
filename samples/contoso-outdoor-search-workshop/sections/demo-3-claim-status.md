@@ -18,7 +18,7 @@ member can trust.
 
 A claim moves through five canonical states: **received → validated →
 adjudicated → paid → notified**. Each state is owned by a different
-back-end system and emits an event. MemberAssist subscribes to those
+back-end system and emits an event. Search subscribes to those
 events, normalises them to the canonical timeline, and renders them with
 the source system and last-updated timestamp. Nothing is computed; we
 show the truth that already exists.
@@ -37,7 +37,7 @@ flowchart LR
   A[AdjudicationEngine] -->|adjudicated| TL
   P[PayablesETL] -->|paid| TL
   N[NotificationsService] -->|notified| TL
-  TL --> UI[MemberAssist UI]
+  TL --> UI[Search UI]
   UI -.low confidence / pended.-> H[Human agent handoff<br/>pre-loaded with trace]
 ```
 

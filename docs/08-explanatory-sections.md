@@ -1,8 +1,8 @@
-# 8. Explanatory sections — Northwind
+# 8. Explanatory sections — Contoso Outdoor
 
 ## Goal
 
-Enrich each of the six Northwind sections (Coverage Lookup, Claim Status,
+Enrich each of the six Contoso Outdoor sections (Coverage Lookup, Claim Status,
 Provider Search, EOB Extraction, Evaluation Scorecard, Roadmap) with the
 **didactic content** that makes a workshop teach, not just demo.
 
@@ -126,10 +126,10 @@ read it from a single config file.
 Every section now has consistent didactic content; only demos remain as
 clearly-marked TODOs.
 
-## Worked example — Northwind "Claim Status" (gold sample)
+## Worked example — Contoso Outdoor "Claim Status" (gold sample)
 
 This is the gold-sample section. Copy its structure into the other five
-Northwind sections.
+Contoso Outdoor sections.
 
 ```markdown
 # Claim Status
@@ -152,7 +152,7 @@ English, with a timestamp the member can trust.
 
 A claim moves through five canonical states: received → validated →
 adjudicated → paid → notified. Each state is owned by a different
-back-end system and emits an event. MemberAssist subscribes to
+back-end system and emits an event. Search subscribes to
 those events, normalises them to the canonical timeline, and renders
 them with the source system and last-updated timestamp. Nothing is
 computed; we show the truth that already exists.
@@ -188,7 +188,7 @@ EOB Document Extraction. Same claim ID, now we open the EOB.
 ```
 
 Full source:
-[`samples/northwind-memberassist-workshop/sections/`](https://github.com/pedro-pauletti/csa-workshop-builder/tree/main/samples/northwind-memberassist-workshop/sections)
+[`samples/contoso-outdoor-search-workshop/sections/`](https://github.com/pedro-pauletti/csa-workshop-builder/tree/main/samples/contoso-outdoor-search-workshop/sections)
 
 <div class="tips" markdown>
 **Section writing tips**

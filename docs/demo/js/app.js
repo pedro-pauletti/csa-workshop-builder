@@ -97,13 +97,56 @@ const SECTION_INITS = {
     function render() {
       const kind = select.value;
       const field = data.fields.find(f => f.name === kind);
+      const { explanation, ...definition } = field;
       out.innerHTML = `
-        <pre>${JSON.stringify(field, null, 2)}</pre>
-        <p class="metric__hint">${field.explanation}</p>
+        <pre class="schema-pre">${JSON.stringify(definition, null, 2)}</pre>
+        <div class="schema-note">
+          <i class="fa-solid fa-circle-info"></i>
+          <p>${explanation}</p>
+        </div>
       `;
     }
     select.addEventListener('change', render);
     render();
+
+    // Filter builder
+    const fbCat   = document.getElementById('fbCat');
+    const fbPrice = document.getElementById('fbPrice');
+    const fbStock = document.getElementById('fbStock');
+    const odataOut = document.getElementById('odataOut');
+    const fbResults = document.getElementById('fbResults');
+    if (!fbCat) return;
+    const products = (await loadJSON('products')).products;
+    function fb() {
+      const parts = [];
+      if (fbCat.value)   parts.push(`category eq '${fbCat.value}'`);
+      if (fbPrice.value) parts.push(`price le ${Number(fbPrice.value)}`);
+      if (fbStock.value) parts.push(`stock ge ${Number(fbStock.value)}`);
+      const expr = parts.length ? parts.join(' and ') : '—';
+      odataOut.textContent = expr;
+
+      const matches = products.filter(p =>
+        (!fbCat.value   || p.category === fbCat.value) &&
+        (!fbPrice.value || p.price <= Number(fbPrice.value)) &&
+        (!fbStock.value || p.stock >= Number(fbStock.value))
+      );
+      fbResults.innerHTML = `
+        <div class="result__meta" style="margin-bottom:8px;">
+          <span><i class="fa-solid fa-list"></i> ${matches.length} document(s) match</span>
+        </div>
+        ${matches.slice(0,5).map(p => `
+          <div class="result">
+            <div class="result__head">
+              <i class="${p.icon}"></i>
+              <strong>${p.title}</strong>
+              <span class="result__meta">$${p.price.toFixed(0)} · ${p.stock} in stock · ${p.category}</span>
+            </div>
+          </div>
+        `).join('')}
+      `;
+    }
+    [fbCat, fbPrice, fbStock].forEach(el => el.addEventListener('input', fb));
+    fb();
   },
 
   'vector-hybrid': async () => {
@@ -153,6 +196,53 @@ const SECTION_INITS = {
     btn.addEventListener('click', runQuery);
     input.addEventListener('keydown', e => { if (e.key === 'Enter') runQuery(); });
     runQuery();
+
+    // Semantic similarity playground
+    const simSel = document.getElementById('simPhrase');
+    const simOut = document.getElementById('simOut');
+    if (!simSel) return;
+    const SIM_MAP = {
+      rain: [
+        { t: 'Stormridge 3L Insulated Rain Jacket', s: 0.94 },
+        { t: 'Featherline Ultralight Down Jacket', s: 0.71 },
+        { t: 'Trailrunner Windbreaker',            s: 0.58 },
+        { t: 'Riverstone Waterproof Hiking Shoe',  s: 0.41 },
+        { t: 'Summit 45 Backpack',                 s: 0.22 },
+      ],
+      ultralight: [
+        { t: 'Skylight 2 Ultralight Tent',         s: 0.96 },
+        { t: 'Basecamp 2 Trekking Tent',           s: 0.79 },
+        { t: 'Summit 45 Backpack',                 s: 0.38 },
+        { t: 'Featherline Ultralight Down Jacket', s: 0.34 },
+        { t: 'Trailrunner Windbreaker',            s: 0.27 },
+      ],
+      winter: [
+        { t: 'Polaris -15 Sleeping Bag',           s: 0.93 },
+        { t: 'Featherline Ultralight Down Jacket', s: 0.81 },
+        { t: 'Stormridge 3L Insulated Rain Jacket',s: 0.62 },
+        { t: 'Basecamp 2 Trekking Tent',           s: 0.35 },
+        { t: 'Trailrunner Windbreaker',            s: 0.18 },
+      ],
+      wet: [
+        { t: 'Riverstone Waterproof Hiking Shoe',  s: 0.95 },
+        { t: 'Stormridge 3L Insulated Rain Jacket',s: 0.72 },
+        { t: 'Summit 45 Backpack',                 s: 0.39 },
+        { t: 'Trailrunner Windbreaker',            s: 0.31 },
+        { t: 'Polaris -15 Sleeping Bag',           s: 0.21 },
+      ],
+    };
+    function renderSim() {
+      const rows = SIM_MAP[simSel.value];
+      simOut.innerHTML = rows.map(r => `
+        <div class="sim-row">
+          <span class="sim-row__text">${r.t}</span>
+          <span class="sim-row__bar"><span class="sim-row__fill" style="width:${(r.s*100).toFixed(0)}%"></span></span>
+          <span class="sim-row__score">${r.s.toFixed(2)}</span>
+        </div>
+      `).join('');
+    }
+    simSel.addEventListener('change', renderSim);
+    renderSim();
   },
 
   'semantic-ranker': async () => {

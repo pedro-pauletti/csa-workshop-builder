@@ -1,9 +1,9 @@
-# 5. Plan with Copilot — Northwind
+# 5. Plan with Copilot — Contoso Outdoor
 
 !!! tip "Use `/plan` twice"
     Run `/plan` **once** when bootstrapping the generic app (the Fast path), and
-    **again** after you customize `SKILL.md` and `agenda.md` for Northwind.
-    First plan = stable skeleton. Second plan = Northwind-specific deltas.
+    **again** after you customize `SKILL.md` and `agenda.md` for Contoso Outdoor.
+    First plan = stable skeleton. Second plan = Contoso Outdoor-specific deltas.
 
 ## Goal
 
@@ -78,16 +78,16 @@ and an ordered task list.
 - [ ] Risks are concrete.
 - [ ] No real secrets in the plan.
 
-## Worked example — Northwind `/plan` response
+## Worked example — Contoso Outdoor `/plan` response
 
-A good `/plan` output for Northwind looks like this:
+A good `/plan` output for Contoso Outdoor looks like this:
 
 ```text
-Plan: Northwind MemberAssist workshop web app — v1
+Plan: Contoso Outdoor Search workshop web app — v1
 
 Assumptions
 -----------
-- SKILL.md (Northwind, theme: northwind-teal) and agenda.md committed at HEAD.
+- SKILL.md (Contoso Outdoor, theme: Contoso Outdoor-teal) and agenda.md committed at HEAD.
 - 6 agenda items (Coverage Lookup, Claim Status, Provider Search,
   EOB Document Extraction, Evaluation Scorecard, Roadmap & Next Steps).
 - Slugs derived via normalize_for_match.
@@ -162,4 +162,4 @@ plan, not the code.
 
 Continue to **[6. Generate the web app](07-generate-web-app.md)**.
 
-<div class="module-step"><span class="pill">Module 5 of 12</span> Plan approved. Next: generate the Northwind skeleton.</div>
+<div class="module-step"><span class="pill">Module 5 of 12</span> Plan approved. Next: generate the Contoso Outdoor skeleton.</div>

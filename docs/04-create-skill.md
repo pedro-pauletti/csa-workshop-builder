@@ -1,12 +1,12 @@
-# 3. SKILL.md for Northwind
+# 3. SKILL.md for Contoso Outdoor
 
 !!! info "Two-level SKILL files"
     | File | Owner | Purpose |
     |---|---|---|
     | `SKILL.template.md` *(in this tutorial / template repo)* | Template team | Reusable contract that survives across customers — including the **Foundry Violet** design system and the agenda-driven menu rule. |
-    | `SKILL.md` *(in your customer repo)* | The CSA for this engagement | Customized version with the Northwind scenario pasted in. |
+    | `SKILL.md` *(in your customer repo)* | The CSA for this engagement | Customized version with the Contoso Outdoor scenario pasted in. |
 
-    You **copy** the template into your Northwind repo and customize the
+    You **copy** the template into your Contoso Outdoor repo and customize the
     **Context**, **Personas**, **Non-goals** and **Theme** sections. Stack,
     folder layout, and agenda-driven rules should rarely change.
 
@@ -146,32 +146,32 @@ customer-scenario.md ──► SKILL.md ──► /plan ──► Copilot genera
                       SKILL.template.md (reusable contract)
 ```
 
-## Worked example — Northwind SKILL.md
+## Worked example — Contoso Outdoor SKILL.md
 
-Paste these into the Northwind `SKILL.md` after copying the template. The
+Paste these into the Contoso Outdoor `SKILL.md` after copying the template. The
 template already contains all the **architectural rules**, the **Foundry
-Violet / Northwind Teal** design system, and the **agenda-driven menu** rule
+Violet / Contoso Outdoor Teal** design system, and the **agenda-driven menu** rule
 — so you only customize the customer-specific blocks below.
 
 ```yaml
 ---
 name: workshop-creation
 description: |
-  Generate and maintain the Northwind MemberAssist workshop web app from
+  Generate and maintain the Contoso Outdoor Search workshop web app from
   agenda.md and the scenario. Produces a FastAPI + Jinja2 single-page
   workshop with 6 mock demos (coverage, claim status, provider search,
   EOB extraction, evaluation, roadmap).
 license: MIT
 metadata:
-  customer: Northwind Health
+  customer: Contoso Outdoor Health
   product_focus: Azure AI Foundry + Azure AI Search + Document Intelligence
-  theme: northwind-teal
+  theme: Contoso Outdoor-teal
   basedOn: csa-workshop-builder/templates/SKILL.template.md
   version: 1.0.0
 ---
 ```
 
-### Compliance rules (Northwind-specific)
+### Compliance rules (Contoso Outdoor-specific)
 
 - **No real PHI.** All members, claims, providers, EOBs are synthetic.
 - **PHI-leak evaluation gauge** mandatory in the evaluation demo.
@@ -188,7 +188,7 @@ metadata:
 - "Use real claim numbers from the test environment" → no, synthetic only.
 
 Full source:
-[`samples/northwind-memberassist-workshop/.github/skills/workshop-creation/SKILL.md`](https://github.com/pedro-pauletti/csa-workshop-builder/tree/main/samples/northwind-memberassist-workshop/.github/skills/workshop-creation/SKILL.md)
+[`samples/contoso-outdoor-search-workshop/.github/skills/workshop-creation/SKILL.md`](https://github.com/pedro-pauletti/csa-workshop-builder/tree/main/samples/contoso-outdoor-search-workshop/.github/skills/workshop-creation/SKILL.md)
 
 <div class="tips" markdown>
 **SKILL.md tips**
@@ -216,6 +216,6 @@ Full source:
 
 ## Next step
 
-Continue to **[4. agenda.md for Northwind](05-create-agenda.md)**.
+Continue to **[4. agenda.md for Contoso Outdoor](05-create-agenda.md)**.
 
 <div class="module-step"><span class="pill">Module 3 of 12</span> SKILL contract authored. Next: the agenda that drives the menu.</div>

@@ -5,7 +5,7 @@ license: MIT
 metadata:
   customer: "{{CUSTOMER_NAME}}"
   product_focus: "{{PRODUCT_FOCUS}}"      # e.g. "Azure AI Foundry", "Microsoft Fabric", "M365 Copilot"
-  theme: "{{THEME_NAME}}"                  # one of: foundry-violet (default), northwind-teal, fabric-indigo, azure-blue, citrus-orange
+  theme: "{{THEME_NAME}}"                  # one of: foundry-violet (default), Contoso Outdoor-teal, fabric-indigo, azure-blue, citrus-orange
   basedOn: "csa-workshop-builder/templates/SKILL.template.md"
   version: "1.0.0"
 ---
@@ -593,7 +593,7 @@ Foundry "widest selection of models" panel.
 }
 ```
 
-#### 2. Northwind Teal — *healthcare, member services, regulated industries*
+#### 2. Contoso Outdoor Teal — *healthcare, member services, regulated industries*
 
 Trustworthy deep teal with a warm coral accent. Good for health plans and patient-facing copilots.
 

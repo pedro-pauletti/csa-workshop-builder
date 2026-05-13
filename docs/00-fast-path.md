@@ -1,9 +1,9 @@
 # Fast path — generate your first workshop app
 
-> **Outcome:** the **Northwind MemberAssist** workshop web app running locally
+> **Outcome:** the **Contoso Outdoor Search** workshop web app running locally
 > in under 90 minutes, with a dynamic sidebar from `agenda.md`, 6 mocked
 > interactive demos (coverage Q&A, claim status, provider search, EOB
-> extraction, evaluation scorecard, roadmap), and the Foundry-Violet / Northwind-Teal
+> extraction, evaluation scorecard, roadmap), and the Foundry-Violet / Contoso Outdoor-Teal
 > design system already applied.
 
 ## What you will build
@@ -72,14 +72,14 @@ want a plan first.
 ````text
 /plan
 
-I want to generate the first working version of the Northwind MemberAssist workshop app.
+I want to generate the first working version of the Contoso Outdoor Search workshop app.
 
-Use SKILL.md and agenda.md as the source of truth. Northwind is a fictional
-US regional health plan; MemberAssist is a member-services copilot. The app
+Use SKILL.md and agenda.md as the source of truth. Contoso Outdoor is a fictional
+US regional health plan; Search is a member-services copilot. The app
 must work fully offline with mock data — no Azure resources required.
 
 Goal:
-Scaffold the agenda-driven Northwind MemberAssist workshop app following SKILL.md.
+Scaffold the agenda-driven Contoso Outdoor Search workshop app following SKILL.md.
 The same scaffolding will later be re-used for other customers (see module 13).
 
 The first version must be functional locally and include:
@@ -148,7 +148,7 @@ Walk through this checklist before moving on:
 
 ## What you have now
 
-A runnable **Northwind MemberAssist** workshop web app on `localhost:8080`.
+A runnable **Contoso Outdoor Search** workshop web app on `localhost:8080`.
 You can already deliver this in front of a customer — and module 13 shows the
 surgical swap to re-target it to a different customer or product.
 
@@ -172,7 +172,7 @@ surgical swap to re-target it to a different customer or product.
 
 ## Next step
 
-Either keep this Northwind app and re-target it to your customer later
+Either keep this Contoso Outdoor app and re-target it to your customer later
 (module 13), or read the 12 modules to understand every decision the Fast
 path made for you:
 

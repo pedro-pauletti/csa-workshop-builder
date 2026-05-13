@@ -36,6 +36,57 @@
     folder before designing your customer's solution.
   </div>
 
+  <div class="diagram">
+    <div class="diagram__title"><i class="fa-solid fa-circle-nodes"></i> One conversational turn — request → grounded answer</div>
+    <svg viewBox="0 0 880 280" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="arrow5" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" class="d-arrow-head" />
+        </marker>
+      </defs>
+
+      <!-- Stage 1: rewrite -->
+      <rect x="20"  y="40" width="170" height="80" rx="10" class="d-box-fill" stroke="var(--border-strong)" stroke-width="1.5" />
+      <text x="105" y="68"  text-anchor="middle" font-size="13" font-weight="700" class="d-box-label">1. Rewrite query</text>
+      <text x="105" y="86"  text-anchor="middle" font-size="11" class="d-box-label-sub">LLM rewrites the</text>
+      <text x="105" y="102" text-anchor="middle" font-size="11" class="d-box-label-sub">user turn + history</text>
+
+      <!-- Stage 2: search -->
+      <rect x="220" y="40" width="170" height="80" rx="10" class="d-accent-fill" stroke="var(--violet-500)" stroke-width="2" />
+      <text x="305" y="68"  text-anchor="middle" font-size="13" font-weight="700" class="d-box-label">2. Retrieve</text>
+      <text x="305" y="86"  text-anchor="middle" font-size="11" class="d-box-label-sub">hybrid + semantic</text>
+      <text x="305" y="102" text-anchor="middle" font-size="11" class="d-box-label-sub">top-5 passages</text>
+
+      <!-- Stage 3: prompt -->
+      <rect x="420" y="40" width="170" height="80" rx="10" class="d-box-fill" stroke="var(--border-strong)" stroke-width="1.5" />
+      <text x="505" y="68"  text-anchor="middle" font-size="13" font-weight="700" class="d-box-label">3. Compose prompt</text>
+      <text x="505" y="86"  text-anchor="middle" font-size="11" class="d-box-label-sub">system + passages</text>
+      <text x="505" y="102" text-anchor="middle" font-size="11" class="d-box-label-sub">+ chat history</text>
+
+      <!-- Stage 4: generate -->
+      <rect x="620" y="40" width="170" height="80" rx="10" class="d-azure-fill" stroke="var(--azure-500)" stroke-width="1.5" />
+      <text x="705" y="68"  text-anchor="middle" font-size="13" font-weight="700" class="d-box-label">4. Generate</text>
+      <text x="705" y="86"  text-anchor="middle" font-size="11" class="d-box-label-sub">gpt-4o-mini, T=0.2</text>
+      <text x="705" y="102" text-anchor="middle" font-size="11" class="d-box-label-sub">cite-or-refuse rule</text>
+
+      <!-- Stage 5: post-check -->
+      <rect x="320" y="170" width="240" height="80" rx="10" class="d-accent-fill" stroke="var(--violet-500)" stroke-width="2" />
+      <text x="440" y="198" text-anchor="middle" font-size="13" font-weight="700" class="d-box-label">5. Groundedness check</text>
+      <text x="440" y="216" text-anchor="middle" font-size="11" class="d-box-label-sub">Foundry safety + content filters</text>
+      <text x="440" y="232" text-anchor="middle" font-size="11" class="d-box-label-sub">refuse if no citation supports the claim</text>
+
+      <!-- Arrows -->
+      <path d="M192,80 L218,80"   class="d-arrow" stroke-width="2" marker-end="url(#arrow5)" />
+      <path d="M392,80 L418,80"   class="d-arrow" stroke-width="2" marker-end="url(#arrow5)" />
+      <path d="M592,80 L618,80"   class="d-arrow" stroke-width="2" marker-end="url(#arrow5)" />
+      <path d="M705,122 L500,168" class="d-arrow" stroke-width="2" marker-end="url(#arrow5)" />
+      <path d="M380,210 L100,210 L100,124" class="d-arrow" fill="none" stroke-width="2" stroke-dasharray="4 3" marker-end="url(#arrow5)" />
+
+      <text x="240" y="200" font-size="10" class="d-box-label-sub" font-style="italic">re-prompt if blocked</text>
+    </svg>
+    <p class="diagram__caption">Stages 1–4 are the "approach" pattern from azure-search-openai-demo. Stage 5 is the guard-rail you add when groundedness matters more than fluency.</p>
+  </div>
+
   <div class="refs">
     <div class="refs__label">Official Microsoft Learn references</div>
     <ul>

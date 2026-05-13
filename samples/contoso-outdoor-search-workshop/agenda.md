@@ -1,4 +1,4 @@
-# Northwind MemberAssist — workshop agenda
+# Contoso Outdoor Search — workshop agenda
 
 > Half-day workshop. 9 items. Audience: member-services leaders, claims
 > operations, plan architects, compliance.
@@ -9,9 +9,9 @@ rename the heading without also updating the loader.
 
 ### Data to be used by SKILL.md to create the Workshop App
 
-- Welcome and engagement framing: Set the business context for Northwind, the call-centre numbers, and the goal of the day. No demos, just framing.
+- Welcome and engagement framing: Set the business context for Contoso Outdoor, the call-centre numbers, and the goal of the day. No demos, just framing.
 - Member journeys today: Walk through three real (anonymized) call types and where the friction lives. Sets up which demos answer which pain.
-- The MemberAssist concept: Introduce the copilot pattern: grounded answers, citations, human-in-the-loop, and the PHI promise. One slide per pillar.
+- The Search concept: Introduce the copilot pattern: grounded answers, citations, human-in-the-loop, and the PHI promise. One slide per pillar.
 - Demo 1 - Benefits chat: Embedded chat that answers benefits-coverage questions grounded in plan documents with inline citations and a confidence indicator.
 - Demo 2 - Provider search: Provider-directory search with location, specialty, in-network filter; results show ranking signals and explainable cards.
 - Demo 3 - Claim status: Claim-status resolution with a visual timeline (received → adjudicated → paid → notified) sourced from a mock claims feed.

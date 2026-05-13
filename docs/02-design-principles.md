@@ -20,7 +20,7 @@ customer engagement.
 
 | Weak workshop | Strong workshop |
 |---|---|
-| "Let me show Azure AI Search." | "Northwind needs grounded benefits answers with citations; this demo shows retrieval, citations and evaluation against R1." |
+| "Let me show Azure AI Search." | "Contoso Outdoor needs grounded benefits answers with citations; this demo shows retrieval, citations and evaluation against R1." |
 | "Here is a chatbot." | "This chat answers a member-services scenario, shows sources, and includes the human-handoff path compliance asked for." |
 | "We score the answers." | "We surface a PHI-leak gauge so compliance can audit drift week over week — currently in warn state and here is the open incident." |
 | Live demos with no fallback. | Every live demo has a screenshot + recorded clip fallback **and** an explicit failure-path demo. |

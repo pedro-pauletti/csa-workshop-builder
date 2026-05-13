@@ -26,6 +26,60 @@
     <li><strong>Forgetting facets.</strong> Faceted UIs (left rail, "Brand · Size · Color") need <code>facetable</code> from day one.</li>
   </ul>
 
+  <div class="diagram">
+    <div class="diagram__title"><i class="fa-solid fa-arrow-right-arrow-left"></i> Contoso Outdoor — ingestion pipeline</div>
+    <svg viewBox="0 0 880 240" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="arrow2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" class="d-arrow-head" />
+        </marker>
+      </defs>
+
+      <!-- Source -->
+      <rect x="20"  y="80" width="150" height="80" rx="10" class="d-box-fill" stroke="var(--border-strong)" stroke-width="1.5" />
+      <text x="95" y="108" text-anchor="middle" font-size="13" font-weight="700" class="d-box-label">Product catalog</text>
+      <text x="95" y="128" text-anchor="middle" font-size="11" class="d-box-label-sub">Cosmos DB</text>
+      <text x="95" y="144" text-anchor="middle" font-size="11" class="d-box-label-sub">12,000 SKUs</text>
+
+      <!-- Indexer -->
+      <rect x="200" y="80" width="160" height="80" rx="10" class="d-accent-fill" stroke="var(--violet-500)" stroke-width="2" />
+      <text x="280" y="106" text-anchor="middle" font-size="13" font-weight="700" class="d-box-label">Indexer (every 5 min)</text>
+      <text x="280" y="124" text-anchor="middle" font-size="11" class="d-box-label-sub">change-tracking on</text>
+      <text x="280" y="140" text-anchor="middle" font-size="11" class="d-box-label-sub">updatedAt timestamp</text>
+
+      <!-- Skillset -->
+      <rect x="390" y="20" width="170" height="70" rx="10" class="d-azure-fill" stroke="var(--azure-500)" stroke-width="1.5" />
+      <text x="475" y="46" text-anchor="middle" font-size="13" font-weight="700" class="d-box-label">Skillset</text>
+      <text x="475" y="64" text-anchor="middle" font-size="11" class="d-box-label-sub">split text → chunks</text>
+      <text x="475" y="80" text-anchor="middle" font-size="11" class="d-box-label-sub">Language detection</text>
+
+      <!-- Vectorizer -->
+      <rect x="390" y="105" width="170" height="80" rx="10" class="d-azure-fill" stroke="var(--azure-500)" stroke-width="1.5" />
+      <text x="475" y="132" text-anchor="middle" font-size="13" font-weight="700" class="d-box-label">Integrated vectorizer</text>
+      <text x="475" y="150" text-anchor="middle" font-size="11" class="d-box-label-sub">text-embedding-3-large</text>
+      <text x="475" y="166" text-anchor="middle" font-size="11" class="d-box-label-sub">1536-d float32</text>
+
+      <!-- Index -->
+      <rect x="590" y="80" width="170" height="80" rx="10" class="d-accent-fill" stroke="var(--violet-500)" stroke-width="2" />
+      <text x="675" y="106" text-anchor="middle" font-size="13" font-weight="700" class="d-box-label">products-v1 index</text>
+      <text x="675" y="124" text-anchor="middle" font-size="11" class="d-box-label-sub">inverted lists</text>
+      <text x="675" y="140" text-anchor="middle" font-size="11" class="d-box-label-sub">+ HNSW vector graph</text>
+
+      <!-- Arrows -->
+      <path d="M172,120 L198,120" class="d-arrow" stroke-width="2" marker-end="url(#arrow2)" />
+      <path d="M340,100 L390,60"  class="d-arrow" stroke-width="2" marker-end="url(#arrow2)" />
+      <path d="M340,140 L390,140" class="d-arrow" stroke-width="2" marker-end="url(#arrow2)" />
+      <path d="M562,60 L640,90"   class="d-arrow" stroke-width="2" marker-end="url(#arrow2)" />
+      <path d="M562,140 L588,120" class="d-arrow" stroke-width="2" marker-end="url(#arrow2)" />
+
+      <!-- Bottom note -->
+      <text x="440" y="220" text-anchor="middle" font-size="12" class="d-box-label-sub" font-style="italic">
+        Same model at ingest and at query — switching versions requires reindexing.
+      </text>
+    </svg>
+    <p class="diagram__caption">No data leaves Azure. The indexer is server-side, runs on a schedule, and respects soft deletes.</p>
+  </div>
+
   <div class="refs">
     <div class="refs__label">Official Microsoft Learn references</div>
     <ul>
@@ -60,4 +114,64 @@
     </select>
   </div>
   <div id="schemaOut"></div>
+</section>
+
+<hr class="section-separator" />
+
+<section class="concept">
+  <h2>Filters: scoping queries without re-ranking</h2>
+  <p>
+    <code>filterable</code> fields let you trim the candidate set <em>before</em>
+    ranking with simple OData expressions. They are cheap, deterministic, and
+    cacheable — the right tool when the user has already told you (via facets,
+    UI controls, or session context) what they want.
+  </p>
+  <div class="callout">
+    <strong>Important.</strong> Filters are <em>not</em> a substitute for relevance. They are an <em>and-clause</em>
+    that runs after retrieval. Use them for hard constraints (in stock, price band, language) and let the ranker
+    decide order.
+  </div>
+  <div class="refs">
+    <div class="refs__label">Official Microsoft Learn references</div>
+    <ul>
+      <li><i class="fa-solid fa-up-right-from-square"></i> <a href="https://learn.microsoft.com/azure/search/search-filters" target="_blank" rel="noopener">Filters in Azure AI Search — OData syntax</a></li>
+      <li><i class="fa-solid fa-up-right-from-square"></i> <a href="https://learn.microsoft.com/azure/search/search-faceted-navigation" target="_blank" rel="noopener">Faceted navigation — facets &amp; counts</a></li>
+    </ul>
+  </div>
+</section>
+
+<section class="demo">
+  <h2 class="demo__title"><i class="fa-solid fa-filter"></i> Demo — build an OData filter</h2>
+  <p class="demo__lede">
+    Combine three constraints — category, max price, and minimum stock — to see
+    the exact <code>$filter</code> expression Contoso's product page would send.
+  </p>
+
+  <div class="filter-builder">
+    <div>
+      <label for="fbCat">Category</label>
+      <select id="fbCat">
+        <option value="">— any —</option>
+        <option value="Jackets">Jackets</option>
+        <option value="Tents">Tents</option>
+        <option value="Footwear">Footwear</option>
+        <option value="Sleeping bags">Sleeping bags</option>
+        <option value="Packs">Packs</option>
+      </select>
+    </div>
+    <div>
+      <label for="fbPrice">Max price (USD)</label>
+      <input id="fbPrice" type="number" min="0" step="10" value="250" />
+    </div>
+    <div>
+      <label for="fbStock">Min stock</label>
+      <input id="fbStock" type="number" min="0" step="1" value="1" />
+    </div>
+  </div>
+
+  <div class="odata-out">
+    <div class="odata-out__label">OData $filter</div>
+    <code id="odataOut">—</code>
+  </div>
+  <div id="fbResults" style="margin-top: 14px;"></div>
 </section>

@@ -360,6 +360,39 @@ a:hover { border-bottom-color: var(--violet-500); }
   font-family: var(--font-mono);
   font-size: 13px;
   border: 1px solid var(--border-subtle);
+  white-space: pre;
+}
+
+.schema-pre {
+  background: var(--bg-code);
+  padding: 14px 16px;
+  border-radius: var(--radius-md);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  border: 1px solid var(--border-subtle);
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-x: auto;
+  color: var(--text-primary);
+  margin: 14px 0 0;
+}
+.schema-note {
+  margin-top: 12px;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  background: var(--violet-50);
+  border-left: 3px solid var(--violet-500);
+  color: var(--text-primary);
+  font-size: 13.5px;
+  line-height: 1.55;
+}
+.schema-note i { color: var(--violet-500); margin-top: 3px; }
+.schema-note p { margin: 0; }
+[data-theme="dark"] .schema-note {
+  background: rgba(168, 85, 247, 0.10);
 }
 
 .callout {
@@ -809,3 +842,140 @@ a:hover { border-bottom-color: var(--violet-500); }
   .section-root { padding: 24px 16px; }
   .main__topbar { padding: 12px 16px; }
 }
+
+/* =========================================================
+   Architecture diagrams (inline SVG containers)
+   ========================================================= */
+.diagram {
+  margin: 24px 0;
+  padding: 24px 20px;
+  background: var(--bg-surface-2);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+.diagram__title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--violet-600);
+  margin-bottom: 14px;
+}
+[data-theme="dark"] .diagram__title { color: var(--violet-300); }
+.diagram svg {
+  width: 100%;
+  height: auto;
+  max-width: 880px;
+  display: block;
+  margin: 0 auto;
+}
+.diagram__caption {
+  margin-top: 12px;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 13px;
+  font-style: italic;
+}
+
+/* SVG variables used in diagrams (referenced via currentColor / CSS vars) */
+.diagram svg .d-box-fill        { fill: var(--bg-surface); }
+.diagram svg .d-box-stroke      { stroke: var(--border-strong); }
+.diagram svg .d-box-label       { fill: var(--text-primary); font-family: var(--font-sans); }
+.diagram svg .d-box-label-sub   { fill: var(--text-secondary); font-family: var(--font-sans); }
+.diagram svg .d-arrow           { stroke: var(--violet-500); fill: none; }
+.diagram svg .d-arrow-head      { fill: var(--violet-500); }
+.diagram svg .d-accent-fill     { fill: var(--violet-100); }
+.diagram svg .d-accent-stroke   { stroke: var(--violet-500); }
+.diagram svg .d-azure-fill      { fill: var(--azure-50); }
+.diagram svg .d-azure-stroke    { stroke: var(--azure-500); }
+[data-theme="dark"] .diagram svg .d-accent-fill { fill: rgba(168,85,247,0.15); }
+[data-theme="dark"] .diagram svg .d-azure-fill  { fill: rgba(0,120,212,0.18); }
+
+/* =========================================================
+   Filter-builder demo (added to index-design section)
+   ========================================================= */
+.filter-builder {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+  margin-top: 14px;
+}
+@media (max-width: 700px) { .filter-builder { grid-template-columns: 1fr; } }
+.filter-builder label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+  display: block;
+}
+.filter-builder select,
+.filter-builder input {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-strong);
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 13px;
+}
+.odata-out {
+  margin-top: 16px;
+  padding: 12px 14px;
+  background: var(--bg-code);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  word-break: break-all;
+}
+.odata-out__label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--violet-600);
+  margin-bottom: 6px;
+}
+[data-theme="dark"] .odata-out__label { color: var(--violet-300); }
+
+/* =========================================================
+   Embedding-similarity demo (vector-hybrid section)
+   ========================================================= */
+.sim-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.sim-row:last-child { border-bottom: 0; }
+.sim-row__text { flex: 1; font-size: 14px; color: var(--text-primary); }
+.sim-row__bar {
+  flex: 0 0 200px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--border-subtle);
+  position: relative;
+  overflow: hidden;
+}
+.sim-row__fill {
+  position: absolute;
+  inset: 0;
+  width: 0%;
+  background: linear-gradient(90deg, var(--violet-500), var(--pink-500));
+  transition: width 600ms cubic-bezier(.4,.0,.2,1);
+}
+.sim-row__score {
+  flex: 0 0 56px;
+  text-align: right;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--violet-600);
+  font-weight: 600;
+}
+[data-theme="dark"] .sim-row__score { color: var(--violet-300); }

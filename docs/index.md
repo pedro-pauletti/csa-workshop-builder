@@ -5,10 +5,11 @@
 # Build a customer-ready interactive workshop app with GitHub Copilot
 
 This tutorial walks you through **building one complete, named, customer-flavoured
-workshop end-to-end** — **Northwind MemberAssist**, a fictional health-plan member-services
-copilot — across **12 modules**. By the end of module 12 you have a working, branded,
-publishable app. Module 13 then shows you how to **swap Northwind for *your* customer or
-Microsoft product** without touching the scaffolding.
+workshop end-to-end** — **Contoso Outdoor Search**, an Azure AI Search workshop
+for a fictional outdoor-gear retailer — across **12 modules**. By the end of
+module 12 you have a working, branded, publishable app. Module 13 then shows
+you how to **swap Contoso Outdoor for *your* customer or Microsoft product**
+without touching the scaffolding.
 
 [Try the live demo :material-rocket-launch:](demo/){ .md-button .md-button--primary }
 [Start the fast path :material-flash:](00-fast-path.md){ .md-button }
@@ -18,11 +19,12 @@ Microsoft product** without touching the scaffolding.
 </div>
 
 !!! success "What you have when you finish module 12"
-    A FastAPI + Jinja2 + Docker workshop app for **Northwind MemberAssist** running locally,
-    published on GitHub Pages, with **6 interactive mocked demos** (coverage Q&A, claim status,
-    provider search, EOB extraction, evaluation scorecard, roadmap). The dynamic sidebar comes
-    from a single `agenda.md`. Visual identity follows a named design system (Foundry Violet /
-    Northwind Teal). No real PII. No Azure subscription required to run the demo.
+    A FastAPI + Jinja2 + Docker workshop app for **Contoso Outdoor Search** running locally,
+    published on GitHub Pages, with **6 interactive mocked demos** (catalog search, hybrid
+    vs vector ranking, semantic reranker, grounded chat, evaluation scorecard, 30/60/90
+    roadmap). The dynamic sidebar comes from a single `agenda.md`. Visual identity follows
+    a named design system (Foundry Violet). No real customer data. No Azure subscription
+    required to run the demo.
 
 <div class="outcome-cards" markdown>
 <div class="card" markdown>**One worked example, end-to-end**
@@ -53,18 +55,18 @@ output of this method looks like in another customer's clothing.
 [Open the live demo :material-arrow-right:](demo/){ .md-button .md-button--primary }
 
 It is fully static — no backend, no Azure — so you can poke at it from any
-browser. Inside the tutorial itself, **modules 1 → 12 build Northwind
-MemberAssist** (the healthcare worked example); module 13 then shows the
-surgical swap from Northwind to any other customer or Microsoft product —
+browser. Inside the tutorial itself, **modules 1 → 12 build Contoso Outdoor
+Search** (the worked example); module 13 then shows the
+surgical swap from Contoso Outdoor to any other customer or Microsoft product —
 exactly how the live demo was produced.
 
-!!! info "Two distinct artifacts, same accelerator"
-    - **`/demo/`** — an Azure AI Search workshop for *Contoso Outdoor*. What
-      the pattern looks like in retail / RAG flavor, with **Microsoft Learn
-      citations** in every section.
-    - **The 12 tutorial modules** — build the *Northwind MemberAssist*
-      worked example from scratch (healthcare). Same pattern, different
-      content.
+!!! info "One scenario, two surfaces"
+    - **The 12 tutorial modules** — teach you to build the Contoso Outdoor
+      Search workshop from scratch (customer scenario → SKILL.md → agenda.md
+      → generated app → polished, published).
+    - **`/demo/`** — the finished output: a public, working Azure AI Search
+      workshop for Contoso Outdoor with explanatory sections interleaved with
+      interactive demos and Microsoft Learn citations throughout.
 
 ## The three artifacts everything is built from
 
@@ -77,9 +79,9 @@ This accelerator is intentionally driven by **three small markdown files** so th
 | `SKILL.md` | Customer repo (copied from `templates/SKILL.template.md` in this repo) | The contract Copilot follows when scaffolding code. Stack, folder layout, design system, agenda-driven menu rule. |
 | `agenda.md` | Customer repo | The ordered list of sections. **Source of truth** for the sidebar and the section sub-apps. |
 
-!!! tip "All three files are written for you for Northwind"
-    The tutorial ships filled-in Northwind versions of all three under
-    [`samples/northwind-memberassist-workshop/`](https://github.com/pedro-pauletti/csa-workshop-builder/tree/main/samples/northwind-memberassist-workshop)
+!!! tip "All three files are written for you for Contoso Outdoor"
+    The tutorial ships filled-in Contoso Outdoor versions of all three under
+    [`samples/contoso-outdoor-search-workshop/`](https://github.com/pedro-pauletti/csa-workshop-builder/tree/main/samples/contoso-outdoor-search-workshop)
     — and the `templates/` folder contains the blank versions you copy for your next customer.
 
 ## How each module is structured
@@ -89,7 +91,7 @@ Each module follows the **same 9-section pattern**:
 1. **Goal** — what you produce.
 2. **Why it matters** — how it improves the workshop.
 3. **Inputs** — what you need before you start.
-4. **Step-by-step** — concrete actions, applied to Northwind.
+4. **Step-by-step** — concrete actions, applied to Contoso Outdoor.
 5. **Copilot prompt** — copy/paste ready.
 6. **Expected output** — what success looks like.
 7. **Validation checklist** — confirm before moving on.
@@ -101,11 +103,11 @@ Each module follows the **same 9-section pattern**:
 <table class="trails">
 <tr>
 <td>Fast path — 60–90 min</td>
-<td>Clone the template, run Copilot, get a working Northwind app locally. Skip the theory until you need it.</td>
+<td>Clone the template, run Copilot, get a working Contoso Outdoor app locally. Skip the theory until you need it.</td>
 </tr>
 <tr>
 <td>Deep dive — 12 modules</td>
-<td>Build Northwind from the customer scenario all the way to a published app. Then customize for your customer in module 13.</td>
+<td>Build Contoso Outdoor from the customer scenario all the way to a published app. Then customize for your customer in module 13.</td>
 </tr>
 </table>
 

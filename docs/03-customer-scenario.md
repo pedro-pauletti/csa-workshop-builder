@@ -1,8 +1,8 @@
-# 2. Customer scenario — Northwind MemberAssist
+# 2. Customer scenario — Contoso Outdoor Search
 
 ## Goal
 
-Produce the **`customer-scenario.md`** for Northwind MemberAssist — a single-page
+Produce the **`customer-scenario.md`** for Contoso Outdoor Search — a single-page
 document that becomes the source of truth for everything downstream: SKILL,
 agenda, demos, narrative, evaluation set.
 
@@ -10,7 +10,7 @@ agenda, demos, narrative, evaluation set.
 
 The scenario forces alignment **before** you write code or prompts. It's the
 artifact you share with the account team to confirm you're building the right
-workshop. For Northwind, this is the only document the four named stakeholders
+workshop. For Contoso Outdoor, this is the only document the four named stakeholders
 read before the workshop — so the words there set the rest of the engagement.
 
 ## Inputs
@@ -24,7 +24,7 @@ read before the workshop — so the words there set the rest of the engagement.
 
 1. Copy `templates/customer-scenario.template.md` into a new file under your
    working folder (e.g.,
-   `samples/northwind-memberassist-workshop/customer-scenario.md`).
+   `samples/contoso-outdoor-search-workshop/customer-scenario.md`).
 2. Fill in customer, industry, audience, products, business challenges,
    workshop objective, and success criteria.
 3. List **3–7 explicit requirements** — short, testable statements.
@@ -54,40 +54,44 @@ A populated `customer-scenario.md` with:
 - 3–7 numbered requirements.
 - One-sentence executive summary.
 
-## Northwind MemberAssist — the scenario you will use across modules 3–12
+## Contoso Outdoor Search — the scenario you will use across modules 3–12
 
 > Read this once and refer back to it. Every subsequent module is built on top
 > of these requirements.
 
-**Customer:** Northwind Health (fictional regional US health plan, ~1.2M members)
-**Audience:** VP Member Services, Director Claims Ops, Plan Architect, Compliance Officer
-**Microsoft products in scope:** Azure AI Foundry, Azure AI Search, Azure AI Document Intelligence, Azure App Insights, Microsoft Purview
-**Workshop objective:** Align stakeholders on what *MemberAssist* will and
-will not do, and socialize a credible architecture for a 90-day pilot.
+**Customer:** Contoso Outdoor (fictional DTC outdoor-gear retailer, ~$340 M ARR, ~12 000 SKUs)
+**Audience:** VP Digital Commerce, Director of Search & Discovery, Principal Architect, Responsible-AI Lead
+**Microsoft products in scope:** Azure AI Search, Azure AI Foundry, Azure OpenAI, Azure App Insights, Microsoft Purview
+**Workshop objective:** Align stakeholders on a credible Azure-AI-Search-powered
+search + grounded chat experience for the storefront, and socialize a 90-day
+pilot architecture.
 
 ### Operational context
 
-22k calls/week · 7m12s AHT · 64% FCR. Top three drivers: benefits-coverage
-(38%), claim-status (29%), provider search (14%).
+8 M storefront sessions/month · 22 % zero-result rate on natural-language
+queries · 11 % session-to-cart conversion on search-led journeys. Top three
+pain points: synonym/intent gaps ("warm jacket" misses "insulated parka"),
+no answer surface for buyer-guide questions, and no grounded-chat experience
+that cites a product page.
 
 ### Audience matrix
 
 <div class="persona-grid" markdown>
 <div class="persona" markdown>
-**Rosa Aoyama** <em>VP Member Services</em>
-Reduce handle time and complaint volume without inflating QA cost.
+**Rosa Aoyama** <em>VP Digital Commerce</em>
+Lift search-led conversion without ballooning paid-search spend.
 </div>
 <div class="persona" markdown>
-**Marcus Boateng** <em>Director, Claims Ops</em>
-Claim-status answers that match the source-of-truth adjudication system.
+**Marcus Boateng** <em>Director, Search &amp; Discovery</em>
+Hybrid + semantic ranking that beats the legacy keyword engine on relevance.
 </div>
 <div class="persona" markdown>
-**Hana Whitlock** <em>Plan Architect</em>
-Architecture that does not lock the plan into one vendor.
+**Hana Whitlock** <em>Principal Architect</em>
+Retrieval architecture that is auditable and not locked into one vendor.
 </div>
 <div class="persona" markdown>
-**Daniel Erskine** <em>Compliance Officer</em>
-PHI safeguarding, auditability, fallback to human, traceable evals.
+**Daniel Erskine** <em>Responsible-AI Lead</em>
+Grounded answers, content filters, refusal on low confidence, traceable evals.
 </div>
 </div>
 
@@ -95,29 +99,29 @@ PHI safeguarding, auditability, fallback to human, traceable evals.
 
 | ID | Requirement |
 |---|---|
-| R1 | Answer benefits questions grounded in current plan documents with inline citations to the document and section. |
-| R2 | Return a ranked provider-directory result given member location, specialty, and in-network status; show why each provider was ranked. |
-| R3 | Resolve claim-status questions sourced from the adjudication store (read-only), surfacing the same numbers the back-office sees. |
-| R4 | Extract structured fields from an Explanation-of-Benefits (EOB) document and explain each charge in plain English. |
-| R5 | Score every response on **groundedness**, **relevance**, **latency**, and **PHI leakage**; expose a dashboard the compliance team can audit. |
-| R6 | Hand off to a human agent on low-confidence answers, with the full conversation trace pre-loaded. |
+| R1 | Natural-language search over the live product catalog returns relevant items even when query terms and product copy share no overlapping vocabulary. |
+| R2 | A grounded chat assistant answers "which product should I buy for …?" questions, citing the product pages it used and refusing when it lacks evidence. |
+| R3 | Buyer-guide content (sizing, materials, returns policy) is searchable in the same index as products, with the same hybrid + semantic ranking. |
+| R4 | Filters and facets (category, price band, in-stock) work alongside relevance ranking, not against it. |
+| R5 | Every response is scored on **groundedness**, **answer relevance**, **retrieval recall**, and **latency**; a scorecard is visible to the team on every PR. |
+| R6 | Low-confidence answers route to a human associate, with the full chat trace pre-loaded. |
 
 ### Success criteria (observable in the room)
 
 1. Each persona names which demo covers which requirement without a cheat sheet.
-2. Compliance can articulate the PHI safeguards in their own words.
+2. Responsible-AI lead can articulate the groundedness check in their own words.
 3. Architecture team agrees the design is not vendor-locked.
-4. VP Member Services commits to a 30-day pilot with two named call-centre agents.
-5. The roadmap slide gets at least one concrete edit from the room.
+4. VP Digital Commerce commits to a 30-day pilot on 5% of search traffic.
+5. The 30/60/90 roadmap slide gets at least one concrete edit from the room.
 
 ### Constraints / out of scope
 
-- No real PHI. Synthetic data only.
+- No real PII. Synthetic catalog and synthetic logs only.
 - Demos must run **offline** during the executive read-out.
-- Read-only for v1 — nothing is written back to the claims system.
+- Read-only for v1 — nothing writes back to the catalog or order system.
 
 Full source:
-[`samples/northwind-memberassist-workshop/customer-scenario.md`](https://github.com/pedro-pauletti/csa-workshop-builder/tree/main/samples/northwind-memberassist-workshop)
+[`samples/contoso-outdoor-search-workshop/customer-scenario.md`](https://github.com/pedro-pauletti/csa-workshop-builder/tree/main/samples/contoso-outdoor-search-workshop)
 
 <div class="tips" markdown>
 **Scenario writing tips**
@@ -151,7 +155,7 @@ Full source:
 
 ## Next step
 
-Continue to **[3. SKILL.md for Northwind](04-create-skill.md)** — where you
+Continue to **[3. SKILL.md for Contoso Outdoor](04-create-skill.md)** — where you
 turn this scenario into a contract Copilot follows when scaffolding the app.
 
-<div class="module-step"><span class="pill">Module 2 of 12</span> Northwind scenario captured. Next: the SKILL contract.</div>
+<div class="module-step"><span class="pill">Module 2 of 12</span> Contoso Outdoor scenario captured. Next: the SKILL contract.</div>

@@ -1,4 +1,4 @@
-# Copilot prompts — Northwind MemberAssist
+# Copilot prompts — Contoso Outdoor Search
 
 Six prompts. Use in order. Run each in a **fresh chat** so context from
 prior turns does not bleed in.
@@ -11,7 +11,7 @@ prior turns does not bleed in.
 Read SKILL.md, agenda.md, and customer-scenario.md.
 
 Goal: produce an implementation plan (no code yet) for the first runnable
-version of the Northwind MemberAssist workshop web app.
+version of the Contoso Outdoor Search workshop web app.
 
 The plan must:
 - List every file you will create with a one-line purpose.
@@ -53,14 +53,14 @@ Now generate the remaining 8 section sub-apps. For each section:
 After generation, /healthz must report sections_loaded=9.
 ```
 
-## 4. Customize for Northwind branding
+## 4. Customize for Contoso Outdoor branding
 
 ```text
-Customize the generic look for Northwind:
+Customize the generic look for Contoso Outdoor:
 
 - Primary colour #0B5394, accent #F4B400.
 - Replace the placeholder home headline with:
-  "MemberAssist — grounded answers for Northwind members."
+  "Search — grounded answers for Contoso Outdoor members."
 - Add a top-bar badge "Synthetic data — no PHI" that is always visible.
 - Add a "Human handoff" button in the chat and workflow demos that opens
   a modal showing the full trace and a fake "agent paged" toast.

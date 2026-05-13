@@ -1,8 +1,8 @@
-# Customer scenario — Northwind Health "MemberAssist"
+# Customer scenario — Contoso Outdoor Health "Search"
 
 ## Customer
 
-**Northwind Health** (fictional). A mid-sized US regional health plan
+**Contoso Outdoor Health** (fictional). A mid-sized US regional health plan
 serving ~1.2M members across employer-sponsored and individual products.
 
 ## Engagement context
@@ -11,10 +11,10 @@ Member-services call centre handles ~22k calls/week. Top three drivers:
 benefits-coverage questions (38%), claim-status questions (29%), provider
 search (14%). Average handle time 7m12s. First-call resolution 64%.
 
-The Northwind innovation team has approved a 90-day pilot of a "member
+The Contoso Outdoor innovation team has approved a 90-day pilot of a "member
 copilot" that augments call-centre agents and (later) self-service. The
 workshop is the kickoff — the goal is to align member-services, claims
-operations, plan architects, and compliance on what *MemberAssist* will and
+operations, plan architects, and compliance on what *Search* will and
 will not do, and to socialize a credible architecture.
 
 ## Audience

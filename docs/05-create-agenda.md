@@ -1,8 +1,8 @@
-# 4. agenda.md for Northwind
+# 4. agenda.md for Contoso Outdoor
 
 ## Goal
 
-Write the **`agenda.md`** for Northwind MemberAssist. This single file becomes
+Write the **`agenda.md`** for Contoso Outdoor Search. This single file becomes
 the source of truth for the workshop app's sidebar, sections, and routing.
 Adding a section to the live demo is editing one line here.
 
@@ -83,7 +83,7 @@ agenda.md  ─────► agenda_loader.py ─────► dynamic sideba
 
 ![Dynamic sidebar generated from agenda.md](assets/images/sidebar.svg){ .screenshot }
 
-## Northwind agenda (6 items, matches the live demo)
+## Contoso Outdoor agenda (6 items, matches the live demo)
 
 The published [live demo](../demo/) sidebar comes from exactly this file:
 
@@ -95,7 +95,7 @@ The published [live demo](../demo/) sidebar comes from exactly this file:
 - Provider Search: Filterable in-network directory by specialty, ZIP, and accepting-new-patients.
 - EOB Document Extraction: Paste an Explanation of Benefits; extract structured fields and explain each line.
 - Evaluation Scorecard: Groundedness, relevance, latency, and PHI-leak gauge on a fixed test set.
-- Roadmap & Next Steps: Pilot scope, out-of-scope items, 30/60/90 plan, and asks of Northwind.
+- Roadmap & Next Steps: Pilot scope, out-of-scope items, 30/60/90 plan, and asks of Contoso Outdoor.
 ```
 
 Generated route table:
@@ -110,11 +110,11 @@ Generated route table:
 | Roadmap & Next Steps | `roadmap_next_steps` | `/sections/roadmap_next_steps` | `fa-solid fa-route` |
 
 !!! tip "Want a longer agenda?"
-    The Northwind kickoff agenda above is **demo-dense** on purpose — the live
+    The Contoso Outdoor kickoff agenda above is **demo-dense** on purpose — the live
     static demo only renders demos. For a real half-day workshop you typically
     open with 2–3 context items before the demos and close with 1–2 wrap-up
     items. The longer version lives in
-    [`samples/northwind-memberassist-workshop/agenda.md`](https://github.com/pedro-pauletti/csa-workshop-builder/tree/main/samples/northwind-memberassist-workshop/agenda.md).
+    [`samples/contoso-outdoor-search-workshop/agenda.md`](https://github.com/pedro-pauletti/csa-workshop-builder/tree/main/samples/contoso-outdoor-search-workshop/agenda.md).
 
 <div class="tips" markdown>
 **Agenda tips**

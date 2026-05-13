@@ -1,5 +1,5 @@
-site_name: How CSAs create engaging workshops tailored to customer use cases
-site_description: An accelerator for generating customer-specific interactive workshop web apps with GitHub Copilot
+site_name: CSA Workshop Builder
+site_description: How CSAs create engaging workshops tailored to customer use cases — an accelerator for generating customer-specific interactive workshop web apps with GitHub Copilot
 site_url: https://pedro-pauletti.github.io/csa-workshop-builder/
 
 repo_name: pedro-pauletti/csa-workshop-builder
@@ -49,11 +49,11 @@ nav:
   - Introduction: index.md
   - Live demo ↗: https://pedro-pauletti.github.io/csa-workshop-builder/demo/
   - Fast path — generate your first workshop app: 00-fast-path.md
-  - Build Northwind MemberAssist end-to-end:
+  - Build the Contoso Outdoor workshop end-to-end:
     - 1. Accelerator pattern: 02-design-principles.md
-    - 2. Customer scenario (Northwind): 03-customer-scenario.md
-    - 3. SKILL.md for Northwind: 04-create-skill.md
-    - 4. agenda.md for Northwind: 05-create-agenda.md
+    - 2. Customer scenario (Contoso Outdoor): 03-customer-scenario.md
+    - 3. SKILL.md for Contoso Outdoor: 04-create-skill.md
+    - 4. agenda.md for Contoso Outdoor: 05-create-agenda.md
     - 5. Plan with Copilot: 06-copilot-plan.md
     - 6. Generate the web app: 07-generate-web-app.md
     - 7. Run locally: 11-run-locally.md
@@ -87,6 +87,9 @@ markdown_extensions:
       alternate_style: true
   - pymdownx.tasklist:
       custom_checkbox: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
 
 extra:
   social:

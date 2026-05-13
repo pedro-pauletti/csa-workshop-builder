@@ -1,18 +1,18 @@
 ---
 name: workshop-creation
 description: |
-  Generate and maintain the Northwind MemberAssist workshop web app from
+  Generate and maintain the Contoso Outdoor Search workshop web app from
   agenda.md and the scenario. Produces a FastAPI + Jinja2 single-page
   workshop with five mock demos (chat, search, workflow, document analysis,
   evaluation) and presenter-ready content per agenda item.
 license: MIT
 metadata:
-  author: Northwind CSA team (fictional)
+  author: Contoso Outdoor CSA team (fictional)
   version: 1.0.0
   basedOn: csa-workshop-builder / customer-workshop-app-template
 ---
 
-# Skill: Workshop creation — Northwind MemberAssist
+# Skill: Workshop creation — Contoso Outdoor Search
 
 This SKILL.md is the contract between the engagement team and GitHub Copilot.
 Anything Copilot generates for this repository must satisfy the rules below.
@@ -24,7 +24,7 @@ Use this skill whenever a contributor asks Copilot to:
 
 - Scaffold or regenerate the workshop web app.
 - Add a new section, demo, or presenter-note block.
-- Customize content or visuals for the Northwind engagement.
+- Customize content or visuals for the Contoso Outdoor engagement.
 - Refactor agenda → sidebar → routes wiring.
 
 ## Inputs
@@ -82,7 +82,7 @@ A FastAPI app under `src/app/webApp/app/` with:
 - No JS framework. Vanilla ES2022.
 - No CSS framework. CSS custom properties + 1 stylesheet.
 
-## Compliance rules (Northwind-specific)
+## Compliance rules (Contoso Outdoor-specific)
 
 - **No real PHI.** All members, claims, providers, EOBs are synthetic.
 - **PHI-leak evaluation gauge** is mandatory in the evaluation demo.

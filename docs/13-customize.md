@@ -1,7 +1,7 @@
 # 13. Customize for your customer or product
 
-You finished modules 1–12 and have a working Northwind MemberAssist tutorial
-+ live demo. **This is the only module where you replace Northwind with a
+You finished modules 1–12 and have a working Contoso Outdoor Search tutorial
++ live demo. **This is the only module where you replace Contoso Outdoor with a
 different customer or Microsoft product.** Everything you learned still
 applies — only the *content* changes.
 
@@ -53,7 +53,7 @@ new agenda starting point.
 | Engagement vibe | Palette (module 10) |
 |---|---|
 | Generic AI / Foundry | **Foundry Violet** (template default) |
-| Healthcare / member services | **Northwind Teal** |
+| Healthcare / member services | **Contoso Outdoor Teal** |
 | Data engineering / Fabric | **Fabric Indigo** |
 | Classic Azure / Infra | **Azure Blue** |
 | Retail / FSI / FMCG | **Citrus Orange** |
@@ -67,7 +67,7 @@ metadata:
 
 ## Step-by-step (per new engagement)
 
-1. Copy `samples/northwind-memberassist-workshop/` to
+1. Copy `samples/contoso-outdoor-search-workshop/` to
    `samples/<your-engagement>-workshop/`.
 2. Open the new folder and rewrite `customer-scenario.md` from scratch
    (module 2).
@@ -85,11 +85,11 @@ metadata:
 ## Copilot prompt — adapt to new engagement
 
 ```text
-I'm adapting this workshop from Northwind MemberAssist (healthcare) to
+I'm adapting this workshop from Contoso Outdoor Search (healthcare) to
 <new customer> (<product>).
 
 Read:
-- The previous samples/northwind-memberassist-workshop/
+- The previous samples/contoso-outdoor-search-workshop/
 - The new samples/<engagement>/customer-scenario.md
 - The new samples/<engagement>/agenda.md
 
@@ -104,14 +104,14 @@ Then output:
 Do not write code yet. Output a plan I will approve first.
 ```
 
-## Worked diff — Northwind → "Contoso Telecom Customer Service"
+## Worked diff — Contoso Outdoor → "Contoso Telecom Customer Service"
 
 Same scaffold, different industry. Concrete file-level diff:
 
-| File | Northwind | Contoso Telecom |
+| File | Contoso Outdoor | Contoso Telecom |
 |---|---|---|
 | `customer-scenario.md` | 6 reqs, 4 personas (healthcare) | 5 reqs, 3 personas (telco support) |
-| `SKILL.md` frontmatter `theme` | `northwind-teal` | `foundry-violet` |
+| `SKILL.md` frontmatter `theme` | `Contoso Outdoor-teal` | `foundry-violet` |
 | `SKILL.md` Compliance | PHI rules | PII + call recording opt-in |
 | `agenda.md` | Coverage Lookup, Claim Status, Provider Search, EOB Extract, Eval, Roadmap | KB Search, Case Triage, Agent Assist, Call Summary, Eval, Roadmap |
 | `data/coverage.json` | benefits Q&A | KB grounded answer |
@@ -119,7 +119,7 @@ Same scaffold, different industry. Concrete file-level diff:
 | `data/providers.json` | provider directory | technician dispatch |
 | `data/eob.json` | EOB extraction | invoice extraction |
 | `data/eval.json` | + PHI-leak gauge | + escalation-precision gauge |
-| `static/themes/*.css` | `northwind-teal.css` active | `foundry-violet.css` active |
+| `static/themes/*.css` | `Contoso Outdoor-teal.css` active | `foundry-violet.css` active |
 
 Effort: roughly **one CSA-day** end-to-end (excluding `/plan` and
 code-generation). The most time-consuming file is the `data/*.json` set —
@@ -138,7 +138,7 @@ realism is what sells.
     Nowhere else.
 
 !!! danger "Five-palette mixing"
-    Pick **one** palette per engagement. Mixing Northwind Teal headers
+    Pick **one** palette per engagement. Mixing Contoso Outdoor Teal headers
     with Citrus Orange buttons reads as "intern week project" no matter
     how good the demos are.
 
@@ -149,7 +149,7 @@ realism is what sells.
 
 ## The reuse playbook (one paragraph)
 
-Fork the Northwind folder. Rewrite scenario, agenda, and SKILL frontmatter.
+Fork the Contoso Outdoor folder. Rewrite scenario, agenda, and SKILL frontmatter.
 Re-run `/plan`. Regenerate only the changed sections. Replace the JSON. Pick
 a palette. Run module 12's checklist. Publish. You're done — that's the
 entire customization protocol.

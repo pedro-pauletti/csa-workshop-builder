@@ -35,6 +35,43 @@
     case.
   </p>
 
+  <div class="diagram">
+    <div class="diagram__title"><i class="fa-solid fa-layer-group"></i> Two-stage ranking pipeline</div>
+    <svg viewBox="0 0 880 220" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="arrow4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" class="d-arrow-head" />
+        </marker>
+      </defs>
+
+      <rect x="20"  y="80" width="160" height="60" rx="10" class="d-box-fill" stroke="var(--border-strong)" stroke-width="1.5" />
+      <text x="100" y="106" text-anchor="middle" font-size="13" font-weight="700" class="d-box-label">Query</text>
+      <text x="100" y="124" text-anchor="middle" font-size="11" class="d-box-label-sub">"3-season tent under 2 kg"</text>
+
+      <rect x="210" y="80" width="170" height="60" rx="10" class="d-azure-fill" stroke="var(--azure-500)" stroke-width="1.5" />
+      <text x="295" y="106" text-anchor="middle" font-size="13" font-weight="700" class="d-box-label">L1 — Hybrid retrieval</text>
+      <text x="295" y="124" text-anchor="middle" font-size="11" class="d-box-label-sub">top-50 by BM25 + vector</text>
+
+      <rect x="410" y="80" width="190" height="60" rx="10" class="d-accent-fill" stroke="var(--violet-500)" stroke-width="2" />
+      <text x="505" y="106" text-anchor="middle" font-size="13" font-weight="700" class="d-box-label">L2 — Semantic ranker</text>
+      <text x="505" y="124" text-anchor="middle" font-size="11" class="d-box-label-sub">cross-encoder, 0–4 score</text>
+
+      <rect x="630" y="40" width="220" height="60" rx="10" class="d-box-fill" stroke="var(--violet-500)" stroke-width="2" />
+      <text x="740" y="65" text-anchor="middle" font-size="13" font-weight="700" class="d-box-label">Semantic captions</text>
+      <text x="740" y="84" text-anchor="middle" font-size="11" class="d-box-label-sub">highlighted snippet per doc</text>
+
+      <rect x="630" y="120" width="220" height="60" rx="10" class="d-box-fill" stroke="var(--violet-500)" stroke-width="2" />
+      <text x="740" y="145" text-anchor="middle" font-size="13" font-weight="700" class="d-box-label">Extractive answer</text>
+      <text x="740" y="164" text-anchor="middle" font-size="11" class="d-box-label-sub">if confidence ≥ threshold</text>
+
+      <path d="M182,110 L208,110" class="d-arrow" stroke-width="2" marker-end="url(#arrow4)" />
+      <path d="M382,110 L408,110" class="d-arrow" stroke-width="2" marker-end="url(#arrow4)" />
+      <path d="M602,108 L628,70"  class="d-arrow" stroke-width="2" marker-end="url(#arrow4)" />
+      <path d="M602,114 L628,150" class="d-arrow" stroke-width="2" marker-end="url(#arrow4)" />
+    </svg>
+    <p class="diagram__caption">L1 finds 50 plausible candidates fast and cheap; L2 reorders them with a much more expensive model that has seen the query and the documents.</p>
+  </div>
+
   <div class="refs">
     <div class="refs__label">Official Microsoft Learn references</div>
     <ul>

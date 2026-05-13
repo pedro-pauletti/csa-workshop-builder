@@ -1,8 +1,8 @@
-# 9. Interactive demos — Northwind mocks
+# 9. Interactive demos — Contoso Outdoor mocks
 
 ## Goal
 
-Replace each Northwind section's demo placeholder with an **embedded, working
+Replace each Contoso Outdoor section's demo placeholder with an **embedded, working
 interactive component** powered by local JSON — the same mocks you can see in
 action under [`docs/demo/`](../demo/).
 
@@ -143,9 +143,9 @@ Every demo placeholder now renders a working, mocked interactive component.
 }
 ```
 
-## Worked example — Northwind variants
+## Worked example — Contoso Outdoor variants
 
-Each demo type customized to the Northwind member-services scenario. Drop
+Each demo type customized to the Contoso Outdoor member-services scenario. Drop
 these in `data/*.json` and the section sub-apps render against them
 unchanged.
 
@@ -159,10 +159,10 @@ unchanged.
     { "role": "member",
       "text": "Is a colonoscopy covered if I'm 42 and my doctor recommends it?" },
     { "role": "assistant",
-      "text": "Yes. Your Northwind Choice PPO plan covers screening colonoscopies starting at age 40 when ordered by an in-network provider. Your cost share is $0 for the screening itself; sedation and pathology may be billed separately under the diagnostic benefit.",
+      "text": "Yes. Your Contoso Outdoor Choice PPO plan covers screening colonoscopies starting at age 40 when ordered by an in-network provider. Your cost share is $0 for the screening itself; sedation and pathology may be billed separately under the diagnostic benefit.",
       "confidence": 0.91,
       "citations": [
-        {"doc": "Northwind Choice PPO 2025 Summary of Benefits", "section": "Preventive services", "page": 7},
+        {"doc": "Contoso Outdoor Choice PPO 2025 Summary of Benefits", "section": "Preventive services", "page": 7},
         {"doc": "Member Handbook 2025", "section": "Diagnostic vs. screening procedures", "page": 33}
       ]
     }
@@ -177,7 +177,7 @@ unchanged.
 
 ### Search — provider directory ranking
 
-![Northwind provider search ranking](assets/images/demo-search.svg){ .screenshot }
+![Contoso Outdoor provider search ranking](assets/images/demo-search.svg){ .screenshot }
 
 Top result includes ranking signals (`distance`, `in_network`,
 `specialty_match`, `patient_satisfaction`, `wait_time_days`) so the
@@ -188,7 +188,7 @@ loves this.
 
 ### Workflow — claim-status timeline (hero demo)
 
-![Northwind claim-status timeline](assets/images/northwind-claim-workflow.svg){ .screenshot }
+![Contoso Outdoor claim-status timeline](assets/images/contoso-outdoor-claim-workflow.svg){ .screenshot }
 
 Five canonical states with the source-system badge per step. The failure
 path (`PEND-COB-001`) freezes at "validated" and surfaces a human-handoff
@@ -196,7 +196,7 @@ CTA with the trace pre-loaded.
 
 ### Document analysis — EOB extraction
 
-![Northwind EOB extraction](assets/images/northwind-eob-extract.svg){ .screenshot }
+![Contoso Outdoor EOB extraction](assets/images/contoso-outdoor-eob-extract.svg){ .screenshot }
 
 Drag-and-drop an EOB PDF; the app extracts 21 fields and produces a
 plain-English explanation written for member literacy. Failure path:
@@ -205,7 +205,7 @@ falls back to raw OCR + member-services verification.
 
 ### Evaluation — scorecard with PHI-leak gauge
 
-![Northwind evaluation dashboard](assets/images/northwind-eval-scorecard.svg){ .screenshot }
+![Contoso Outdoor evaluation dashboard](assets/images/contoso-outdoor-eval-scorecard.svg){ .screenshot }
 
 Five scorecards including the **PHI-leak gauge** (intentionally in *warn*
 state in the sample data). Walk EVAL-INC-2025-031 from incident → cause
@@ -213,7 +213,7 @@ state in the sample data). Walk EVAL-INC-2025-031 from incident → cause
 demo compliance audits in real engagements.
 
 Full mock-data files:
-[`samples/northwind-memberassist-workshop/data/`](https://github.com/pedro-pauletti/csa-workshop-builder/tree/main/samples/northwind-memberassist-workshop/data)
+[`samples/contoso-outdoor-search-workshop/data/`](https://github.com/pedro-pauletti/csa-workshop-builder/tree/main/samples/contoso-outdoor-search-workshop/data)
 
 ## Advanced pattern — real-Azure extension
 

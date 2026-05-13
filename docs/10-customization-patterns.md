@@ -2,7 +2,7 @@
 
 ## Goal
 
-Apply a coherent **visual identity** to the Northwind app — colors,
+Apply a coherent **visual identity** to the Contoso Outdoor app — colors,
 typography, iconography, layout chrome — and make it trivial to switch identity
 for the next customer in module 13.
 
@@ -15,7 +15,7 @@ piece of reuse: keep it stable, swap palette tokens per customer.
 
 ## Inputs
 
-- The Northwind app from modules 6–9.
+- The Contoso Outdoor app from modules 6–9.
 - The `## Design System & Color Schemes` section of your `SKILL.md`.
 - One brand reference from the customer (logo, hero color, type pair).
 
@@ -27,7 +27,7 @@ makes the theme swappable.
 
 ```css
 :root {
-  /* Northwind Teal — current customer theme */
+  /* Contoso Outdoor Teal — current customer theme */
   --primary-500: #14b8a6;
   --primary-600: #0e7c86;
   --accent-500:  #a855f7;  /* Foundry violet accent kept for highlights */
@@ -62,13 +62,13 @@ The same button shipped to the next customer changes one file
 ## Named palettes shipped with the template
 
 The `SKILL.template.md` (module 3) ships five named palettes ready to drop in.
-For Northwind we use **Northwind Teal** with the **Foundry Violet** accent as
+For Contoso Outdoor we use **Contoso Outdoor Teal** with the **Foundry Violet** accent as
 the highlight color — this matches the [live demo](../demo/).
 
 | Palette name | Primary | Accent | Best for |
 |---|---|---|---|
 | **Foundry Violet** (template default) | `#a855f7` | `#ec4899` | Azure AI Foundry, generic AI demos. |
-| **Northwind Teal** *(this workshop)* | `#14b8a6` | `#a855f7` | Healthcare, member services, anything teal-branded. |
+| **Contoso Outdoor Teal** *(this workshop)* | `#14b8a6` | `#a855f7` | Healthcare, member services, anything teal-branded. |
 | **Fabric Indigo** | `#6366f1` | `#22d3ee` | Microsoft Fabric, data engineering. |
 | **Azure Blue** | `#0078d4` | `#50e6ff` | Classic Azure / Infra customer. |
 | **Citrus Orange** | `#f97316` | `#22c55e` | Retail, FSI, anything that wants warmth. |
@@ -76,8 +76,8 @@ the highlight color — this matches the [live demo](../demo/).
 ## Step-by-step
 
 1. Open the `## Design System & Color Schemes` block in your SKILL.md.
-2. Set `theme: northwind-teal` in the frontmatter `metadata`.
-3. Confirm `static/themes/northwind-teal.css` exists and is `@import`-ed by
+2. Set `theme: Contoso Outdoor-teal` in the frontmatter `metadata`.
+3. Confirm `static/themes/Contoso Outdoor-teal.css` exists and is `@import`-ed by
    `theme.css`.
 4. Add the **single shared `base.html`** (see template). All sections extend
    it — no per-section chrome.
@@ -111,7 +111,7 @@ Return: a diff that fixes any violation. Do not touch logic.
 
 A theme that:
 
-- Reads as Northwind without being garish.
+- Reads as Contoso Outdoor without being garish.
 - Can be swapped to another palette by editing one CSS file.
 - Renders consistently on the projector at the customer site.
 
@@ -123,7 +123,7 @@ A theme that:
 
 !!! danger "Material default blue still showing"
     The Material *tutorial* site uses deep purple (see this docs site).
-    The *workshop app* you generate uses Northwind Teal. Don't confuse the
+    The *workshop app* you generate uses Contoso Outdoor Teal. Don't confuse the
     two: the docs site is **the meta tutorial**, the demo is **the
     deliverable**.
 
@@ -139,7 +139,7 @@ A theme that:
   palette that looks great on your laptop disappears on a customer's
   ceiling projector.
 - The accent color does the heavy social-proof lifting — keep it bold
-  even if the customer's brand is muted. Foundry Violet over Northwind
+  even if the customer's brand is muted. Foundry Violet over Contoso Outdoor
   Teal is the canonical example.
 - Keep `static/themes/<name>.css` files under 80 lines. If you need more,
   you're putting logic in CSS that should be in `theme.css`.
@@ -169,4 +169,4 @@ A theme that:
 
 Continue to **[11. Publish with GitHub Pages](12-publish-github-pages.md)**.
 
-<div class="module-step"><span class="pill">Module 10 of 12</span> Northwind has a coherent visual identity. Next: publish it.</div>
+<div class="module-step"><span class="pill">Module 10 of 12</span> Contoso Outdoor has a coherent visual identity. Next: publish it.</div>

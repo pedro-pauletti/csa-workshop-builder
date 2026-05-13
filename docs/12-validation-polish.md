@@ -2,7 +2,7 @@
 
 ## Goal
 
-Confirm that the Northwind MemberAssist deliverable — local app + sample
+Confirm that the Contoso Outdoor Search deliverable — local app + sample
 artifacts + published live demo + tutorial site — is **workshop-ready** before
 you call the engagement done.
 
@@ -24,10 +24,10 @@ thing" will otherwise cost you.
 ### Artifacts
 
 - [ ] `templates/SKILL.template.md` reflects the latest agreed contract.
-- [ ] `samples/northwind-memberassist-workshop/customer-scenario.md` filled.
-- [ ] `samples/northwind-memberassist-workshop/agenda.md` has the 6 items.
-- [ ] `samples/northwind-memberassist-workshop/.github/skills/workshop-creation/SKILL.md`
-      has `metadata.theme: northwind-teal`.
+- [ ] `samples/contoso-outdoor-search-workshop/customer-scenario.md` filled.
+- [ ] `samples/contoso-outdoor-search-workshop/agenda.md` has the 6 items.
+- [ ] `samples/contoso-outdoor-search-workshop/.github/skills/workshop-creation/SKILL.md`
+      has `metadata.theme: Contoso Outdoor-teal`.
 - [ ] All 5 mock JSON files exist under `data/`.
 
 ### Local app
@@ -42,7 +42,7 @@ thing" will otherwise cost you.
 ### Live demo (`/demo/`)
 
 - [ ] [Live demo](../demo/) loads.
-- [ ] Sidebar lists the 6 Northwind items + Home.
+- [ ] Sidebar lists the 6 Contoso Outdoor items + Home.
 - [ ] Coverage Lookup answers the seeded prompts.
 - [ ] Claim Status form returns a claim and timeline.
 - [ ] Provider Search filters by specialty + ZIP.
@@ -55,13 +55,13 @@ thing" will otherwise cost you.
 - [ ] `mkdocs build --strict` exits 0.
 - [ ] Every internal link resolves (no `14-worked-example.md`,
       no `13-reuse-scale.md` left).
-- [ ] The top-nav **Live demo ↗** opens the working Northwind app.
+- [ ] The top-nav **Live demo ↗** opens the working Contoso Outdoor app.
 - [ ] Module footers all show the right `Module N of 12` pill.
 
 ### Content / brand
 
 - [ ] No real PHI anywhere.
-- [ ] Customer name (Northwind) appears only in scenario file + one
+- [ ] Customer name (Contoso Outdoor) appears only in scenario file + one
       template variable — not hard-coded in components.
 - [ ] All citations point to fictional plan documents.
 - [ ] The "synthetic data" badge is visible on every demo.
@@ -125,8 +125,8 @@ copy-pasteable.
 
 ## Next step
 
-The Northwind deliverable is done. Continue to
+The Contoso Outdoor deliverable is done. Continue to
 **[13. Customize for your customer or product](13-customize.md)** when you're
-ready to swap Northwind out for a different engagement.
+ready to swap Contoso Outdoor out for a different engagement.
 
-<div class="module-step"><span class="pill">Module 12 of 12 ✓</span> Northwind MemberAssist is workshop-ready. End-to-end deliverable complete.</div>
+<div class="module-step"><span class="pill">Module 12 of 12 ✓</span> Contoso Outdoor Search is workshop-ready. End-to-end deliverable complete.</div>

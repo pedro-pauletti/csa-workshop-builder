@@ -1,4 +1,4 @@
-# Presenter notes — Northwind MemberAssist
+# Presenter notes — Contoso Outdoor Search
 
 One block per agenda item. Read these the morning of, not the night before.
 
@@ -19,7 +19,7 @@ One block per agenda item. Read these the morning of, not the night before.
 - Park the architecture conversation. If Hana raises it here, say
   "Architecture lives in section 6 — let's hold it."
 
-## 3. The MemberAssist concept
+## 3. The Search concept
 
 - Four pillars, one slide each: **grounding · citations · human-in-the-
   loop · PHI promise**. Do not add a fifth.

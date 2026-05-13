@@ -1,8 +1,8 @@
-# 7. Run Northwind locally
+# 7. Run Contoso Outdoor locally
 
 ## Goal
 
-Run the Northwind MemberAssist app generated in module 6 on the CSA's laptop in
+Run the Contoso Outdoor Search app generated in module 6 on the CSA's laptop in
 a single command. After this module, `http://localhost:8080` shows the same six
 sections rendered in the [live demo](../demo/).
 
@@ -157,4 +157,4 @@ set → real**. No feature flags, no code paths to maintain.
 
 Continue to **[8. Add explanatory sections](08-explanatory-sections.md)**.
 
-<div class="module-step"><span class="pill">Module 7 of 12</span> Northwind app runs locally. Next: enrich the six sections with content.</div>
+<div class="module-step"><span class="pill">Module 7 of 12</span> Contoso Outdoor app runs locally. Next: enrich the six sections with content.</div>

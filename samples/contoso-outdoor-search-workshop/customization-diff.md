@@ -1,19 +1,19 @@
-# Customization diff — generic-ai-workshop → northwind-memberassist-workshop
+# Customization diff — generic-ai-workshop → contoso-outdoor-search-workshop
 
 This file documents what we changed when we forked
-`samples/generic-ai-workshop/` into `samples/northwind-memberassist-workshop/`.
+`samples/generic-ai-workshop/` into `samples/contoso-outdoor-search-workshop/`.
 The next CSA who retargets this for a different customer should update
 this file in the new repo.
 
 ## Summary
 
-| Dimension | Generic | Northwind |
+| Dimension | Generic | Contoso Outdoor |
 |---|---|---|
 | Domain | "Generic AI workshop" | US health-plan member services |
 | Audience | Generic exec / architect / dev | VP Member Services, Director Claims Ops, Plan Architect, Compliance Officer |
 | Demos | 5 generic | 5 same shapes, member-services data |
 | Compliance dimension | Mentioned | First-class (PHI-leak gauge, redaction rules, handoff) |
-| Branding | Neutral | Northwind colours #0B5394 / #F4B400, "Synthetic data — no PHI" badge |
+| Branding | Neutral | Contoso Outdoor colours #0B5394 / #F4B400, "Synthetic data — no PHI" badge |
 | Section count | 9 | 9 |
 | New files | — | `data/*.json` (5), `sections/demo-3-claim-status.md`, `presenter-notes.md`, `customization-diff.md` |
 
@@ -21,14 +21,14 @@ this file in the new repo.
 
 ### `customer-scenario.md` — full rewrite
 
-- Added Northwind operational numbers (22k calls/week, 7m12s AHT, 64% FCR).
+- Added Contoso Outdoor operational numbers (22k calls/week, 7m12s AHT, 64% FCR).
 - Replaced generic personas with named people: Rosa, Marcus, Hana, Daniel.
 - Rewrote requirements R1–R6 in member-services language.
 - Added compliance constraints (no real PHI, offline rehearsal, "human always wins").
 
 ### `.github/skills/workshop-creation/SKILL.md` — extended
 
-- Added `## Compliance rules (Northwind-specific)` section with PHI-leak
+- Added `## Compliance rules (Contoso Outdoor-specific)` section with PHI-leak
   gauge, human-handoff visibility, citation requirement.
 - Added two new push-backs (refuse real claim numbers, refuse to skip the
   evaluation demo).
@@ -45,7 +45,7 @@ this file in the new repo.
 
 ### `prompts.md` — three new prompts
 
-- Prompt #4 added Northwind branding instructions and the "Synthetic
+- Prompt #4 added Contoso Outdoor branding instructions and the "Synthetic
   data — no PHI" badge requirement.
 - Prompt #5 (Flask push-back) reused verbatim.
 - Prompt #6 (sidebar push-back) reused verbatim.
@@ -76,7 +76,7 @@ One block per agenda item.
 - The `agenda.md` heading anchor.
 - The per-section sub-app convention (`MENU_TITLE`, `MENU_ICON`,
   auto-discovery).
-- The mock-only rule. Northwind v1 has zero real Azure calls.
+- The mock-only rule. Contoso Outdoor v1 has zero real Azure calls.
 
 ## Effort
 

@@ -1,9 +1,9 @@
-# 6. Generate the Northwind web app
+# 6. Generate the Contoso Outdoor web app
 
 ## Goal
 
-Turn the approved `/plan` into a working FastAPI/Jinja2/Docker **Northwind
-MemberAssist** app skeleton — the same shape rendered by the
+Turn the approved `/plan` into a working FastAPI/Jinja2/Docker **Contoso Outdoor
+Search** app skeleton — the same shape rendered by the
 [live demo](../demo/).
 
 ## Why it matters
@@ -88,7 +88,7 @@ src/app/webApp/app/
     └── roadmap_next_steps/
 ```
 
-![Per-section folder tree (Northwind)](assets/images/northwind-folder-tree.svg){ .screenshot }
+![Per-section folder tree (Contoso Outdoor)](assets/images/contoso-outdoor-folder-tree.svg){ .screenshot }
 
 ### Reference `agenda_loader.py` (excerpt)
 
@@ -330,4 +330,4 @@ first mock with a real call.
 
 Continue to **[7. Run locally with Docker Compose](11-run-locally.md)**.
 
-<div class="module-step"><span class="pill">Module 6 of 12</span> Northwind skeleton generated. Next: run it locally.</div>
+<div class="module-step"><span class="pill">Module 6 of 12</span> Contoso Outdoor skeleton generated. Next: run it locally.</div>

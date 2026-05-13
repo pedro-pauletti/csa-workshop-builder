@@ -2,10 +2,10 @@
 
 ## Goal
 
-Publish **this tutorial site and the Northwind live demo** (which lives at
+Publish **this tutorial site and the Contoso Outdoor live demo** (which lives at
 `docs/demo/`) to **GitHub Pages** in a single workflow run. After this module,
 the CSA reading the tutorial can click *Live demo ↗* in the top nav and see
-the finished Northwind app rendered on the same GitHub Pages site.
+the finished Contoso Outdoor app rendered on the same GitHub Pages site.
 
 ## Why it matters
 
@@ -150,7 +150,7 @@ runs.
   Deploy to the one with Pages enabled.
 </div>
 
-## How the static Northwind demo gets published
+## How the static Contoso Outdoor demo gets published
 
 MkDocs copies **every non-`.md` file under `docs/`** into the built site
 verbatim. That's how `docs/demo/index.html` plus its `css/`, `js/`,
@@ -163,7 +163,7 @@ docs/
 ├── index.md                  → /
 ├── 00-fast-path.md           → /00-fast-path/
 ├── demo/
-│   ├── index.html            → /demo/                  (the Northwind app)
+│   ├── index.html            → /demo/                  (the Contoso Outdoor app)
 │   ├── css/styles.css        → /demo/css/styles.css
 │   ├── js/app.js             → /demo/js/app.js
 │   ├── data/*.json           → /demo/data/*.json
@@ -177,4 +177,4 @@ reader can open it from any page.
 
 Continue to **[12. Validation & polish](12-validation-polish.md)**.
 
-<div class="module-step"><span class="pill">Module 11 of 12</span> Northwind tutorial + demo are live. Next: final polish.</div>
+<div class="module-step"><span class="pill">Module 11 of 12</span> Contoso Outdoor tutorial + demo are live. Next: final polish.</div>

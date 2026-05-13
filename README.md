@@ -6,7 +6,7 @@ driven by a `SKILL.md` + `agenda.md` pattern.
 
 This repository **is the tutorial** and **also publishes a running worked
 example**. The tutorial site is built with **MkDocs Material**; the worked
-example — **Northwind MemberAssist**, a fictional health-plan member-services
+example — **Contoso Outdoor Search**, a fictional health-plan member-services
 copilot — ships as a fully static demo under `docs/demo/` and is reachable at
 the same site under `/demo/`.
 
@@ -19,7 +19,7 @@ the same site under `/demo/`.
   app.
 - How to use **GitHub Copilot `/plan`** to plan before implementing.
 - How to add explanatory sections and embedded interactive demos.
-- How to apply a named design system (Foundry Violet / Northwind Teal /
+- How to apply a named design system (Foundry Violet / Contoso Outdoor Teal /
   Fabric Indigo) so customer workshops look coherent without bespoke design.
 - How to run locally with Docker Compose and publish the tutorial + live demo
   to GitHub Pages.
@@ -28,10 +28,10 @@ the same site under `/demo/`.
 
 ## The shape of the tutorial
 
-- **Modules 1 → 12** build Northwind MemberAssist end-to-end. Each module
+- **Modules 1 → 12** build Contoso Outdoor Search end-to-end. Each module
   produces an artifact the next module consumes; by module 12 you have a
   working, branded, publishable app.
-- **Module 13** is the only module about *swapping Northwind out*. It shows
+- **Module 13** is the only module about *swapping Contoso Outdoor out*. It shows
   the surgical changes — `customer-scenario.md` + `agenda.md` + palette +
   logo — that turn the same scaffolding into a different customer or product
   workshop.
@@ -41,7 +41,7 @@ the same site under `/demo/`.
 ```text
 .
 ├── docs/                         # MkDocs source — the tutorial pages
-│   ├── demo/                     # Static Northwind MemberAssist demo — published at /demo/
+│   ├── demo/                     # Static Contoso Outdoor Search demo — published at /demo/
 │   └── …
 ├── templates/                    # Reusable SKILL / agenda / scenario templates
 │   ├── SKILL.template.md         # Rich Copilot contract (frontmatter + Rules + Design System)
@@ -51,7 +51,7 @@ the same site under `/demo/`.
 │   └── copilot-prompts.md
 ├── samples/
 │   ├── generic-ai-workshop/                   # Canonical generic sample
-│   ├── northwind-memberassist-workshop/       # Worked end-to-end example artifacts
+│   ├── contoso-outdoor-search-workshop/       # Worked end-to-end example artifacts
 │   ├── ai-foundry/                            # Stub
 │   └── fabric/                                # Stub
 ├── assets/                       # Images and Mermaid diagram sources
@@ -73,7 +73,7 @@ pip install -r requirements-docs.txt
 mkdocs serve
 ```
 
-Open <http://127.0.0.1:8000>. The live Northwind MemberAssist demo is at
+Open <http://127.0.0.1:8000>. The live Contoso Outdoor Search demo is at
 <http://127.0.0.1:8000/demo/>.
 
 ## Publish to GitHub Pages
