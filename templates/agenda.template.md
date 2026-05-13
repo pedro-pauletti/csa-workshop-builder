@@ -18,3 +18,39 @@
 - Governance and operations: Show security, secrets handling, logging, observability and fallback strategy.
 - Evaluation and quality: Show test prompts, metrics, traces and response quality assessment.
 - Wrap-up and next steps: Summarize requirement coverage, risks, dependencies and recommended roadmap.
+
+---
+
+## Heading-anchor convention (advanced)
+
+The reference architecture's `agenda_loader.py` only reads bullets that
+appear under a specific heading. This lets you keep prose, screenshots
+and meeting notes anywhere else in `agenda.md` without confusing the
+parser.
+
+The expected heading is:
+
+```text
+### Data to be used by SKILL.md to create the Workshop App
+```
+
+You may rename it, but if you do, update `agenda_loader.py` to match.
+
+## Worked example — Northwind MemberAssist
+
+A filled-in agenda for the Northwind MemberAssist sample (see
+`samples/northwind-memberassist-workshop/agenda.md`):
+
+```text
+### Data to be used by SKILL.md to create the Workshop App
+
+- Welcome and engagement framing: Set the business context for Northwind...
+- Member journeys today: Walk through three real (anonymized) call types...
+- The MemberAssist concept: Introduce the copilot pattern...
+- Demo 1 - Benefits chat: Embedded chat that answers benefits-coverage...
+- Demo 2 - Provider search: Provider-directory search with location...
+- Demo 3 - Claim status: Claim-status resolution with a visual timeline...
+- Demo 4 - EOB document analysis: Drag-and-drop an EOB PDF; the app extracts...
+- Demo 5 - Evaluation dashboard: Scorecards for groundedness, harm, and a PHI-leak gauge...
+- Roadmap and next steps: Co-edit the 30/60/90 plan with the room...
+```

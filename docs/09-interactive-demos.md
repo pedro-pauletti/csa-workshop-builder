@@ -142,6 +142,119 @@ Every demo placeholder now renders a working, mocked interactive component.
 }
 ```
 
+## Worked example — Northwind variants
+
+Each demo type customized to the Northwind member-services scenario. Drop
+these in `data/*.json` and the section sub-apps render against them
+unchanged.
+
+### Chat — grounded benefits Q&A
+
+```json
+{
+  "demo": "Benefits chat",
+  "requirement": "R1",
+  "turns": [
+    { "role": "member",
+      "text": "Is a colonoscopy covered if I'm 42 and my doctor recommends it?" },
+    { "role": "assistant",
+      "text": "Yes. Your Northwind Choice PPO plan covers screening colonoscopies starting at age 40 when ordered by an in-network provider. Your cost share is $0 for the screening itself; sedation and pathology may be billed separately under the diagnostic benefit.",
+      "confidence": 0.91,
+      "citations": [
+        {"doc": "Northwind Choice PPO 2025 Summary of Benefits", "section": "Preventive services", "page": 7},
+        {"doc": "Member Handbook 2025", "section": "Diagnostic vs. screening procedures", "page": 33}
+      ]
+    }
+  ],
+  "failure_case": {
+    "member_text": "How much will my surgery cost next month?",
+    "handoff": true,
+    "assistant_text": "I can't predict surgery cost without the procedure code and provider. I'm handing this to a member-services agent."
+  }
+}
+```
+
+### Search — provider directory ranking
+
+![Northwind provider search ranking](assets/images/demo-search.svg){ .screenshot }
+
+Top result includes ranking signals (`distance`, `in_network`,
+`specialty_match`, `patient_satisfaction`, `wait_time_days`) so the
+audience can see *why* a provider ranked first. The third result is
+intentionally excluded by an `accepts_new_patients=false` rule and only
+appears when the user toggles "include established-only" — compliance
+loves this.
+
+### Workflow — claim-status timeline (hero demo)
+
+![Northwind claim-status timeline](assets/images/northwind-claim-workflow.svg){ .screenshot }
+
+Five canonical states with the source-system badge per step. The failure
+path (`PEND-COB-001`) freezes at "validated" and surfaces a human-handoff
+CTA with the trace pre-loaded.
+
+### Document analysis — EOB extraction
+
+![Northwind EOB extraction](assets/images/northwind-eob-extract.svg){ .screenshot }
+
+Drag-and-drop an EOB PDF; the app extracts 21 fields and produces a
+plain-English explanation written for member literacy. Failure path:
+2019 legacy template falls below the 0.40 layout-match confidence and
+falls back to raw OCR + member-services verification.
+
+### Evaluation — scorecard with PHI-leak gauge
+
+![Northwind evaluation dashboard](assets/images/northwind-eval-scorecard.svg){ .screenshot }
+
+Five scorecards including the **PHI-leak gauge** (intentionally in *warn*
+state in the sample data). Walk EVAL-INC-2025-031 from incident → cause
+(new EOB template) → mitigation (allow-list + retrain). This is the
+demo compliance audits in real engagements.
+
+Full mock-data files:
+[`samples/northwind-memberassist-workshop/data/`](https://github.com/pedro-pauletti/csa-workshop-builder/tree/main/samples/northwind-memberassist-workshop/data)
+
+## Advanced pattern — real-Azure extension
+
+The reference architecture keeps real Azure code out of the workshop app
+itself. Provisioning and configuration live in `infra/scripts/*.ipynb` —
+one notebook per Azure resource. The workshop app *consumes* the
+resources but is not responsible for creating them.
+
+```text
+infra/scripts/
+├── configure_search_index.ipynb        # provision/refresh AI Search index
+├── configure_member_agent.ipynb        # provision Foundry agent + tools
+└── generate_eob_samples.ipynb          # synthesize EOB PDFs for the demo
+```
+
+Why notebooks (not Bicep, not Terraform):
+
+- They are **rerunnable** by a CSA without IaC tooling on the laptop.
+- They produce **artifacts in the chat** (response bodies, IDs) that the
+  CSA pastes into `example.env`.
+- They are **read aloud** in the workshop's "real architecture" section
+  to show the audience what is *actually* provisioned.
+
+The workshop app reads endpoints from environment variables; if a
+variable is unset, the app falls back to the mock in `data/`. This means
+the same code runs offline (mock) and online (real) without flags.
+
+<div class="tips" markdown>
+**Demo tips**
+
+- Realistic-looking sample data buys 90% of perceived quality. Use
+  customer vocabulary; avoid Lorem ipsum and "Customer A".
+- Always show *one* failure case per demo. Audiences trust the system
+  more, not less.
+- Mock latency too — instant returns look fake. 600–1200 ms with a
+  spinner reads as real.
+- Keep the "Synthetic data" badge visible the entire time. Compliance
+  decides in the first 90 seconds whether to trust the rest of the day.
+- Pre-warm any cache before the executive read-out. Cold first
+  extraction looks like a 2-second hang and undoes the previous demo.
+</div>
+
 ## Validation checklist
 
 - [ ] All demos render without external network calls.

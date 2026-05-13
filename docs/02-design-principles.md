@@ -20,10 +20,27 @@ customer engagement.
 
 | Weak workshop | Strong workshop |
 |---|---|
-| "Let me show Azure AI Search." | "Contoso needs trusted answers from internal knowledge; this demo shows retrieval, citations and evaluation against R3." |
-| "Here is a chatbot." | "This chat answers a customer-service scenario, shows sources, and maps to requirement R3 — handling-time reduction." |
-| Live demos with no fallback. | Every live demo has a screenshot + recorded clip fallback. |
-| One narrative aimed at architects. | Dual narrative — 30-second executive framing + technical deep-dive. |
+| "Let me show Azure AI Search." | "Northwind needs grounded benefits answers with citations; this demo shows retrieval, citations and evaluation against R1." |
+| "Here is a chatbot." | "This chat answers a member-services scenario, shows sources, and includes the human-handoff path compliance asked for." |
+| "We score the answers." | "We surface a PHI-leak gauge so compliance can audit drift week over week — currently in warn state and here is the open incident." |
+| Live demos with no fallback. | Every live demo has a screenshot + recorded clip fallback **and** an explicit failure-path demo. |
+| One narrative aimed at architects. | Dual narrative — 30-second executive framing + technical deep-dive, and demos that make sense to both. |
+| Demos jump between unrelated datasets. | Every demo shares one through-line (one member, one claim, one EOB) so the audience builds intuition. |
+
+<div class="tips" markdown>
+**Design tips from real engagements**
+
+- Open every section with the *business* sentence first. The architecture
+  sentence comes second. Always.
+- Use one consistent persona name across the whole workshop. The audience
+  remembers Rosa; they do not remember "the user".
+- Pick demos that share data. Same member, same claim, same EOB.
+  Audiences build intuition you don't have to teach.
+- Reserve the last 15 minutes for the customer's roadmap, not your slides.
+  Whiteboard, photographed, attached to the engagement notes.
+- Print a one-page executive map (requirements → demos → outcomes) and
+  hand it out before you start. The execs who arrive late will use it.
+</div>
 
 ## Inputs
 

@@ -78,6 +78,81 @@ and an ordered task list.
 - [ ] Risks are concrete.
 - [ ] No real secrets in the plan.
 
+## Worked example — Northwind `/plan` response
+
+??? example "Show what a good /plan response looks like (Northwind)"
+
+    ```text
+    Plan: Northwind MemberAssist workshop web app — v1
+
+    Assumptions
+    -----------
+    - SKILL.md and agenda.md committed at HEAD.
+    - 9 agenda items. Slugs derived via normalize_for_match.
+    - Single-service deployment for v1 (multi-microservice deferred).
+    - Mock data only. No azure-* imports.
+
+    Files I will create (with rough LOC)
+    ------------------------------------
+    src/app/webApp/app/
+      app.py                                                ~ 110 LOC
+      agenda_loader.py                                      ~  60 LOC
+      sections/__init__.py            (auto-discovery)     ~  40 LOC
+      sections/welcome_and_engagement_framing/{__init__,router}.py
+      sections/member_journeys_today/{__init__,router}.py
+      sections/the_memberassist_concept/{__init__,router}.py
+      sections/demo_1_benefits_chat/{__init__,router}.py    ~  90 LOC
+      sections/demo_2_provider_search/{__init__,router}.py  ~  80 LOC
+      sections/demo_3_claim_status/{__init__,router}.py     ~ 110 LOC
+      sections/demo_4_eob_document_analysis/{__init__,router}.py ~ 90 LOC
+      sections/demo_5_evaluation_dashboard/{__init__,router}.py  ~ 80 LOC
+      sections/roadmap_and_next_steps/{__init__,router}.py
+      templates/_layout.html                                ~ 120 LOC
+      static/theme.{css,js}                                 ~ 200 LOC
+    src/app/webApp/{Dockerfile,docker-compose.yml,requirements.txt,example.env}
+
+    data/{chat,search,workflow,document,evaluation}.json    (already filled by CSA)
+
+    Top 3 risks
+    -----------
+    R1. Copilot may hard-code the sidebar in _layout.html.
+        Mitigation: review the diff for any <ul> with literal section names;
+        replace with Jinja loop over request.state.menu (see push-back #6).
+    R2. Slug collision if two agenda items normalize to the same string.
+        Mitigation: agenda_loader logs a hard error on duplicate slugs.
+    R3. Theme persistence breaks on first paint (FOUC).
+        Mitigation: theme.js writes <html data-theme> from localStorage
+        synchronously in <head> before stylesheet evaluation.
+
+    Implementation order
+    --------------------
+    1. agenda_loader.py + tests against data/agenda.md
+    2. sections/__init__.py auto-discovery
+    3. app.py + menu-injection middleware + /healthz
+    4. One section sub-app (Demo 1 - Benefits chat) end-to-end
+    5. Validation: docker compose up, /healthz returns sections_loaded=1
+    6. STOP. Hand back for approval before fanning out remaining 8 sections.
+    ```
+
+    A "bad" plan would skip the risks, list 30 files without sizes, or
+    propose to write all 9 sections in one turn. Reject and iterate the
+    plan, not the code.
+
+<div class="tips" markdown>
+**`/plan` tips**
+
+- If the plan does not mention your customer name (or scenario nouns like
+  "claim", "EOB"), Copilot did not read `customer-scenario.md`. Reopen
+  the file and re-run `/plan` from a fresh chat.
+- Ask Copilot to estimate token cost per section. The estimate is rough,
+  but the *act of estimating* makes Copilot split appropriately.
+- Reject any plan that lists more than 3 risks. Force prioritization. A
+  plan with 11 risks is a plan with no risks.
+- The plan should always end with an explicit STOP after the first
+  section. If it doesn't, Copilot will write all 9 in one turn and hit
+  output limits halfway through.
+</div>
+
 ## Common issues
 
 !!! tip "If the plan is generic"

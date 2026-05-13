@@ -57,6 +57,37 @@ Output:
 - [ ] Samples carry a "what changed vs template" note.
 - [ ] No customer-specific content in templates.
 
+## Mini case study — what promoted from Northwind back to template
+
+After the (fictional) Northwind engagement, the CSA team ran a promotion
+review. Three changes were considered:
+
+| Change | Decision | Why |
+|---|---|---|
+| Add `## Compliance` section as a SKILL.md requirement. | **Promoted** to template | Every regulated-industry customer needs an equivalent. The header is universal even if the rules differ. |
+| Add a **PHI-leak gauge** to `data/evaluation.json`. | **Promoted** as a generic "regulated-data leak gauge" | Reused as PII-leak for retail, IP-leak for legal. Same shape, different label. |
+| Use Northwind brand colours in the Copilot prompt. | **Kept customer-only** | Brand colours are by definition not reusable. The *pattern* of "set colours via one prompt" was already in the template. |
+
+The pattern: **generic shape promotes; specific values stay local.**
+
+<div class="tips" markdown>
+**Scaling tips**
+
+- Run the quarterly retro across CSAs even when nobody volunteers. The
+  improvements that matter most rarely come from the people who
+  volunteer first.
+- Tag every customer repo with the template version it cloned from
+  (`metadata.basedOn` in the SKILL.md frontmatter). When you find a
+  bug in the template, you know which customers to notify.
+- Promote small deltas often. Monolithic "v2 of the template" releases
+  scare the field; one-line improvements get adopted in days.
+- Keep a **public** sample (Northwind) updated to current template even
+  when no real engagement uses it. It's the canonical "what done looks
+  like" link you'll send to every new CSA.
+- Track *which* push-back prompts get used most often. Those are the
+  ones to elevate from `prompts.md` into `SKILL.md` push-back rules.
+</div>
+
 ## Common issues
 
 !!! warning "Template rot"

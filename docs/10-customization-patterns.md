@@ -94,6 +94,60 @@ playbook trace.
 **Real integration points** — Microsoft Sentinel, Defender XDR, Copilot for
 Security skills.
 
+## Worked customization — generic → Northwind
+
+The Northwind sample is the canonical "generic → customer" customization
+worked end-to-end. Seven concrete changes, in order:
+
+1. **Customer name and audience matrix** in `customer-scenario.md`.
+2. **Compliance section** in `SKILL.md` (PHI rules + push-backs).
+3. **Agenda titles** in `agenda.md` (mind the heading anchor).
+4. **Branding colours and the data-classification badge** in prompt #4.
+5. **All five `data/*.json` fixtures** with member-services vocabulary.
+6. **The gold-sample section** name and its `data/` reference.
+7. **Presenter notes** top-to-bottom.
+
+<div class="diff-table" markdown>
+
+| File | Generic | Northwind |
+|---|---|---|
+| `customer-scenario.md` | placeholders | filled (6 reqs, 4 personas) |
+| `SKILL.md` | base rules | + Compliance section, + 2 push-backs |
+| `agenda.md` | 9 generic items | 9 member-services items |
+| `data/chat.json` | KB lookup | colonoscopy benefits Q&A + handoff |
+| `data/search.json` | doc search | provider directory + ranking signals |
+| `data/workflow.json` | generic flow | 5-state claim timeline + COB pend |
+| `data/document.json` | invoice | EOB extraction + plain-English |
+| `data/evaluation.json` | scorecards | + PHI-leak gauge in warn state |
+| `sections/demo-3-claim-status.md` | placeholder | fully written gold sample |
+| `presenter-notes.md` | n/a | 9 blocks, one per agenda item |
+
+</div>
+
+Effort: roughly **one CSA-day** end-to-end (excluding the `/plan` and
+code-generation step, which the tutorial covers). The most time-consuming
+file by far is the `data/*.json` set — realism is what sells.
+
+Full diff:
+[`samples/northwind-memberassist-workshop/customization-diff.md`](https://github.com/pedro-pauletti/csa-workshop-builder/tree/main/samples/northwind-memberassist-workshop/customization-diff.md)
+
+<div class="tips" markdown>
+**Customization tips**
+
+- Customer name in *one* config file. Search the generated repo for the
+  previous customer name before sharing the sample publicly.
+- **Don't customize the architecture for the first 3 engagements.**
+  Architecture changes burn the reuse story. Customize content.
+- Keep a `customization-diff.md` per customer repo. The next CSA who
+  forks your engagement (and there will be one) needs it.
+- Branding colours go in **two** places: the prompt that asks Copilot to
+  customize, and `static/theme.css`. Drift between the two is the most
+  common visual bug.
+- Keep one fictional sample (Northwind, Contoso) up to date alongside any
+  real customer engagement. The fictional one is what you show in
+  reusable training; the real one stays internal.
+</div>
+
 ## Validation checklist
 
 - [ ] Architecture unchanged.

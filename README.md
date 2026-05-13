@@ -8,6 +8,13 @@ This repository **is the tutorial**. It is published as a static documentation
 site using **MkDocs Material** and **GitHub Pages**. It does not contain the
 generated workshop app itself — it teaches you how to create one.
 
+> **Worked example included.** The tutorial ships with a complete, named,
+> customer-flavoured example — **Northwind MemberAssist**, a fictional
+> health-plan member-services copilot — under
+> [`samples/northwind-memberassist-workshop/`](samples/northwind-memberassist-workshop/).
+> It is the gold reference for what a finished, customized workshop looks
+> like. See module 14 ("Worked example") on the tutorial site.
+
 ## What you will learn
 
 - How to translate a customer scenario into a workshop narrative.
@@ -28,7 +35,11 @@ generated workshop app itself — it teaches you how to create one.
 .
 ├── docs/                         # MkDocs source — the tutorial pages
 ├── templates/                    # Reusable SKILL / agenda / scenario templates
-├── samples/                      # Sample customer scenarios (ai-foundry, fabric)
+├── samples/
+│   ├── generic-ai-workshop/                   # Canonical generic sample
+│   ├── northwind-memberassist-workshop/       # Worked end-to-end example
+│   ├── ai-foundry/                            # Stub
+│   └── fabric/                                # Stub
 ├── assets/                       # Images and Mermaid diagram sources
 ├── mkdocs.yml                    # MkDocs Material configuration
 ├── requirements-docs.txt         # Python dependencies for the docs site

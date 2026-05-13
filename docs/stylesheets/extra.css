@@ -80,3 +80,66 @@
   width: 28%;
   font-weight: 600;
 }
+
+/* "Tips from real engagements" panel — lighter than admonition */
+.tips {
+  border-left: 4px solid #F4B400;
+  background: rgba(244, 180, 0, 0.06);
+  border-radius: 6px;
+  padding: 0.85rem 1rem 0.6rem 1rem;
+  margin: 1rem 0 1.25rem;
+}
+.tips > p:first-child {
+  margin-top: 0;
+  font-weight: 700;
+  color: var(--md-default-fg-color);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+}
+.tips ul {
+  margin: 0.25rem 0 0.25rem 1rem;
+  padding: 0;
+}
+.tips li {
+  margin: 0.2rem 0;
+}
+
+/* Diff / "what changed" tables — zebra rows, monospaced second column */
+.diff-table table {
+  width: 100%;
+}
+.diff-table tr:nth-child(even) td {
+  background: var(--md-default-fg-color--lightest);
+}
+.diff-table td:nth-child(2),
+.diff-table td:nth-child(3) {
+  font-family: ui-monospace, SFMono-Regular, "Menlo", "Consolas", monospace;
+  font-size: 0.85rem;
+}
+
+/* Persona / audience matrix grid */
+.persona-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.75rem;
+  margin: 1rem 0 1.25rem;
+}
+.persona-grid .persona {
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 8px;
+  padding: 0.85rem 1rem;
+  background: var(--md-default-bg-color);
+}
+.persona-grid .persona strong {
+  display: block;
+  font-size: 0.95rem;
+  margin-bottom: 0.15rem;
+}
+.persona-grid .persona em {
+  display: block;
+  color: var(--md-default-fg-color--light);
+  font-style: normal;
+  font-size: 0.8rem;
+  margin-bottom: 0.4rem;
+}

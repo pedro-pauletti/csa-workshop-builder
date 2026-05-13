@@ -57,6 +57,7 @@ nav:
   - 10. Customize by product: 10-customization-patterns.md
   - 11. Publish with GitHub Pages: 12-publish-github-pages.md
   - 12. Reuse and scale: 13-reuse-scale.md
+  - "Worked example: Northwind MemberAssist": 14-worked-example.md
 
 markdown_extensions:
   - admonition

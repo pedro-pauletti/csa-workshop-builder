@@ -1,0 +1,65 @@
+{
+  "demo": "Claim status",
+  "requirement": "R3",
+  "claim": {
+    "claim_id": "NW-CLM-2025-0418-77321",
+    "member_id": "NW-MEM-553120",
+    "provider": "Midtown Endocrine Associates",
+    "service_date": "2025-03-14",
+    "billed_amount_usd": 412.00,
+    "allowed_amount_usd": 248.50,
+    "member_responsibility_usd": 49.70,
+    "plan_paid_usd": 198.80
+  },
+  "timeline": [
+    {
+      "step": "received",
+      "label": "Claim received",
+      "timestamp": "2025-03-17T09:14:22Z",
+      "source_system": "ClaimsIntake-EDI837",
+      "actor": "auto",
+      "detail": "EDI 837P received from Midtown Endocrine Associates clearinghouse."
+    },
+    {
+      "step": "validated",
+      "label": "Eligibility & coding validated",
+      "timestamp": "2025-03-17T09:14:46Z",
+      "source_system": "EligibilityService",
+      "actor": "auto",
+      "detail": "Member active. CPT 99213 + ICD-10 E11.9 valid for visit type."
+    },
+    {
+      "step": "adjudicated",
+      "label": "Adjudicated",
+      "timestamp": "2025-03-19T16:02:11Z",
+      "source_system": "AdjudicationEngine",
+      "actor": "auto",
+      "detail": "In-network office visit. Deductible already met. 20% coinsurance applied."
+    },
+    {
+      "step": "paid",
+      "label": "Provider paid",
+      "timestamp": "2025-03-24T11:30:00Z",
+      "source_system": "PayablesETL",
+      "actor": "auto",
+      "detail": "EFT NW-EFT-9920331 sent to provider for $198.80."
+    },
+    {
+      "step": "notified",
+      "label": "Member notified",
+      "timestamp": "2025-03-25T07:00:12Z",
+      "source_system": "NotificationsService",
+      "actor": "auto",
+      "detail": "EOB posted to member portal and email sent to member.aoyama@example.com."
+    }
+  ],
+  "last_updated": "2025-03-25T07:00:12Z",
+  "current_state": "notified",
+  "failure_case": {
+    "claim_id": "NW-CLM-2025-0301-44102",
+    "current_state": "pended",
+    "reason_code": "PEND-COB-001",
+    "human_readable": "Pended for coordination of benefits. Northwind needs the member's other insurance information before adjudication can complete.",
+    "recommended_action": "Page member-services to call the member and capture COB details. Pre-fill the script with the claim summary."
+  }
+}

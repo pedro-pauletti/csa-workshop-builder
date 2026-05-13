@@ -227,6 +227,32 @@ Read the new customer-scenario.md and agenda.md. Then:
 
 ---
 
+## 9.b Generate a realistic mock-data fixture for one demo
+
+```text
+Generate a realistic mock-data fixture for the [demo type] demo in this
+workshop.
+
+Context:
+- Customer scenario: [paste customer-scenario.md]
+- Demo type: one of {chat, search, workflow, document_analysis, evaluation}
+- Target file: data/[name].json
+- Schema constraints: [paste schema or leave blank to infer from sibling files in data/]
+
+The fixture must:
+- Use vocabulary the audience will recognise (no generic "Customer A").
+- Include ONE happy path and ONE realistic failure path.
+- Include a `trace[]` array showing the steps that produced the answer.
+- Cite at least one source per factual claim (where applicable).
+- Be safe to ship publicly: no real names, IDs, addresses, account
+  numbers, or PHI/PII. Use the "last4" pattern for any identifiers.
+- Run offline: no URLs to live services.
+
+Output: the JSON only, valid against the schema, ready to drop into data/.
+```
+
+---
+
 ## 10. Promote sample edits back into templates
 
 ```text

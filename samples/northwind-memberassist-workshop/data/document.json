@@ -1,0 +1,58 @@
+{
+  "demo": "EOB document analysis",
+  "requirement": "R4",
+  "input_document": "EOB_NW-CLM-2025-0418-77321.pdf",
+  "extracted": {
+    "document_type": "Explanation of Benefits",
+    "issued_date": "2025-03-25",
+    "member": {
+      "name": "Rosa A.",
+      "member_id_last4": "3120",
+      "plan": "Northwind Choice PPO"
+    },
+    "provider": {
+      "name": "Midtown Endocrine Associates",
+      "tin_last4": "8841",
+      "in_network": true
+    },
+    "service": {
+      "date_of_service": "2025-03-14",
+      "place_of_service": "Office (11)",
+      "cpt": "99213",
+      "diagnosis_icd10": "E11.9",
+      "description": "Established patient office visit, 20-29 minutes"
+    },
+    "amounts_usd": {
+      "billed": 412.00,
+      "plan_discount": 163.50,
+      "allowed": 248.50,
+      "deductible_applied": 0.00,
+      "coinsurance": 49.70,
+      "copay": 0.00,
+      "plan_paid": 198.80,
+      "member_responsibility": 49.70
+    }
+  },
+  "plain_english_explanation": [
+    "Your provider billed $412.00 for the office visit on March 14, 2025.",
+    "Because the provider is in your Northwind network, a contracted discount of $163.50 was applied.",
+    "The plan-allowed amount is $248.50.",
+    "Your deductible was already met, so $0.00 was applied to the deductible.",
+    "Your coinsurance is 20% of the allowed amount: $49.70.",
+    "Northwind paid the provider $198.80.",
+    "Your responsibility for this visit is $49.70."
+  ],
+  "trace": [
+    "received_pdf=EOB_NW-CLM-2025-0418-77321.pdf",
+    "ran_layout_extraction (mock)",
+    "matched_template=NW-EOB-2025-v3",
+    "extracted_fields=21",
+    "ran_phi_leak_check=pass (PII redacted to last4)",
+    "produced_plain_english=7 lines"
+  ],
+  "failure_case": {
+    "input_document": "EOB_legacy_2019_scan.pdf",
+    "reason": "Layout match below 0.40 confidence. Template not recognised.",
+    "fallback": "Surface raw OCR text and ask member-services to verify before showing to the member."
+  }
+}

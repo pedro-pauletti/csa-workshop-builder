@@ -12,11 +12,28 @@ A FastAPI + Jinja2 + Docker app whose **navigation and content are driven by
 `agenda.md`**. It ships with five mocked interactive demos (chat, search,
 workflow, document analysis, evaluation). No real Azure credentials required.
 
+!!! tip "Just want to read a finished one?"
+    Skip ahead to **[Module 14 — Worked example: Northwind MemberAssist](14-worked-example.md)**
+    to see a complete, named, customer-flavoured workshop end-to-end. Then
+    come back here and run the Fast path for your own engagement.
+
 ## Prerequisites
 
 - VS Code or Codespaces with **GitHub Copilot Chat** (`/plan` available).
 - **Docker Desktop** running.
 - Network access to GitHub.
+
+<div class="tips" markdown>
+**Tips before you start**
+
+- Run `/plan` in a **fresh chat**. Context bleed from earlier turns is the
+  #1 reason Copilot proposes the wrong stack.
+- **Commit `SKILL.md` and `agenda.md` before `/plan`.** Copilot reads the
+  worktree, not the editor buffer.
+- If Copilot picks Flask instead of FastAPI on its first turn, do not
+  argue — re-paste the SKILL `## Stack pins` section and say "regenerate".
+  Faster than negotiating.
+</div>
 
 ## Step 1 — Create the working folder
 

@@ -62,6 +62,73 @@ Return: a diff with corrections.
 - [ ] Healthcheck returns OK.
 - [ ] Logs are readable and not too noisy.
 
+## Expected console output
+
+A healthy first run looks like this:
+
+```text
+[+] Building 12.4s (14/14) FINISHED
+[+] Running 1/1
+ ✔ Container webapp  Created
+Attaching to webapp
+webapp  | INFO:     Started server process [1]
+webapp  | INFO:     Waiting for application startup.
+webapp  | INFO:     Loaded agenda.md (9 items)
+webapp  | INFO:     Discovered 9 sections: ['welcome_and_engagement_framing',
+webapp  |           'member_journeys_today', 'the_memberassist_concept',
+webapp  |           'demo_1_benefits_chat', 'demo_2_provider_search',
+webapp  |           'demo_3_claim_status', 'demo_4_eob_document_analysis',
+webapp  |           'demo_5_evaluation_dashboard', 'roadmap_and_next_steps']
+webapp  | INFO:     Application startup complete.
+webapp  | INFO:     Uvicorn running on http://0.0.0.0:8080
+```
+
+Two key signals: **agenda items match what you put in `agenda.md`**, and
+**sections discovered match agenda items**. If those numbers diverge, you
+have a slug-collision or a missing `__init__.py`.
+
+## Verify with `/healthz`
+
+```bash
+curl -s http://localhost:8080/healthz
+```
+
+Expected response:
+
+```json
+{"status": "ok", "agenda_items": 9, "sections_loaded": 9}
+```
+
+If `sections_loaded < agenda_items`, the loader normalized two agenda
+titles to the same slug or a section folder is missing its `router`
+attribute. Check the `Discovered N sections:` line in the console.
+
+## Advanced pattern — optional Application Insights
+
+The reference architecture wires Application Insights only when you set
+the connection string. No string → silent (great for local rehearsal).
+String present → traces and metrics flow.
+
+In `app.py`:
+
+```python
+import os
+APPINSIGHTS = os.environ.get("APPINSIGHTS_CONNECTION_STRING")
+if APPINSIGHTS:
+    from azure.monitor.opentelemetry import configure_azure_monitor
+    configure_azure_monitor(connection_string=APPINSIGHTS)
+```
+
+In `example.env`:
+
+```text
+# Leave blank for local rehearsal. Set in real Azure environments.
+APPINSIGHTS_CONNECTION_STRING=
+```
+
+The same pattern applies to any optional integration: **unset → mock,
+set → real**. No feature flags, no code paths to maintain.
+
 ## Common issues
 
 !!! warning "Port already in use"
@@ -71,6 +138,20 @@ Return: a diff with corrections.
 !!! tip "Rehearse offline"
     Disable Wi-Fi for one full rehearsal. If the demo breaks, your fallbacks
     aren't strong enough.
+
+<div class="tips" markdown>
+**Local-run tips**
+
+- Run `docker compose build --no-cache` once a week. Stale base layers
+  miss CVE patches and quietly drift from `requirements.txt`.
+- Mount `agenda.md` as a volume in `docker-compose.yml` so you can
+  hot-edit the sidebar during rehearsal without rebuilding.
+- Disable Wi-Fi for the **final** rehearsal. Wi-Fi at customer sites
+  blocks `localhost` more often than you'd expect (captive portals,
+  proxy interception).
+- Pin the host port to 8080 in your engagement repo even if you change
+  it locally. The presenter deck has the URL hard-coded somewhere.
+</div>
 
 ## Next step
 

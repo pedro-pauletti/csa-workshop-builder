@@ -86,6 +86,40 @@ Return: a diff with improvements.
 - [ ] Site is reachable at the GitHub Pages URL.
 - [ ] `mkdocs build --strict` passes (no broken links).
 
+## Workshop-app deployment matrix
+
+The *workshop app* (FastAPI) needs a runtime — pick one based on your
+constraints:
+
+| Target | When to use | One-liner |
+|---|---|---|
+| **Local Docker** | Rehearsal, offline customer site. | `docker compose up --build` |
+| **GitHub Codespaces** | "Click and run" for a single CSA reviewer. | Add `.devcontainer/devcontainer.json`, open in browser. |
+| **Azure Container Apps** | Pilot phase (real users, real auth). | `az containerapp up --source .` |
+| **Azure App Service** | Long-running pilot tied to enterprise SSO. | `az webapp up --runtime PYTHON:3.11` |
+| **Azure Static Web Apps** | Only if you've stripped the FastAPI backend. | Out of scope for the workshop pattern. |
+
+The MkDocs *tutorial* (this site) goes to GitHub Pages either way.
+
+## EMU caveat — corporate organizations with Actions disabled
+
+If your repository lives in a Microsoft (or similar) Enterprise Managed
+User org with **GitHub-hosted runners disabled**, the workflow above
+will fail with a billing/runner error. Two options:
+
+1. **Self-hosted runner** — works, but requires org infrastructure.
+2. **Local `mkdocs gh-deploy` from the CSA's machine** — fastest path:
+
+```bash
+pip install -r requirements-docs.txt
+mkdocs gh-deploy --remote-name origin --force
+```
+
+This pushes a built site directly to the `gh-pages` branch without a
+workflow run. We hit this constraint ourselves on the corporate mirror
+of this very repo — the personal-account fork is where the live site
+runs.
+
 ## Common issues
 
 !!! warning "404 on GitHub Pages"
@@ -94,6 +128,25 @@ Return: a diff with improvements.
 
 !!! warning "`mkdocs build --strict` fails on a broken link"
     Strict mode is intentional — fix the link rather than relaxing the build.
+
+!!! warning "Material theme requests `/releases/latest` and 404s"
+    The Material theme checks for the latest GitHub release on load. Cut a
+    `v0.1.0` tag/release the first time you publish — the 404 disappears.
+
+<div class="tips" markdown>
+**Publishing tips**
+
+- Cut a `v0.x` release the first time you publish. It clears the
+  Material theme's `/releases/latest` 404 and gives you a clean
+  versioning anchor.
+- Pin `mkdocs-material` in `requirements-docs.txt`. Material releases
+  break navigation rendering twice a year on average.
+- Strict mode > permissive mode. A broken internal link is a five-minute
+  fix today and a fifteen-minute archaeology project in a month.
+- If you have *two* GitHub remotes (corporate + personal), keep
+  `origin` as the corporate mirror and add `personal` as the secondary.
+  Deploy to the one with Pages enabled.
+</div>
 
 ## Next step
 

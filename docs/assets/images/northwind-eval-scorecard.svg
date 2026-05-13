@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-label="Northwind evaluation dashboard with PHI-leak gauge">
+  <rect width="960" height="540" fill="#f6f8fb"/>
+  <rect x="0" y="0" width="960" height="48" fill="#0B5394"/>
+  <text x="24" y="32" font-family="Inter, sans-serif" font-size="16" fill="#fff" font-weight="700">Demo 5 · Evaluation dashboard</text>
+  <text x="900" y="32" font-family="Inter, sans-serif" font-size="12" fill="#dbe6f5" text-anchor="end">Window: 2025-03-01 → 2025-03-31 · 1,842 responses</text>
+
+  <rect x="24" y="72" width="220" height="140" rx="6" fill="#fff" stroke="#cdd8e7"/>
+  <text x="44" y="98" font-family="Inter, sans-serif" font-size="11" fill="#54607a" font-weight="700">GROUNDEDNESS</text>
+  <text x="44" y="138" font-family="Inter, sans-serif" font-size="32" fill="#0B5394" font-weight="700">0.94</text>
+  <text x="44" y="160" font-family="Inter, sans-serif" font-size="11" fill="#7a8aa3">target ≥ 0.90</text>
+  <rect x="44" y="174" width="180" height="6" rx="3" fill="#e2e8f0"/>
+  <rect x="44" y="174" width="170" height="6" rx="3" fill="#0B5394"/>
+  <text x="44" y="200" font-family="Inter, sans-serif" font-size="11" fill="#15803d" font-weight="700">PASS</text>
+
+  <rect x="252" y="72" width="220" height="140" rx="6" fill="#fff" stroke="#cdd8e7"/>
+  <text x="272" y="98" font-family="Inter, sans-serif" font-size="11" fill="#54607a" font-weight="700">HARM</text>
+  <text x="272" y="138" font-family="Inter, sans-serif" font-size="32" fill="#0B5394" font-weight="700">0.001</text>
+  <text x="272" y="160" font-family="Inter, sans-serif" font-size="11" fill="#7a8aa3">target ≤ 0.005</text>
+  <rect x="272" y="174" width="180" height="6" rx="3" fill="#e2e8f0"/>
+  <rect x="272" y="174" width="36" height="6" rx="3" fill="#0B5394"/>
+  <text x="272" y="200" font-family="Inter, sans-serif" font-size="11" fill="#15803d" font-weight="700">PASS</text>
+
+  <rect x="480" y="72" width="220" height="140" rx="6" fill="#fff8e0" stroke="#F4B400" stroke-width="2"/>
+  <text x="500" y="98" font-family="Inter, sans-serif" font-size="11" fill="#8a6d00" font-weight="700">PHI LEAK</text>
+  <text x="500" y="138" font-family="Inter, sans-serif" font-size="32" fill="#a86b00" font-weight="700">0.0017</text>
+  <text x="500" y="160" font-family="Inter, sans-serif" font-size="11" fill="#7a5d20">target ≤ 0.0010</text>
+  <rect x="500" y="174" width="180" height="6" rx="3" fill="#f3e3b0"/>
+  <rect x="500" y="174" width="180" height="6" rx="3" fill="#F4B400"/>
+  <text x="500" y="200" font-family="Inter, sans-serif" font-size="11" fill="#a86b00" font-weight="700">WARN</text>
+
+  <rect x="708" y="72" width="220" height="140" rx="6" fill="#fff" stroke="#cdd8e7"/>
+  <text x="728" y="98" font-family="Inter, sans-serif" font-size="11" fill="#54607a" font-weight="700">CITATION COVERAGE</text>
+  <text x="728" y="138" font-family="Inter, sans-serif" font-size="32" fill="#0B5394" font-weight="700">0.99</text>
+  <text x="728" y="160" font-family="Inter, sans-serif" font-size="11" fill="#7a8aa3">target ≥ 0.98</text>
+  <rect x="728" y="174" width="180" height="6" rx="3" fill="#e2e8f0"/>
+  <rect x="728" y="174" width="178" height="6" rx="3" fill="#0B5394"/>
+  <text x="728" y="200" font-family="Inter, sans-serif" font-size="11" fill="#15803d" font-weight="700">PASS</text>
+
+  <rect x="24" y="232" width="448" height="180" rx="6" fill="#fff" stroke="#cdd8e7"/>
+  <text x="44" y="258" font-family="Inter, sans-serif" font-size="11" fill="#0B5394" font-weight="700">PHI LEAK · 30-DAY TREND</text>
+  <text x="44" y="276" font-family="Inter, sans-serif" font-size="10" fill="#7a8aa3">Higher = worse. Rising trend triggered EVAL-INC-2025-031.</text>
+  <line x1="60" y1="380" x2="450" y2="380" stroke="#cdd8e7"/>
+  <line x1="60" y1="300" x2="450" y2="300" stroke="#f1f5f9" stroke-dasharray="3 3"/>
+  <polyline points="60,372 138,371 216,367 294,361 372,357 450,355" fill="none" stroke="#F4B400" stroke-width="2"/>
+  <g fill="#a86b00">
+    <circle cx="60" cy="372" r="3"/>
+    <circle cx="138" cy="371" r="3"/>
+    <circle cx="216" cy="367" r="3"/>
+    <circle cx="294" cy="361" r="3"/>
+    <circle cx="372" cy="357" r="3"/>
+    <circle cx="450" cy="355" r="3"/>
+  </g>
+  <text x="60" y="396" font-family="Inter, sans-serif" font-size="9" fill="#7a8aa3">d-30</text>
+  <text x="450" y="396" font-family="Inter, sans-serif" font-size="9" fill="#7a8aa3" text-anchor="end">today</text>
+
+  <rect x="488" y="232" width="440" height="180" rx="6" fill="#fff" stroke="#cdd8e7"/>
+  <text x="508" y="258" font-family="Inter, sans-serif" font-size="11" fill="#0B5394" font-weight="700">INCIDENT · EVAL-INC-2025-031</text>
+  <g font-family="Inter, sans-serif" font-size="12" fill="#374151">
+    <text x="508" y="284">Opened: 2025-03-22 11:04 UTC</text>
+    <text x="508" y="304">Category: PHI leak · Severity: medium</text>
+    <text x="508" y="324">Cause: new EOB template not in redaction allow-list.</text>
+    <text x="508" y="344">Mitigation: template added · retraining scheduled.</text>
+    <text x="508" y="370" font-weight="700" fill="#15803d">Status: resolved</text>
+    <text x="508" y="390">Owner: compliance@northwind.example</text>
+  </g>
+
+  <rect x="24" y="432" width="904" height="84" rx="6" fill="#fff" stroke="#cdd8e7"/>
+  <text x="44" y="458" font-family="Inter, sans-serif" font-size="11" fill="#0B5394" font-weight="700">HUMAN HANDOFF RATE</text>
+  <text x="44" y="486" font-family="Inter, sans-serif" font-size="20" fill="#0b1530" font-weight="700">18%</text>
+  <text x="120" y="486" font-family="Inter, sans-serif" font-size="12" fill="#7a8aa3">target band 15–25% · within band · trending down (good)</text>
+  <text x="120" y="504" font-family="Inter, sans-serif" font-size="11" fill="#7a8aa3">Below 15% means we're over-confidently answering. Above 25% means retrieval is failing.</text>
+</svg>

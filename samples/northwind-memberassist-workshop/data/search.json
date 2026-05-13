@@ -1,0 +1,76 @@
+{
+  "demo": "Provider search",
+  "requirement": "R2",
+  "query": {
+    "specialty": "Endocrinology",
+    "zip": "30308",
+    "radius_miles": 10,
+    "in_network_only": true,
+    "accepts_new_patients": true
+  },
+  "results": [
+    {
+      "rank": 1,
+      "provider_id": "NW-PR-44182",
+      "name": "Dr. Priya Ranganathan, MD",
+      "clinic": "Midtown Endocrine Associates",
+      "address": "1230 Peachtree St NE, Atlanta GA 30309",
+      "distance_miles": 0.6,
+      "in_network": true,
+      "accepts_new_patients": true,
+      "next_availability": "2025-04-22",
+      "ranking_signals": {
+        "distance": 0.96,
+        "in_network": 1.0,
+        "specialty_match": 1.0,
+        "patient_satisfaction": 0.88,
+        "wait_time_days": 0.74
+      },
+      "score": 0.93
+    },
+    {
+      "rank": 2,
+      "provider_id": "NW-PR-30987",
+      "name": "Dr. Adesola Okafor, DO",
+      "clinic": "Piedmont Endocrinology Group",
+      "address": "95 Collier Rd NW, Atlanta GA 30309",
+      "distance_miles": 2.4,
+      "in_network": true,
+      "accepts_new_patients": true,
+      "next_availability": "2025-05-06",
+      "ranking_signals": {
+        "distance": 0.81,
+        "in_network": 1.0,
+        "specialty_match": 1.0,
+        "patient_satisfaction": 0.92,
+        "wait_time_days": 0.61
+      },
+      "score": 0.88
+    },
+    {
+      "rank": 3,
+      "provider_id": "NW-PR-51220",
+      "name": "Dr. Maeve Sullivan, MD",
+      "clinic": "Decatur Diabetes & Endocrine",
+      "address": "315 W Ponce de Leon Ave, Decatur GA 30030",
+      "distance_miles": 6.1,
+      "in_network": true,
+      "accepts_new_patients": false,
+      "next_availability": null,
+      "ranking_signals": {
+        "distance": 0.62,
+        "in_network": 1.0,
+        "specialty_match": 1.0,
+        "patient_satisfaction": 0.95,
+        "wait_time_days": 0.0
+      },
+      "score": 0.71,
+      "note": "Excluded from default view because accepts_new_patients=false. Shown when user toggles 'include established-only'."
+    }
+  ],
+  "failure_case": {
+    "query": { "specialty": "Pediatric cardiology", "zip": "30308", "radius_miles": 5 },
+    "result_count": 0,
+    "fallback": "No in-network pediatric cardiologists within 5 miles of 30308. Expanding to 25 miles found 3 results. Would you like to see them?"
+  }
+}

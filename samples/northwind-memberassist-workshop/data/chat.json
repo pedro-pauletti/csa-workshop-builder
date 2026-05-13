@@ -1,0 +1,72 @@
+{
+  "demo": "Benefits chat",
+  "requirement": "R1",
+  "turns": [
+    {
+      "role": "member",
+      "text": "Is a colonoscopy covered if I'm 42 and my doctor recommends it?"
+    },
+    {
+      "role": "assistant",
+      "text": "Yes. Your Northwind Choice PPO plan covers screening colonoscopies starting at age 40 when ordered by an in-network provider. Your cost share is $0 for the screening itself; sedation and pathology may be billed separately under the diagnostic benefit.",
+      "confidence": 0.91,
+      "citations": [
+        {
+          "doc": "Northwind Choice PPO 2025 Summary of Benefits",
+          "section": "Preventive services",
+          "page": 7
+        },
+        {
+          "doc": "Member Handbook 2025",
+          "section": "Diagnostic vs. screening procedures",
+          "page": 33
+        }
+      ],
+      "trace": [
+        "received_user_question",
+        "classified_intent=benefits_coverage",
+        "retrieved_docs=2 (top score 0.84)",
+        "drafted_grounded_answer",
+        "ran_phi_leak_check=pass",
+        "ran_groundedness_check=0.93"
+      ]
+    },
+    {
+      "role": "member",
+      "text": "What if it's not a screening — they actually find something?"
+    },
+    {
+      "role": "assistant",
+      "text": "If the procedure converts from screening to diagnostic during the visit, the diagnostic benefit applies. On Choice PPO that means your in-network deductible ($500 individual) and 20% coinsurance until you reach the $3,500 out-of-pocket maximum.",
+      "confidence": 0.78,
+      "citations": [
+        {
+          "doc": "Northwind Choice PPO 2025 Summary of Benefits",
+          "section": "Diagnostic services",
+          "page": 9
+        }
+      ],
+      "trace": [
+        "received_user_question",
+        "classified_intent=benefits_coverage",
+        "retrieved_docs=1 (top score 0.71)",
+        "drafted_grounded_answer",
+        "ran_phi_leak_check=pass",
+        "ran_groundedness_check=0.81"
+      ]
+    }
+  ],
+  "failure_case": {
+    "member_text": "How much will my surgery cost next month?",
+    "assistant_text": "I can't predict surgery cost without the procedure code and provider. I'm handing this to a member-services agent who can pull a cost estimate. Your conversation has been forwarded.",
+    "confidence": 0.22,
+    "handoff": true,
+    "trace": [
+      "received_user_question",
+      "classified_intent=cost_estimate",
+      "retrieved_docs=0 (no match above 0.50)",
+      "confidence_below_threshold",
+      "triggered_human_handoff"
+    ]
+  }
+}
