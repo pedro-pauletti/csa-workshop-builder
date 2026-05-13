@@ -188,18 +188,17 @@ a:hover { border-bottom-color: var(--violet-500); }
   transform: rotate(180deg);
 }
 [data-sidebar="collapsed"] .sidebar__brand {
+  flex-direction: column;
   justify-content: center;
-  padding: 4px 0 16px;
-  gap: 0;
+  align-items: center;
+  padding: 4px 0 12px;
+  gap: 8px;
 }
 [data-sidebar="collapsed"] .sidebar__toggle {
-  position: absolute;
-  top: 18px;
-  right: -14px;
-  background: var(--bg-surface);
+  width: 32px;
+  height: 24px;
   border: 1px solid var(--border-subtle);
-  box-shadow: var(--shadow-sm);
-  z-index: 5;
+  background: var(--bg-surface);
 }
 .sidebar__brand-title {
   font-weight: 700;
