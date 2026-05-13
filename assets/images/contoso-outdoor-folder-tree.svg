@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-label="Northwind per-section folder tree">
+  <rect width="960" height="540" fill="#f6f8fb"/>
+  <rect x="0" y="0" width="960" height="48" fill="#0B5394"/>
+  <text x="24" y="32" font-family="Inter, sans-serif" font-size="16" fill="#fff" font-weight="700">Generated folder tree · per-section sub-app convention</text>
+
+  <rect x="24" y="72" width="500" height="436" rx="6" fill="#fff" stroke="#cdd8e7"/>
+  <g font-family="ui-monospace, SFMono-Regular, monospace" font-size="12" fill="#1f2937">
+    <text x="44" y="100" font-weight="700">src/app/webApp/app/</text>
+    <text x="60" y="120">├── app.py</text>
+    <text x="60" y="138">├── agenda_loader.py</text>
+    <text x="60" y="156">├── templates/</text>
+    <text x="76" y="174">│   └── _layout.html</text>
+    <text x="60" y="192">├── static/</text>
+    <text x="76" y="210">│   ├── theme.css</text>
+    <text x="76" y="228">│   └── theme.js</text>
+    <text x="60" y="246">└── sections/</text>
+    <text x="76" y="264">    ├── __init__.py        <tspan fill="#0B5394">← auto-discovers</tspan></text>
+    <text x="76" y="282">    ├── welcome_framing/</text>
+    <text x="76" y="300">    ├── member_journeys_today/</text>
+    <text x="76" y="318">    ├── memberassist_concept/</text>
+    <text x="76" y="336" fill="#0B5394" font-weight="700">    ├── demo_1_benefits_chat/</text>
+    <text x="76" y="354">    ├── demo_2_provider_search/</text>
+    <text x="76" y="372">    ├── demo_3_claim_status/</text>
+    <text x="76" y="390">    ├── demo_4_eob_analysis/</text>
+    <text x="76" y="408">    ├── demo_5_evaluation/</text>
+    <text x="76" y="426">    └── roadmap_next_steps/</text>
+  </g>
+  <text x="44" y="466" font-family="Inter, sans-serif" font-size="11" fill="#7a8aa3">Slug = normalize_for_match(agenda title) — lowercase, alphanumeric, underscores.</text>
+  <text x="44" y="486" font-family="Inter, sans-serif" font-size="11" fill="#7a8aa3">Sidebar updates with no code change when you edit agenda.md.</text>
+
+  <rect x="544" y="72" width="392" height="212" rx="6" fill="#fff" stroke="#cdd8e7"/>
+  <text x="564" y="100" font-family="Inter, sans-serif" font-size="12" fill="#0B5394" font-weight="700">demo_1_benefits_chat/</text>
+  <g font-family="ui-monospace, monospace" font-size="12" fill="#1f2937">
+    <text x="564" y="124">├── __init__.py</text>
+    <text x="564" y="142">│     exposes router</text>
+    <text x="564" y="160">│     MENU_TITLE = "Demo 1 — Benefits chat"</text>
+    <text x="564" y="178">│     MENU_ICON  = "bi-chat-quote"</text>
+    <text x="564" y="196">├── router.py</text>
+    <text x="564" y="214">│     APIRouter(prefix="/sections/demo_1_benefits_chat")</text>
+    <text x="564" y="232">├── templates/index.html</text>
+    <text x="564" y="250">└── static/chat.css   <tspan fill="#7a8aa3">(optional)</tspan></text>
+  </g>
+
+  <rect x="544" y="304" width="392" height="204" rx="6" fill="#fff" stroke="#cdd8e7"/>
+  <text x="564" y="332" font-family="Inter, sans-serif" font-size="12" fill="#0B5394" font-weight="700">AGENDA → SLUG → ROUTE</text>
+  <g font-family="ui-monospace, monospace" font-size="11" fill="#1f2937">
+    <text x="564" y="356">"Demo 1 - Benefits chat"</text>
+    <text x="564" y="372">  → demo_1_benefits_chat</text>
+    <text x="564" y="388">  → /sections/demo_1_benefits_chat</text>
+    <text x="564" y="412">"Demo 3 - Claim status"</text>
+    <text x="564" y="428">  → demo_3_claim_status</text>
+    <text x="564" y="444">  → /sections/demo_3_claim_status</text>
+  </g>
+  <text x="564" y="476" font-family="Inter, sans-serif" font-size="11" fill="#7a8aa3">Fuzzy match: agenda title with prefix "Demo 3 - "</text>
+  <text x="564" y="492" font-family="Inter, sans-serif" font-size="11" fill="#7a8aa3">still resolves to the short folder. Longest match wins.</text>
+</svg>

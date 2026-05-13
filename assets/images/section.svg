@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-label="Explanatory section structure">
+  <rect width="960" height="540" fill="#f7f9fc"/>
+  <rect x="40" y="40" width="880" height="60" rx="6" fill="#1f3a93"/>
+  <text x="64" y="78" font-family="Inter, sans-serif" font-size="20" fill="#fff" font-weight="700">Section · Demo · Conversational AI</text>
+  <rect x="40" y="116" width="430" height="120" rx="6" fill="#fff" stroke="#dbe2ee"/>
+  <text x="60" y="142" font-family="Inter, sans-serif" font-size="13" fill="#54607a" font-weight="700">CUSTOMER CONTEXT</text>
+  <text x="60" y="166" font-family="Inter, sans-serif" font-size="13" fill="#374151">Why this matters for the customer's business.</text>
+  <text x="60" y="186" font-family="Inter, sans-serif" font-size="13" fill="#374151">Learning objective and audience framing.</text>
+  <rect x="490" y="116" width="430" height="120" rx="6" fill="#fff" stroke="#dbe2ee"/>
+  <text x="510" y="142" font-family="Inter, sans-serif" font-size="13" fill="#54607a" font-weight="700">REQUIREMENT MAPPING</text>
+  <g font-family="Inter, sans-serif" font-size="13" fill="#374151">
+    <text x="510" y="166">R1 — Grounded answers with citations</text>
+    <text x="510" y="186">R3 — Quality evaluation and traceability</text>
+  </g>
+  <rect x="40" y="252" width="880" height="160" rx="6" fill="#fff" stroke="#dbe2ee"/>
+  <text x="60" y="278" font-family="Inter, sans-serif" font-size="13" fill="#54607a" font-weight="700">CONCEPT + DIAGRAM</text>
+  <rect x="60" y="294" width="300" height="100" rx="4" fill="#eef2f8" stroke="#cfd8ff"/>
+  <text x="210" y="350" font-family="Inter, sans-serif" font-size="13" fill="#1f3a93" text-anchor="middle">[ architecture diagram ]</text>
+  <g font-family="Inter, sans-serif" font-size="13" fill="#374151">
+    <text x="380" y="310">Plain-language explanation of the concept.</text>
+    <text x="380" y="332">Linked to one or more requirements.</text>
+    <text x="380" y="354">Sets up the live demo that follows.</text>
+  </g>
+  <rect x="40" y="428" width="880" height="80" rx="6" fill="#fff" stroke="#dbe2ee"/>
+  <text x="60" y="454" font-family="Inter, sans-serif" font-size="13" fill="#54607a" font-weight="700">PRESENTER NOTES · SUCCESS CRITERIA · FALLBACK</text>
+  <text x="60" y="478" font-family="Inter, sans-serif" font-size="13" fill="#374151">Talking points, observable outcomes, and what to do if the live demo fails.</text>
+</svg>

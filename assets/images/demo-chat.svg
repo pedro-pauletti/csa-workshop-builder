@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-label="Chat demo mock">
+  <rect width="960" height="540" fill="#f7f9fc"/>
+  <text x="40" y="48" font-family="Inter, sans-serif" font-size="20" fill="#0b1530" font-weight="700">Demo · Conversational AI</text>
+  <rect x="40" y="72" width="540" height="420" rx="8" fill="#fff" stroke="#dbe2ee"/>
+  <rect x="60" y="92" width="380" height="44" rx="22" fill="#eef2f8"/>
+  <text x="78" y="120" font-family="Inter, sans-serif" font-size="13" fill="#374151">How can I reduce call handling time?</text>
+  <rect x="120" y="148" width="440" height="120" rx="10" fill="#e7efff" stroke="#cfd8ff"/>
+  <text x="138" y="174" font-family="Inter, sans-serif" font-size="13" fill="#0b1530" font-weight="700">Assistant</text>
+  <text x="138" y="198" font-family="Inter, sans-serif" font-size="13" fill="#1f2937">Recommend summarization and next-best-action.</text>
+  <text x="138" y="218" font-family="Inter, sans-serif" font-size="13" fill="#1f2937">Top 3 levers and expected impact range provided.</text>
+  <text x="138" y="244" font-family="Inter, sans-serif" font-size="12" fill="#3949ab">Sources: KB-1024 · Customer service playbook</text>
+  <rect x="60" y="288" width="500" height="44" rx="22" fill="#fff" stroke="#cfd8ff"/>
+  <text x="78" y="316" font-family="Inter, sans-serif" font-size="13" fill="#7b8aa3">Type a message…</text>
+  <rect x="600" y="72" width="320" height="420" rx="8" fill="#fff" stroke="#dbe2ee"/>
+  <text x="620" y="96" font-family="Inter, sans-serif" font-size="13" fill="#54607a" font-weight="700">TRACE</text>
+  <g font-family="JetBrains Mono, monospace" font-size="12" fill="#1f2937">
+    <text x="620" y="124">1 · Received prompt</text>
+    <text x="620" y="146">2 · Retrieved 3 documents</text>
+    <text x="620" y="168">3 · Generated grounded answer</text>
+    <text x="620" y="190">4 · Quality score 0.86</text>
+  </g>
+  <text x="620" y="236" font-family="Inter, sans-serif" font-size="13" fill="#54607a" font-weight="700">SOURCES</text>
+  <g font-family="Inter, sans-serif" font-size="13" fill="#1f2937">
+    <text x="620" y="264">• KB-1024 — Triage protocol</text>
+    <text x="620" y="286">• Playbook · Section 4</text>
+    <text x="620" y="308">• FAQ — Handling time</text>
+  </g>
+</svg>

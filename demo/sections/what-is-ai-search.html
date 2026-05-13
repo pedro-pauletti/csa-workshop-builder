@@ -1,0 +1,144 @@
+<header class="page-header">
+  <span class="page-eyebrow"><i class="fa-solid fa-magnifying-glass"></i> Concept · Module 1 / 6</span>
+  <h1 class="page-title">What is Azure AI Search</h1>
+  <p class="page-subtitle">
+    The retrieval system that powers grounded AI on your own content — what it is,
+    when to reach for it, and what ships in the box.
+  </p>
+</header>
+
+<section class="concept">
+  <h2>The one-sentence definition</h2>
+  <p>
+    <strong>Azure AI Search</strong> is a Platform-as-a-Service that indexes your
+    enterprise content and serves it back through high-recall queries — full-text,
+    vector, hybrid, and semantically re-ranked — so an LLM can produce grounded,
+    citable answers. It is the retrieval half of the
+    <strong>Retrieval-Augmented Generation (RAG)</strong> pattern.
+  </p>
+
+  <h3>Why it exists</h3>
+  <p>
+    Large language models do not know your products, your policies, your tickets,
+    or last quarter's playbook. Embedding the world's knowledge into a model is
+    expensive, slow, and never current. RAG sidesteps that by <em>retrieving</em>
+    the right passages at query time and asking the model to answer
+    <em>only</em> with what it was given — with citations.
+  </p>
+
+  <h3>What ships with the service</h3>
+  <ul>
+    <li><strong>Indexes</strong> — typed, schema-driven, stored as inverted lists + vector graphs (HNSW).</li>
+    <li><strong>Indexers + skillsets</strong> — built-in connectors to Blob, OneLake, Cosmos DB, SQL, and AI Enrichment skills for OCR, language, vision, and chunking.</li>
+    <li><strong>Vector support</strong> — dense vectors as a first-class field type, including <em>integrated vectorization</em> that calls an embedding model at ingest and query time.</li>
+    <li><strong>Hybrid query</strong> — a single request that runs vector + BM25 keyword in parallel and fuses results.</li>
+    <li><strong>Semantic ranker</strong> — an optional L2 model-based reranker that produces captions and extractive answers.</li>
+    <li><strong>Security</strong> — Entra ID, customer-managed keys, network isolation, document-level access via <code>permissionFilter</code> fields.</li>
+  </ul>
+
+  <div class="callout">
+    <strong>Rule of thumb.</strong> If you need an LLM to answer questions over
+    content you own, default to Azure AI Search as the retrieval store. Reach for
+    a pure vector DB only when you do not need keyword, filters, or facets.
+  </div>
+
+  <div class="diagram">
+    <div class="diagram__title"><i class="fa-solid fa-diagram-project"></i> The RAG loop, with Azure AI Search as the retriever</div>
+    <svg viewBox="0 0 880 320" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="arrow1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" class="d-arrow-head" />
+        </marker>
+      </defs>
+
+      <!-- User -->
+      <g>
+        <circle cx="60" cy="160" r="34" class="d-accent-fill" stroke="var(--violet-500)" stroke-width="2" />
+        <text x="60" y="166" text-anchor="middle" font-size="22" class="d-box-label">🧑</text>
+        <text x="60" y="220" text-anchor="middle" font-size="13" font-weight="600" class="d-box-label">Member</text>
+      </g>
+
+      <!-- App -->
+      <rect x="140" y="120" width="150" height="80" rx="10" class="d-box-fill" stroke="var(--border-strong)" stroke-width="1.5" />
+      <text x="215" y="150" text-anchor="middle" font-size="14" font-weight="700" class="d-box-label">Chat app</text>
+      <text x="215" y="172" text-anchor="middle" font-size="11" class="d-box-label-sub">orchestrator</text>
+
+      <!-- Embedding -->
+      <rect x="320" y="40" width="180" height="70" rx="10" class="d-azure-fill" stroke="var(--azure-500)" stroke-width="1.5" />
+      <text x="410" y="68" text-anchor="middle" font-size="13" font-weight="700" class="d-box-label">Azure OpenAI</text>
+      <text x="410" y="86" text-anchor="middle" font-size="11" class="d-box-label-sub">text-embedding-3-large</text>
+      <text x="410" y="102" text-anchor="middle" font-size="11" class="d-box-label-sub">→ query vector</text>
+
+      <!-- Search -->
+      <rect x="320" y="135" width="180" height="100" rx="10" class="d-accent-fill" stroke="var(--violet-500)" stroke-width="2" />
+      <text x="410" y="162" text-anchor="middle" font-size="14" font-weight="700" class="d-box-label">Azure AI Search</text>
+      <text x="410" y="180" text-anchor="middle" font-size="11" class="d-box-label-sub">Hybrid query (BM25 + vector)</text>
+      <text x="410" y="196" text-anchor="middle" font-size="11" class="d-box-label-sub">+ semantic ranker</text>
+      <text x="410" y="216" text-anchor="middle" font-size="11" class="d-box-label-sub">→ top-k passages</text>
+
+      <!-- LLM -->
+      <rect x="540" y="135" width="180" height="100" rx="10" class="d-azure-fill" stroke="var(--azure-500)" stroke-width="1.5" />
+      <text x="630" y="162" text-anchor="middle" font-size="14" font-weight="700" class="d-box-label">Azure OpenAI</text>
+      <text x="630" y="180" text-anchor="middle" font-size="11" class="d-box-label-sub">gpt-4o-mini</text>
+      <text x="630" y="200" text-anchor="middle" font-size="11" class="d-box-label-sub">Grounded answer</text>
+      <text x="630" y="216" text-anchor="middle" font-size="11" class="d-box-label-sub">+ citations</text>
+
+      <!-- Reply -->
+      <rect x="755" y="120" width="100" height="80" rx="10" class="d-box-fill" stroke="var(--border-strong)" stroke-width="1.5" />
+      <text x="805" y="148" text-anchor="middle" font-size="13" font-weight="700" class="d-box-label">Answer</text>
+      <text x="805" y="170" text-anchor="middle" font-size="11" class="d-box-label-sub">to user</text>
+
+      <!-- Arrows -->
+      <path d="M95,160 L138,160" class="d-arrow" stroke-width="2" marker-end="url(#arrow1)" />
+      <path d="M230,120 L320,80"  class="d-arrow" stroke-width="2" marker-end="url(#arrow1)" />
+      <path d="M320,80 L230,120"  class="d-arrow" stroke-width="2" stroke-dasharray="4 3" marker-end="url(#arrow1)" />
+      <path d="M280,170 L320,170" class="d-arrow" stroke-width="2" marker-end="url(#arrow1)" />
+      <path d="M500,185 L540,185" class="d-arrow" stroke-width="2" marker-end="url(#arrow1)" />
+      <path d="M720,160 L755,160" class="d-arrow" stroke-width="2" marker-end="url(#arrow1)" />
+
+      <!-- Labels on arrows -->
+      <text x="116" y="152" font-size="10" class="d-box-label-sub">"warm jacket?"</text>
+      <text x="278" y="78"  font-size="10" class="d-box-label-sub">embed</text>
+      <text x="298" y="110" font-size="10" class="d-box-label-sub">vector</text>
+      <text x="510" y="178" font-size="10" class="d-box-label-sub">passages</text>
+      <text x="730" y="152" font-size="10" class="d-box-label-sub">grounded</text>
+
+      <!-- Index store -->
+      <g>
+        <ellipse cx="410" cy="285" rx="60" ry="14" class="d-box-fill" stroke="var(--violet-500)" stroke-width="1.5" />
+        <text x="410" y="290" text-anchor="middle" font-size="12" font-weight="700" class="d-box-label">products-v1 index</text>
+        <path d="M410,235 L410,272" class="d-arrow" stroke-width="2" stroke-dasharray="4 3" />
+      </g>
+    </svg>
+    <p class="diagram__caption">Every request is two hops to Azure OpenAI (embed, then answer) and one to Azure AI Search — but the retriever is what makes the answer truthful.</p>
+  </div>
+
+  <div class="refs">
+    <div class="refs__label">Official Microsoft Learn references</div>
+    <ul>
+      <li><i class="fa-solid fa-up-right-from-square"></i> <a href="https://learn.microsoft.com/azure/search/search-what-is-azure-search" target="_blank" rel="noopener">What is Azure AI Search?</a></li>
+      <li><i class="fa-solid fa-up-right-from-square"></i> <a href="https://learn.microsoft.com/azure/search/retrieval-augmented-generation-overview" target="_blank" rel="noopener">RAG with Azure AI Search — overview</a></li>
+      <li><i class="fa-solid fa-up-right-from-square"></i> <a href="https://learn.microsoft.com/azure/search/vector-search-overview" target="_blank" rel="noopener">Vector search in Azure AI Search</a></li>
+    </ul>
+  </div>
+</section>
+
+<hr class="section-separator" />
+
+<section class="concept">
+  <h2>Contoso Outdoor — the workshop customer</h2>
+  <p>
+    Throughout the workshop we use <strong>Contoso Outdoor</strong>, a fictional
+    direct-to-consumer outdoor-gear retailer with ~12,000 SKUs across jackets,
+    tents, footwear, climbing, and camping. Their problem is concrete:
+  </p>
+  <ul>
+    <li>Members type natural-language questions ("warm jacket under $200 for hiking in November") and the legacy keyword search returns either zero results or a wall of low-relevance items.</li>
+    <li>They want a chat assistant that answers from the live catalog — never from generic training data — and cites the product page it used.</li>
+    <li>Marketing wants to A/B-test ranking changes without a code release.</li>
+  </ul>
+  <p>
+    Every demo in the next five sections operates over a small slice of the
+    Contoso catalog and answers these three needs.
+  </p>
+</section>

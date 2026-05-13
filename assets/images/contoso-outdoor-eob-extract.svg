@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-label="Northwind EOB document analysis demo">
+  <rect width="960" height="540" fill="#f6f8fb"/>
+  <rect x="0" y="0" width="960" height="48" fill="#0B5394"/>
+  <text x="24" y="32" font-family="Inter, sans-serif" font-size="16" fill="#fff" font-weight="700">Demo 4 · EOB document analysis</text>
+  <rect x="640" y="12" width="180" height="24" rx="12" fill="#F4B400"/>
+  <text x="730" y="29" font-family="Inter, sans-serif" font-size="12" fill="#1a1a1a" text-anchor="middle" font-weight="700">Synthetic data — no PHI</text>
+
+  <rect x="24" y="72" width="380" height="436" rx="6" fill="#fff" stroke="#cdd8e7"/>
+  <text x="44" y="100" font-family="Inter, sans-serif" font-size="12" fill="#0B5394" font-weight="700">UPLOADED EOB</text>
+  <rect x="44" y="116" width="340" height="372" rx="4" fill="#fbfcfe" stroke="#dbe2ee" stroke-dasharray="4 4"/>
+  <text x="214" y="146" font-family="Inter, sans-serif" font-size="13" fill="#7a8aa3" text-anchor="middle">EOB_NW-CLM-2025-0418-77321.pdf</text>
+
+  <g font-family="ui-monospace, monospace" font-size="10" fill="#374151">
+    <text x="60" y="180">NORTHWIND HEALTH</text>
+    <text x="60" y="194">Explanation of Benefits — 2025-03-25</text>
+    <text x="60" y="216">Member: Rosa A.  ID: ****3120</text>
+    <text x="60" y="230">Plan: Northwind Choice PPO</text>
+    <text x="60" y="252">Provider: Midtown Endocrine Assoc.</text>
+    <text x="60" y="266">TIN: ****8841   In-network</text>
+    <text x="60" y="288">Service: 2025-03-14   POS: 11</text>
+    <text x="60" y="302">CPT 99213   ICD-10 E11.9</text>
+    <text x="60" y="324">Billed:                $412.00</text>
+    <text x="60" y="338">Plan discount:        -$163.50</text>
+    <text x="60" y="352">Allowed:               $248.50</text>
+    <text x="60" y="366">Deductible applied:      $0.00</text>
+    <text x="60" y="380">Coinsurance (20%):      $49.70</text>
+    <text x="60" y="394">Plan paid:             $198.80</text>
+    <text x="60" y="416" font-weight="700">YOU OWE:                $49.70</text>
+  </g>
+
+  <rect x="424" y="72" width="512" height="216" rx="6" fill="#fff" stroke="#cdd8e7"/>
+  <text x="444" y="100" font-family="Inter, sans-serif" font-size="12" fill="#0B5394" font-weight="700">EXTRACTED FIELDS · 21</text>
+  <g font-family="Inter, sans-serif" font-size="12" fill="#1f2937">
+    <text x="444" y="124">Member ID (last4)</text><text x="916" y="124" text-anchor="end" font-weight="700">3120</text>
+    <text x="444" y="144">Plan</text><text x="916" y="144" text-anchor="end" font-weight="700">Northwind Choice PPO</text>
+    <text x="444" y="164">Provider</text><text x="916" y="164" text-anchor="end" font-weight="700">Midtown Endocrine Associates</text>
+    <text x="444" y="184">CPT</text><text x="916" y="184" text-anchor="end" font-weight="700">99213</text>
+    <text x="444" y="204">ICD-10</text><text x="916" y="204" text-anchor="end" font-weight="700">E11.9</text>
+    <text x="444" y="224">Billed (USD)</text><text x="916" y="224" text-anchor="end" font-weight="700">412.00</text>
+    <text x="444" y="244">Allowed (USD)</text><text x="916" y="244" text-anchor="end" font-weight="700">248.50</text>
+    <text x="444" y="264">Plan paid (USD)</text><text x="916" y="264" text-anchor="end" font-weight="700">198.80</text>
+  </g>
+
+  <rect x="424" y="304" width="512" height="204" rx="6" fill="#fff" stroke="#cdd8e7"/>
+  <text x="444" y="332" font-family="Inter, sans-serif" font-size="12" fill="#0B5394" font-weight="700">PLAIN-ENGLISH EXPLANATION</text>
+  <g font-family="Inter, sans-serif" font-size="12" fill="#374151">
+    <text x="444" y="356">• Provider billed $412.00 for the office visit on March 14, 2025.</text>
+    <text x="444" y="376">• In-network discount of $163.50 applied → allowed $248.50.</text>
+    <text x="444" y="396">• Deductible already met, so $0.00 to deductible.</text>
+    <text x="444" y="416">• Your 20% coinsurance: $49.70.</text>
+    <text x="444" y="436">• Northwind paid the provider $198.80.</text>
+    <text x="444" y="456">• You owe: $49.70.</text>
+  </g>
+  <text x="444" y="488" font-family="Inter, sans-serif" font-size="10" fill="#7a8aa3">trace: layout match=NW-EOB-2025-v3 · phi_leak_check=pass · 21 fields extracted</text>
+</svg>

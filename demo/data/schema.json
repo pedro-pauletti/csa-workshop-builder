@@ -1,0 +1,50 @@
+{
+  "fields": [
+    {
+      "name": "id",
+      "type": "Edm.String",
+      "attributes": ["key", "retrievable"],
+      "explanation": "The key field — uniquely identifies the document. Always retrievable. Cannot be searchable. Use a stable SKU or GUID; never the title."
+    },
+    {
+      "name": "title",
+      "type": "Edm.String",
+      "attributes": ["searchable", "retrievable"],
+      "analyzer": "en.microsoft",
+      "explanation": "Searchable text with the English Microsoft analyzer. Tokenized, lowercased, stemmed. BM25 will score matches here highly."
+    },
+    {
+      "name": "description",
+      "type": "Edm.String",
+      "attributes": ["searchable", "retrievable"],
+      "analyzer": "en.microsoft",
+      "explanation": "The body text used for both keyword and vector retrieval. Keep it concise — long descriptions should be chunked into multiple documents."
+    },
+    {
+      "name": "descriptionVector",
+      "type": "Collection(Edm.Single)",
+      "dimensions": 1536,
+      "vectorSearchProfile": "hnsw-cosine",
+      "attributes": ["retrievable"],
+      "explanation": "A 1536-d dense vector produced by text-embedding-3-large on the description. Stored in an HNSW graph. Used for vector queries; not searchable as text."
+    },
+    {
+      "name": "category",
+      "type": "Edm.String",
+      "attributes": ["filterable", "facetable", "retrievable"],
+      "explanation": "Used to scope queries (filter=category eq 'Jackets') and to power left-rail facets. Not searchable; do not embed."
+    },
+    {
+      "name": "price",
+      "type": "Edm.Double",
+      "attributes": ["filterable", "sortable", "retrievable"],
+      "explanation": "Numeric field. Filterable (price lt 200) and sortable (orderby=price asc). Numeric fields cannot be searchable."
+    },
+    {
+      "name": "stock",
+      "type": "Edm.Int32",
+      "attributes": ["filterable", "retrievable"],
+      "explanation": "Inventory count, refreshed by the indexer on a 5-minute schedule. Filter on stock gt 0 to hide out-of-stock items."
+    }
+  ]
+}

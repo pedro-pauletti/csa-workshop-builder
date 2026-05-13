@@ -1,0 +1,154 @@
+<header class="page-header">
+  <span class="page-eyebrow"><i class="fa-solid fa-vector-square"></i> Concept + demo · Module 3 / 6</span>
+  <h1 class="page-title">Vector & hybrid search</h1>
+  <p class="page-subtitle">
+    Keyword search is precise but brittle. Vector search is fuzzy but recall-heavy.
+    Hybrid runs both in parallel and fuses results — usually the right default
+    for grounded-AI applications.
+  </p>
+</header>
+
+<section class="concept">
+  <h2>What "vector search" actually means</h2>
+  <p>
+    Each searchable text is passed through an <strong>embedding model</strong>
+    (e.g. <code>text-embedding-3-large</code>) which produces a fixed-length
+    numeric vector. Texts with similar meaning land near each other in vector
+    space. At query time the user's question is embedded with the same model and
+    the index returns the nearest vectors by cosine similarity, using a graph
+    structure (HNSW) for sub-millisecond ANN lookup.
+  </p>
+
+  <h3>Vector vs keyword (BM25)</h3>
+  <ul>
+    <li><strong>Keyword (BM25)</strong> rewards exact term matches and is unbeatable for product IDs, model numbers, and acronyms.</li>
+    <li><strong>Vector</strong> rewards semantic similarity, so "warm jacket" matches "insulated parka" even if the term <em>warm</em> is nowhere in the document.</li>
+    <li><strong>Hybrid</strong> runs both queries against the same index and fuses the result lists with <em>Reciprocal Rank Fusion</em> (RRF). It is the recommended default.</li>
+  </ul>
+
+  <div class="callout">
+    <strong>When to pick vector-only.</strong> Almost never for production. Almost
+    always for a hackathon demo where the data is small and the queries are
+    paraphrases. In real customer engagements, default to hybrid + semantic ranker.
+  </div>
+
+  <div class="diagram">
+    <div class="diagram__title"><i class="fa-solid fa-shuffle"></i> How a hybrid query is fused</div>
+    <svg viewBox="0 0 880 260" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="arrow3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" class="d-arrow-head" />
+        </marker>
+      </defs>
+
+      <!-- Query -->
+      <rect x="20" y="100" width="160" height="64" rx="10" class="d-box-fill" stroke="var(--border-strong)" stroke-width="1.5" />
+      <text x="100" y="130" text-anchor="middle" font-size="13" font-weight="700" class="d-box-label">User query</text>
+      <text x="100" y="148" text-anchor="middle" font-size="11" class="d-box-label-sub">"warm rain jacket"</text>
+
+      <!-- Vector path -->
+      <rect x="240" y="20" width="200" height="80" rx="10" class="d-azure-fill" stroke="var(--azure-500)" stroke-width="1.5" />
+      <text x="340" y="46" text-anchor="middle" font-size="13" font-weight="700" class="d-box-label">Vector branch</text>
+      <text x="340" y="64" text-anchor="middle" font-size="11" class="d-box-label-sub">embed → ANN over HNSW</text>
+      <text x="340" y="80" text-anchor="middle" font-size="11" class="d-box-label-sub">top-50 by cosine</text>
+
+      <!-- BM25 path -->
+      <rect x="240" y="170" width="200" height="80" rx="10" class="d-accent-fill" stroke="var(--violet-500)" stroke-width="2" />
+      <text x="340" y="196" text-anchor="middle" font-size="13" font-weight="700" class="d-box-label">Keyword branch</text>
+      <text x="340" y="214" text-anchor="middle" font-size="11" class="d-box-label-sub">analyzer → inverted lists</text>
+      <text x="340" y="230" text-anchor="middle" font-size="11" class="d-box-label-sub">top-50 by BM25</text>
+
+      <!-- RRF -->
+      <rect x="490" y="95" width="180" height="76" rx="10" class="d-box-fill" stroke="var(--violet-500)" stroke-width="2" />
+      <text x="580" y="123" text-anchor="middle" font-size="13" font-weight="700" class="d-box-label">RRF fusion</text>
+      <text x="580" y="141" text-anchor="middle" font-size="11" class="d-box-label-sub">score = Σ 1 / (k + rank_i)</text>
+      <text x="580" y="157" text-anchor="middle" font-size="11" class="d-box-label-sub">k = 60 (default)</text>
+
+      <!-- Output -->
+      <rect x="720" y="100" width="140" height="64" rx="10" class="d-accent-fill" stroke="var(--violet-500)" stroke-width="2" />
+      <text x="790" y="130" text-anchor="middle" font-size="13" font-weight="700" class="d-box-label">Top-k</text>
+      <text x="790" y="148" text-anchor="middle" font-size="11" class="d-box-label-sub">passed to ranker</text>
+
+      <!-- Arrows -->
+      <path d="M182,120 L238,60"  class="d-arrow" stroke-width="2" marker-end="url(#arrow3)" />
+      <path d="M182,144 L238,210" class="d-arrow" stroke-width="2" marker-end="url(#arrow3)" />
+      <path d="M442,60  L488,120" class="d-arrow" stroke-width="2" marker-end="url(#arrow3)" />
+      <path d="M442,210 L488,148" class="d-arrow" stroke-width="2" marker-end="url(#arrow3)" />
+      <path d="M672,132 L718,132" class="d-arrow" stroke-width="2" marker-end="url(#arrow3)" />
+    </svg>
+    <p class="diagram__caption">Reciprocal Rank Fusion is rank-based, not score-based — it does not require normalising disparate score scales.</p>
+  </div>
+
+  <div class="refs">
+    <div class="refs__label">Official Microsoft Learn references</div>
+    <ul>
+      <li><i class="fa-solid fa-up-right-from-square"></i> <a href="https://learn.microsoft.com/azure/search/vector-search-overview" target="_blank" rel="noopener">Vector search overview</a></li>
+      <li><i class="fa-solid fa-up-right-from-square"></i> <a href="https://learn.microsoft.com/azure/search/hybrid-search-overview" target="_blank" rel="noopener">Hybrid search overview</a></li>
+      <li><i class="fa-solid fa-up-right-from-square"></i> <a href="https://learn.microsoft.com/azure/search/hybrid-search-ranking" target="_blank" rel="noopener">Hybrid ranking with RRF</a></li>
+      <li><i class="fa-solid fa-up-right-from-square"></i> <a href="https://learn.microsoft.com/azure/search/vector-search-ranking" target="_blank" rel="noopener">ANN parameters: HNSW &amp; exhaustive KNN</a></li>
+    </ul>
+  </div>
+</section>
+
+<hr class="section-separator" />
+
+<section class="demo">
+  <h2 class="demo__title"><i class="fa-solid fa-flask"></i> Demo — query the Contoso catalog</h2>
+  <p class="demo__lede">
+    Type a natural-language question and switch retrieval mode. Watch how the
+    top results — and their per-document scores — change. The catalog has only
+    eight items so you can keep all of them in your head.
+  </p>
+
+  <div class="field">
+    <label for="queryInput">Member question</label>
+    <input id="queryInput" type="search" value="warm rain jacket for hiking in November" />
+  </div>
+  <div class="toggle-row" role="tablist" aria-label="Retrieval mode">
+    <span class="chip" data-mode="hybrid">Hybrid (recommended)</span>
+    <span class="chip" data-mode="vector">Vector only</span>
+    <span class="chip" data-mode="keyword">Keyword (BM25) only</span>
+  </div>
+  <button id="runQuery" class="btn btn--primary"><i class="fa-solid fa-play"></i> Run query</button>
+
+  <div id="resultsOut" class="results"></div>
+</section>
+
+<hr class="section-separator" />
+
+<section class="concept">
+  <h2>What "semantic similarity" feels like</h2>
+  <p>
+    Embedding models map text to a high-dimensional space where <em>meaning</em>
+    is geometry. Two sentences with similar intent end up close together,
+    regardless of whether they share words. The demo below uses pre-computed
+    cosine similarities so you can feel it without an API call.
+  </p>
+</section>
+
+<section class="demo">
+  <h2 class="demo__title"><i class="fa-solid fa-arrows-left-right"></i> Demo — semantic similarity playground</h2>
+  <p class="demo__lede">
+    Pick a reference phrase and compare how a vector model ranks several Contoso
+    product blurbs. Notice how it picks up paraphrases and synonyms that pure
+    keyword search would miss.
+  </p>
+
+  <div class="field">
+    <label for="simPhrase">Reference phrase</label>
+    <select id="simPhrase">
+      <option value="rain">"jacket for cold and wet weather"</option>
+      <option value="ultralight">"lightest possible 2-person tent"</option>
+      <option value="winter">"keeps me warm at sub-zero temperatures"</option>
+      <option value="wet">"shoes for slippery, wet trails"</option>
+    </select>
+  </div>
+  <div id="simOut"></div>
+</section>
+
+<script>
+  // Default-active chip on first paint (hybrid)
+  document.querySelectorAll('[data-mode]').forEach(c => {
+    if (c.dataset.mode === 'hybrid') c.classList.add('active');
+  });
+</script>
